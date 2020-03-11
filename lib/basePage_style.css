@@ -1,0 +1,26 @@
+.container-fluid, html{
+  margin : 0;
+  padding: 0;
+  background-color: #f4d1ff;
+}
+
+.side_navbar{
+  background-color: white;
+  padding: 5px;
+  height: 100vh;
+  width: 15%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  
+}
+.work_space{
+   margin-left: 15%;
+    
+}
+.menu a{
+   margin-left: 10%;
+   
+}
