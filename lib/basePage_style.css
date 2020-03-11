@@ -1,14 +1,14 @@
 .container-fluid, html{
   margin : 0;
   padding: 0;
-  background-color: #f4d1ff;
+  background-color: #feebff;
 }
 
 .side_navbar{
   background-color: white;
   padding: 5px;
   height: 100vh;
-  width: 15%;
+  width: 14%;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -17,10 +17,21 @@
   
 }
 .work_space{
-   margin-left: 15%;
-    
+   margin-left: 14%;
+   width: 83vw;
+   height: 87vh;
+   padding-bottom: 10px;
 }
 .menu a{
    margin-left: 10%;
    
+}
+.inner_work_space{
+  
+   margin-top: 1%;
+   margin-left: 1%;
+   margin-bottom: 1%;
+   height: 100%;
+   width: 84vw;
+ 
 }

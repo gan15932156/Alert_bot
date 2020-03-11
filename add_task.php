@@ -4,7 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
+   <title>เพิ่มหัวข้องาน</title>
 
    <?php require_once('config/include_lib.php'); ?>
 </head>
@@ -115,7 +115,7 @@
          .done(function(data) {
             console.log(data)
             Swal.fire({
-               title: 'สำเร็จ ต้องการเข้าสู่หน้าเพิ่ม Line token หรือไม่',
+               title: 'สำเร็จ ต้องการเข้าสู่หน้าเพิ่มโทเคนไลน์(Line token) หรือไม่',
                icon: 'warning',
                showCancelButton: true,
                confirmButtonColor: '#3085d6',

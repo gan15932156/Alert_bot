@@ -19,17 +19,19 @@
    
    if($_SESSION['leveltest'] == 1){  // admin
       $html.= '  
+         <a href="index_admin.php">หน้าแรก</a><br>
          <a href="">กำหนดสิทธิผู้ใช้</a><br>
-         <a href="">เพิ่มข้อมูลงาน</a><br>
+         <a href="add_task.php">เพิ่มข้อมูลงาน</a><br>
          <a href="">เพิ่มคอลัมน์งาน</a><br>
-         <a href="">เพิ่มข้อมูลโทเคน</a><br>
+         <a href="add_token_line.php">เพิ่มข้อมูลโทเคน</a><br>
          <a href="">อัพโหลดไฟล์</a><br>
          <a href="">ข้อมูลการส่งไลน์</a>';
    }
    else{
       $html.= ' 
-         <a href="user"><i class="fas fa-user"></i></i>&nbsp;เพิ่มงาน</a><br>
-         <a href="useruser">เพิ่มข้อมูลโทเคน</a><br>
+         <a href="index_user.php">หน้าแรก</a><br>
+         <a href="add_task.php"><i class="fas fa-user"></i></i>&nbsp;เพิ่มข้อมูลงาน</a><br>
+         <a href="add_token_line.php">เพิ่มข้อมูลโทเคน</a><br>
          <a href="user">อัพโหลดไฟล์</a><br>
          <a href="user">เพิ่มคอลัมน์งาน</a><br>
          <a href="useruser">ข้อมูลการส่งไลน์</a>';
