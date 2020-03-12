@@ -24,7 +24,7 @@
          <a href="add_task.php">เพิ่มข้อมูลงาน</a><br>
          <a href="">เพิ่มคอลัมน์งาน</a><br>
          <a href="add_token_line.php">เพิ่มข้อมูลโทเคน</a><br>
-         <a href="">อัพโหลดไฟล์</a><br>
+         <a href="upload_file_page.php">อัพโหลดไฟล์</a><br>
          <a href="">ข้อมูลการส่งไลน์</a>';
    }
    else{
@@ -32,7 +32,7 @@
          <a href="index_user.php">หน้าแรก</a><br>
          <a href="add_task.php"><i class="fas fa-user"></i></i>&nbsp;เพิ่มข้อมูลงาน</a><br>
          <a href="add_token_line.php">เพิ่มข้อมูลโทเคน</a><br>
-         <a href="user">อัพโหลดไฟล์</a><br>
+         <a href="upload_file_page.php">อัพโหลดไฟล์</a><br>
          <a href="user">เพิ่มคอลัมน์งาน</a><br>
          <a href="useruser">ข้อมูลการส่งไลน์</a>';
    }

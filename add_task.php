@@ -86,12 +86,12 @@
    $(document).ready(function(){
       $("#btn_add_header_task").click(function(){
          let html = '';
-        html += '<tr class="table-light">';
-        html += '<td><input class="form-control header" name="header[]"></td>';
-        html += '<td><select class="form-control header_type" name="header_type[]"><option value="varchar(255)">ตัวอักษร</option><option value="int">ตัวเลข</option><option value="double">ทศนิยม</option><option value="date">วันที่</option></select></td>';
-        html += '</tr>';
+         html += '<tr class="table-light">';
+         html += '<td><input class="form-control header" name="header[]" required></td>';
+         html += '<td><select class="form-control header_type" name="header_type[]"><option value="varchar(255)">ตัวอักษร</option><option value="int">ตัวเลข</option><option value="double">ทศนิยม</option><option value="date">วันที่</option></select></td>';
+         html += '</tr>';
 
-        $('#tbody_task').append(html);
+         $('#tbody_task').append(html);
 
       });
 
@@ -102,31 +102,35 @@
 
    })
    function addtask(){
-         $.ajax({
-            url: "Http_request/get_add_task.php", 
-            method: "POST",
-            async: false,
-            datatype:'json',
-            data: $('#add_task').serialize(),
-            error: function(jqXHR, text, error) {
-               alert(error)
+      $.ajax({
+         url: "Http_request/get_add_task.php", 
+         method: "POST",
+         async: false,
+         datatype:'json',
+         data: $('#add_task').serialize(),
+         error: function(jqXHR, text, error) {
+            Swal.fire({
+               icon: 'error',
+               title: 'ผิดพลาด',
+               text: error
+            })
+         }
+      })
+      .done(function(data) {
+ 
+         Swal.fire({
+            title: 'สำเร็จ ต้องการเข้าสู่หน้าเพิ่มโทเคนไลน์(Line token) หรือไม่',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ใช่',
+            cancelButtonText: 'ไม่',
+         }).then((result) => {
+            if (result.value) {
+               window.location.href="add_token_line.php"
             }
          })
-         .done(function(data) {
-            console.log(data)
-            Swal.fire({
-               title: 'สำเร็จ ต้องการเข้าสู่หน้าเพิ่มโทเคนไลน์(Line token) หรือไม่',
-               icon: 'warning',
-               showCancelButton: true,
-               confirmButtonColor: '#3085d6',
-               cancelButtonColor: '#d33',
-               confirmButtonText: 'ใช่',
-               cancelButtonText: 'ไม่',
-               }).then((result) => {
-               if (result.value) {
-                  window.location.href="add_token_line.php"
-               }
-            })
-         });
-      }
+      });
+   }
 </script>
