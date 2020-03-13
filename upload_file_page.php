@@ -17,8 +17,6 @@
 
    <?php require_once('config/include_lib.php'); ?>
 
-  
-
    <script src="lib/project_js/upload_page.js"></script>
 
    <style>
@@ -95,11 +93,11 @@
                               <div class="row">
                                  <div class="col-md-5 text-right"><label><b>ผลลัพธ์</b></label></div>
                                  <div class="col-md-3 text-left"><input type="checkbox" id="checkall" />เลือกหัวข้อทั้งหมด</div>
-                                 <!-- <div class="col-md-4 text-right">
+                                 <div class="col-md-4 text-right">
                                     <button type="button" id="btn_fullscreen" class="btn btn-secondary">
                                        <i class="fas fa-arrows-alt"></i>
                                     </button>
-                                 </div> -->
+                                 </div>
                               </div>&nbsp;
                               <div class="row">
                                  <div class="col-md-12"><div class="result_file_upload text-left"></div></div>
@@ -174,28 +172,18 @@
       width: 66vw;
       height: 64vh;
    }  
-   /* Chrome, Safari and Opera syntax */
-   :-webkit-full-screen {
-   background-color: yellow;
+
+      /* THIS DOES NOT WORK */
+   /* #tb_result:-webkit-full-screen,
+   #tb_result:-moz-full-screen,
+   #tb_result:-ms-full-screen,
+   #tb_result:-o-full-screen, */
+   #tb_result:full-screen{
+      width:100vw;
+      height:100vh;
+      background-color:#red;
    }
 
-   /* Firefox syntax */
-   :-moz-full-screen {
-   background-color: yellow;
-   }
-
-   /* IE/Edge syntax */
-   :-ms-fullscreen {
-   background-color: yellow;
-   }
-
-   /* Standard syntax */
-   :fullscreen {
-   background-color: yellow;
-   }
-
-   #tb_result:fullscreen {
-     width:100vw;
-   }
+ 
 </style>
 
