@@ -178,10 +178,13 @@
    #tb_result:-moz-full-screen,
    #tb_result:-ms-full-screen,
    #tb_result:-o-full-screen, */
-   #tb_result:full-screen{
-      width:100vw;
-      height:100vh;
-      background-color:#red;
+   #tb_result:fullscreen{
+   width:100vw;
+   height:100vh;
+   background-color: green;
+	margin: 0;
+   padding: 0;
+   overflow: auto;
    }
 
  
