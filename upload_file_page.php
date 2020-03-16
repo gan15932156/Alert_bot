@@ -52,7 +52,7 @@
                         <form id="upload_file_form">
                            <div class="form_upload_file">
                               <div class="row">  
-                                 <div class="col-md-1"><label>เลือกงาน</label></div>
+                                 <div class="col-md-2"><label>เลือกหัวข้องาน</label></div>
                                  <div class="col-md-2">
                                     <?php
 
@@ -63,8 +63,8 @@
                                        $result = mysqli_query($conn,$sql);
             
                                     ?>
-                                    <select name="task_id" id="task_id" class="form-control">
-                                       <option value="null">เลือกงาน</option>
+                                    <select name="task_id" name="task_id" id="task_id" class="form-control">
+                                       <option value="null">เลือกหัวข้องาน</option>
                                        <?php
                                           while($row = mysqli_fetch_array($result)){ 
                                              echo '<option value="'.$row['task_user_id'].'">'.$row['task_name'].'</option>'; 
@@ -172,19 +172,12 @@
       width: 66vw;
       height: 64vh;
    }  
-
-      /* THIS DOES NOT WORK */
-   /* #tb_result:-webkit-full-screen,
-   #tb_result:-moz-full-screen,
-   #tb_result:-ms-full-screen,
-   #tb_result:-o-full-screen, */
-   #tb_result:fullscreen{
-   width:100vw;
-   height:100vh;
-   background-color: green;
-	margin: 0;
-   padding: 0;
-   overflow: auto;
+   .result_file_upload:fullscreen{
+      overflow-x: scroll;
+      overflow-y: scroll;
+      background-color: #feebff;
+      margin: 0;
+      padding: 0;
    }
 
  

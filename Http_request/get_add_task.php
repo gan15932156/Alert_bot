@@ -44,14 +44,13 @@
          if($_POST['header'][$a-1] == "รายการ"){
             $sql_create_table.= "`".$head."_1` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,";
             $sql_create_table.= "`".$head."_2` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL";
-         
          }
          else{
             $sql_create_table.= "`$head` ".$_POST['header_type'][$a-1]."  NOT NULL";
          }
-         
       }
       else{
+
          if($_POST['header'][$a-1] == "รายการ"){
             $sql_create_table.= "`".$head."_1` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,";
             $sql_create_table.= "`".$head."_2` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,";
@@ -59,9 +58,7 @@
          else{
             $sql_create_table.= "`$head`  ".$_POST['header_type'][$a-1]." NOT NULL,";
          }
-         
       }
-         
    }
 
    $sql_create_table.= " ,PRIMARY KEY (`table_name_id`)

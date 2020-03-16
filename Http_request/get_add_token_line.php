@@ -17,4 +17,6 @@
    $sql ="INSERT INTO `token_line`(`token`,`task_id`,`id_user`,`namegroup_line`) VALUES ('$token','$task_id','$id_user','$namegroup_line')";
    
    mysqli_query($conn,$sql);
+
+   mysqli_close($conn);
 ?>

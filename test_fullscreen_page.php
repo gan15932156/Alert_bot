@@ -8,16 +8,7 @@ body {
 	margin: 0;
 }
 
-#element {
-	margin: 40px auto 20px auto;
-	height: 200px;
-	width: 400px;
-	background-color: #e9e9e9;
-	font-size: 20px;
-	padding: 40px 0 0 0;
-	text-align: center;
-	box-sizing: border-box;
-}
+ 
 
 #go-button {
 	width: 200px;
@@ -49,12 +40,21 @@ body {
 	background-color: red;
 	margin: 0;
 }
-#tb:fullscreen{
-   width:100vw;
-   height:100vh;
-   background-color: green;
+#tb{
+	overflow-x: scroll;
+   overflow-y: scroll;
+}
+.tb_fullcreen:fullscreen{
+ 
+	overflow-x: scroll;
+   overflow-y: scroll;
+   background-color: blue;
 	margin: 0;
    padding: 0;
+}
+.tb_fullcreen{
+	width:20vw;
+	height:40vh;
 }
 #go-button:fullscreen{
    width:100vw;
@@ -71,43 +71,299 @@ body {
 	<div id="element">
 		<span>Full Screen Mode Disabled</span>
 		<button id="go-button">Enable Full Screen</button>
-      <table id="tb">
-         <thead>
-            <tr>
-               <th>dasd</th>
-               <th>asda</th>
-               <th>dasda</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-               <td>1</td>
-               <td>2</td>
-               <td>2</td>
-            </tr>
-            <tr>
-               <td>1</td>
-               <td>2</td>
-               <td>2</td>
-            </tr>
-            <tr>
-               <td>1</td>
-               <td>2</td>
-               <td>2</td>
-            </tr>
-            <tr>
-               <td>1</td>
-               <td>2</td>
-               <td>2</td>
-            </tr>
-            <tr>
-               <td>1</td>
-               <td>2</td>
-               <td>2</td>
-            </tr>
+		<div class="tb_fullcreen">
+			<table id="tb">
+				<thead>
+					<tr>
+						<th>dasd</th>
+						<th>asda</th>
+						<th>dasda</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr><tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr> <tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>2</td>
+						<td>2</td>
+					</tr>
 
-         </tbody>
-      </table>
+				</tbody>
+			</table>
+		</div>
+     
 	</div>
 </body>
 
@@ -152,7 +408,7 @@ $("#go-button").on('click', function() {
 	if(IsFullScreenCurrently())
 		GoOutFullscreen();
 	else
-		GoInFullscreen($("#tb").get(0));
+		GoInFullscreen($(".tb_fullcreen").get(0));
 });
 
 $(document).on('fullscreenchange webkitfullscreenchange mozfullscreenchange MSFullscreenChange', function() {

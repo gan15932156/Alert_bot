@@ -218,6 +218,8 @@
 
    function upload_data_2($data,$task_name,$connectDB){
 
+      $result_query;
+
       // Declear result variable
       $result ;
 
@@ -350,12 +352,20 @@
          $sql_loop_insert .= ')';
          //echo $sql_loop_insert."\n";
          // Query (Insert)
-         mysqli_query($connectDB,$sql_loop_insert);
+
+         $result_query = mysqli_query($connectDB,$sql_loop_insert);
+      }
+
+      if($result_query){
+         return true;
+      }
+      else{
+         return false;
       }
    }
 
    // Call configDB.php 
-   require_once("configDB.php");
+   require_once('../config/configDB.php');
 
    // Set variable (Connect database)
    $conn = $DBconnect;
@@ -381,5 +391,14 @@
    $new_obj = reConstruct_object_data($parse_object_data,$conn,$task_id);
 
    //echo json_encode($new_obj);
+
+
    // Upload data
-   upload_data_2($new_obj,$task_name,$conn);
+   if(upload_data_2($new_obj,$task_name,$conn)){
+      echo "true";
+   }
+   else{
+      echo "false";
+   }
+
+   mysqli_close($conn);

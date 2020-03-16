@@ -1,10 +1,10 @@
-<?php   session_start(); require_once('login_check.php'); ?>
+<?php   session_start(); require_once('config/configDB.php'); require_once('login_check.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>เพิ่มหัวข้องาน</title>
+   <title>เพิ่มคอลัมน์หัวข้องาน</title>
 
    <?php require_once('config/include_lib.php'); ?>
 </head>
@@ -18,14 +18,33 @@
                <div class="inner_work_space">
                   <div class="row text-center">
                      
-                     <dir class="col-md-12 "><h2>เพิ่มหัวข้องาน</h2></dir>
+                     <dir class="col-md-12 "><h2>เพิ่มคอลัมน์หัวข้องาน</h2></dir>
                      <div class="col-md-12">
                         <form method="POST" action="javascript:void(0);" id="add_task" onSubmit="addtask()">
-                        <input type="text" id="id_user"  name="id_user" value="<?php echo $_SESSION['id_user'];?>" hidden>
+
+                        <input type="hidden" id="id_user"  name="id_user" value="<?php echo $_SESSION['id_user'];?>">
+
                            <div class="form_add_task">
                               <div class="row">
-                                 <div class="col-md-2"><label>หัวข้องาน</label></div>
-                                 <div class="col-md-2"><input type="text" name="task_name" required class="form-control"></div>
+                                 <div class="col-md-2"><label>เลือกหัวข้องาน</label></div>
+                                 <div class="col-md-2">
+                                    <?php
+                                        $sql = 'SELECT * FROM `task_user` WHERE `user_id` =' .$_SESSION['id_user'];
+
+                                        $conn = $DBconnect;
+
+                                        $result = mysqli_query($conn,$sql);
+                                    ?>
+
+                                    <select name="task_id" id="task_id" class="form-control">
+                                       <option value="null">เลือกหัวข้องาน</option>
+                                       <?php
+                                          while($row = mysqli_fetch_row($result)){
+                                             echo '<option value="'.$row[0].'">'.$row[2].'</option>';
+                                          }
+                                       ?>
+                                    </select>
+                                 </div>
                                  <div class="col-md-2"><label>เพิ่มหัวข้องาน</label></div>
                                  <div class="col-md-1"><input type="button" class="btn btn-success" id="btn_add_header_task" value="+"></div>
                                  <div class="col-md-1"><input type="button" class="btn btn-danger" id="btn_clear" value="เคลียร์"></div>
@@ -85,6 +104,7 @@
 
 <script>
    $(document).ready(function(){
+
       $("#btn_add_header_task").click(function(){
          let html = '';
          html += '<tr class="table-light">';
@@ -102,36 +122,45 @@
 
 
    })
+
    function addtask(){
-      $.ajax({
-         url: "Http_request/get_add_task.php", 
-         method: "POST",
-         async: false,
-         datatype:'json',
-         data: $('#add_task').serialize(),
-         error: function(jqXHR, text, error) {
-            Swal.fire({
-               icon: 'error',
-               title: 'ผิดพลาด',
-               text: error
-            })
-         }
-      })
-      .done(function(data) {
- 
+       
+      if($(".header").val() == undefined){
          Swal.fire({
-            title: 'สำเร็จ ต้องการเข้าสู่หน้าเพิ่มโทเคนไลน์(Line token) หรือไม่',
             icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'ใช่',
-            cancelButtonText: 'ไม่',
-         }).then((result) => {
-            if (result.value) {
-               window.location.href="add_token_line.php"
+            title: 'กรุณาเพิ่มคอลัมน์หัวข้องาน'
+         })
+      }
+      else{
+         $.ajax({
+            url: "Http_request/get_add_column_task.php", 
+            method: "POST",
+            async: false,
+            data: $('#add_task').serialize(),
+            error: function(jqXHR, text, error) {
+               Swal.fire({
+                  icon: 'error',
+                  title: 'ผิดพลาด',
+                  text: error
+               })
             }
          })
-      });
+         .done(function(data) {
+            if(data == "fail"){
+               Swal.fire({
+                  icon: 'error',
+                  title: 'ผิดพลาด',
+                  text: 'ไม่สามารถเพิ่มคอลัมน์หัวข้องานได้'
+               })
+            }
+            else{
+               Swal.fire({
+                  icon: 'success',
+                  title: 'สำเร็จ'
+               })
+            } 
+         });
+      }
+     
    }
 </script>
