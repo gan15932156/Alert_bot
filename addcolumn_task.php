@@ -51,14 +51,14 @@
                                  <div class="col-md-1 text-center"><input type="submit" class="btn btn-success" value="ยืนยัน"></div>
                               </div><br>
                               <div class="row">
-                                 
+                                
                               </div>
                            </div><br>
                            <div class="table_result">
                               <div class="row">
-                                 <div class="col-md-3"></div>
-                                 <div class="col-md-6">
-                                    <table class="table table-sm">
+                                 <div class="col-md-1"></div>
+                                 <div class="col-md-5 fields_div">
+                                    <table style="color:black;" class="table table-sm table-bordered">
                                        <thead class="thead-light">
                                           <tr>
                                              <th width="60%">หัวข้อ</th>
@@ -67,9 +67,22 @@
                                        </thead>
                                        <tbody id="tbody_task"></tbody>
                                     </table>
-
                                  </div>
-                                 <div class="col-md-3"></div>
+                                 <div class="col-md-5 result_template text-center">
+
+                                    <label><b>รูปแบบตารางงาน</b></label>
+
+                                    <table class="table table-sm table-bordered ">
+                                       <thead class="thead-light">
+                                          <tr>
+                                             <th width="60%">หัวข้อ</th>
+                                             <th width="40%">ชนิดข้อมูล</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody class="bg-light text-left" id="tempate_table_body"></tbody>
+                                    </table>
+                                 </div>
+                                 <div class="col-md-1"></div>
                               </div>
                            </div>
                         </form>
@@ -92,12 +105,15 @@
       
    }
    .table_result{
-      background-color:#e0abff;
+      background-color:#f8e0ff;
       margin-left: 5px;
       margin-right: 5px;
       margin-top: 5px;
       padding:5px;
       
+   }
+   .fields_div{
+      border-right: 1px solid #8c7a91;
    }
 </style>
 
@@ -120,8 +136,46 @@
          $("#tbody_task").empty();
       });   
 
-
+      $("#task_id").change(function(){
+               
+         // HTML code
+         let html= '';
+         
+         if ($(this).val() != "null") {
+            fetch_fields($(this).val());
+         }
+         
+      });
    })
+
+   function fetch_fields(task_idd){
+
+      let html;
+
+      $.ajax({
+         url: "Http_request/show_template_task_add_column_page.php",
+         method: "POST",
+         data: {
+            task_id:task_idd
+         },
+         dataType: 'JSON',
+         async: false,
+         success: function(data) {
+            if (!data.error) {
+               html = data.result;
+            } 
+            else {
+               Swal.fire({
+                  icon: 'error',
+                  title: 'ผิดพลาด',
+                  text: data.message
+               })
+            }
+         }
+      });
+
+      $("#tempate_table_body").html(html);
+   }
 
    function addtask(){
        
@@ -154,6 +208,9 @@
                })
             }
             else{
+               
+               fetch_fields($("#task_id").val());
+
                Swal.fire({
                   icon: 'success',
                   title: 'สำเร็จ'
