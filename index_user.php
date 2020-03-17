@@ -50,7 +50,16 @@
                <div class="inner_work_space">
                   <div class="row text-center">
                         
-                     <dir class="col-md-12 "><h2>เพิ่มข้อมูลการแจ้งเตือน</h2></dir>
+                     <dir class="col-md-12 "><h2>เพิ่มข้อมูลการแจ้งเตือน</h2>
+                        <br>
+                        <p class="text-danger">ERROR!!! เวลากำหนดเงื่อนไข เช่น WHERE (h3 = "con1") AND (h3 = "con2") 
+                        จะไม่สามรถใช้ SQL ได้ (Query ไม่ได้) 
+                        เนื่องจากไม่รู้ แต่ที่ใช้ได้คือ WHERE IN เช่น WHERE (h3 IN ("con1","con2")) 
+                        แทน แต่ทั้งผู้ใช้และเราจะรู้ได้ไง555+ น่าจะแก้ที่ Code แทน โดยตรวจสอบชื่อฟีลด์ที่ซ้ำกัน 
+                        ถ้า Operater เป็นเครื่องหมาย "=" ให้ Push Array จากนั้นแปลงเป็น WHERE IN ตัวอย่างที่อยากได้ 
+                        SELECT table_name_id , h1 , h2 , h3 , h4 , h5 , h6 , h7 FROM `award` WHERE ( h1 = 80 ) OR ((h1 IN (80,100)) OR (h1 IN (80,100)))</p>
+                     
+                     </dir>
 
                      <!-- Div form -->
                      <div class="col-md-12">
