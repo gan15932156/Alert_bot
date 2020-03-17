@@ -29,9 +29,16 @@
          z-index: 999;  
          background: #fff url(lib/Picture/loading_page.gif) 50% 50% no-repeat;
       }
+      .tb-result thead th { 
+             position: sticky; 
+             top: 0; 
+             background-color:#007BFF;
+             margin-top:2px;
+          }
    </style>
 </head>
 <body>
+
    <div class="root_div">
       <div class="loading_page"></div>
       <div class="container-fluid">
@@ -44,80 +51,136 @@
                   <div class="row text-center">
                         
                      <dir class="col-md-12 "><h2>เพิ่มข้อมูลการแจ้งเตือน</h2></dir>
-                     <div class="col-md-12">
-                        <form id="upload_file_form">
-                           <div class="form_upload_file">
-                              <div class="row text-left">  
-                                 <div class="col-md-2"><label>หัวข้องาน</label></div>
-                                 <div class="col-md-3">
-                                    <?php
 
-                                       $user_id = $_SESSION['id_user'];
-                                       
-                                       $sql = "SELECT * FROM `task_user` WHERE `user_id`=$user_id"; 
-                                       
-                                       $result = mysqli_query($conn,$sql);
+                     <!-- Div form -->
+                     <div class="col-md-12">
+                        <div class="form_upload_file">
+                           <div class="row text-left">  
+                              <div class="col-md-2"><label>หัวข้องาน</label></div>
+                              <div class="col-md-3">
+                                 <?php
+
+                                    $user_id = $_SESSION['id_user'];
+                                    
+                                    $sql = "SELECT * FROM `task_user` WHERE `user_id`=$user_id"; 
+                                    
+                                    $result = mysqli_query($conn,$sql);
             
-                                    ?>
-                                    <select name="task_id" name="task_id" id="task_id" class="form-control">
-                                       <option value="null">เลือกหัวข้องาน</option>
-                                       <?php
-                                          while($row = mysqli_fetch_array($result)){ 
-                                             echo '<option value="'.$row['task_user_id'].'">'.$row['task_name'].'</option>'; 
-                                          }  
-                                       ?>
-                                    
-                                    </select>
-                                 </div>
-                                 <div class="col-md-2"><label>กลุ่มไลน์</label></div>
-                                 <div class="col-md-3">
-                                    <select class="form-control" name="token_line_id" id="token_line_id">
-                                    
-                                    </select>
-                                 </div>
-                                 <div class="col-md-1"> 
-                                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
-                                       <i class="fa fa-info-circle"></i>
-                                    </button>
-                                 </div>
-                              </div><br>
-                              <div class="row text-left">
-                                 <div class="col-md-2"><label>ประเภทเวลาแจ้งแตือน</label></div>
-                                 <div class="col-md-3">
-                                    <select class="form-control" name="alert_time_type" id="alert_time_type">
-                                       <option value="null">เลือกประเภทแจ้งเตือน</option>
-                                       <option value="period">รอบ</option>
-                                       <option value="fix">ระบุวันที่และเวลา</option>
-                                    </select>
-                                 </div>
-                                 <div class="col-md-7 alert_time_type_input"></div>
-                              </div><br>
-                              <div class="row text-left">
-                                 <div class="col-md-2"><label>ประเภทเวลาแจ้งแตือน</label></div>
-                                 <div class="col-md-3">
-                                    <select class="form-control" name="alert_time_type" id="alert_time_type">
-                                       <option value="null">เลือกประเภทแจ้งเตือน</option>
-                                       <option value="period">รอบ</option>
-                                       <option value="fix">ระบุวันที่และเวลา</option>
-                                    </select>
-                                 </div>
-                                 <div class="col-md-7 alert_time_type_input"></div>
+                                 ?>
+                                 <select name="task_id" name="task_id" id="task_id" class="form-control">
+                                    <option value="null">เลือกหัวข้องาน</option>
+                                    <?php
+                                       while($row = mysqli_fetch_array($result)){ 
+                                          echo '<option value="'.$row['task_user_id'].'">'.$row['task_name'].'</option>'; 
+                                       }  
+                                    ?>   
+                                 </select>
                               </div>
-                           </div>
-                        </form>
+                              <div class="col-md-2"><label>กลุ่มไลน์</label></div>
+                              <div class="col-md-3">
+                                 <select class="form-control" name="token_line_id" id="token_line_id"></select>
+                              </div>
+                              <div class="col-md-1"> 
+                                 <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+                                    <i class="fa fa-info-circle"></i>
+                                 </button>
+                              </div>
+                           </div><br>
+                           <div class="row text-left">
+                              <div class="col-md-2"><label>ประเภทเวลาแจ้งแตือน</label></div>
+                              <div class="col-md-3">
+                                 <select class="form-control" name="alert_time_type" id="alert_time_type">
+                                    <option value="null_time_type">เลือกประเภทแจ้งเตือน</option>
+                                    <option value="period">รอบ</option>
+                                    <option value="fix">ระบุวันที่และเวลา</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-7 alert_time_type_input"></div>
+                           </div><br>
+                           <!-- <div class="row text-left">
+                              <div class="col-md-2"><label>ประเภทเวลาแจ้งแตือน</label></div>
+                              <div class="col-md-3">
+                                 <select class="form-control" name="alert_time_type" id="alert_time_type">
+                                    <option value="null">เลือกประเภทแจ้งเตือน</option>
+                                    <option value="period">รอบ</option>
+                                    <option value="fix">ระบุวันที่และเวลา</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-7 alert_time_type_input"></div>
+                           </div> -->
+                        </div>
                      </div>
+                     <!-- End div -->
+
+                     <!-- Div กรองข้อมูล -->
                      <div class="col-md-12">
                         <div class="row condition_builder_div">
-                           <div class="col-md-12"><h4>กรองข้อมูล</h4></div>
+                           <div class="col-md-12"><h5>กรองข้อมูล</h5></div>
                            <div class="col-md-12">
+                              
+                              <!-- Form condition builder -->
                               <form id="condition_builder_form">
+
+                                 <input type="hidden" name="sub_row_data_count" id="sub_row_data_count" >
                                  <input type="hidden" id="table_nameeeeeeeee" name="table_nameeeeeeeee">
                                  <input type="hidden" id="fields_count" name="fields_count">
                                  <input type="hidden" id="sql_hidden" name="sql_hidden">
+                                 
+                                 <div class="row">
+                                    
+                                    <!-- div btn -->
+                                    <div class="col-md-12 text-center"> 
+                                       <input type="button" value="ยืนยัน" class="btn btn-success btn-sm" id="send_query">
+                                       <input type="button" value="เคลียร์เงื่อนไข" class="btn btn-danger btn-sm" id="reset_condition">
+                                       <input type="button" value="เคลียร์ทั้งหมด" class="btn btn-danger btn-sm" id="reset_all">
+                                    </div>
+                                    <!-- End div -->
+
+                                    <!-- div condition builder -->
+                                    <div class="col-md-12"><br>   
+                                       <!-- ตาราง กำหนดเงื่อนไข -->
+                                       <table class="table table-sm table-bordered text-center condition_table">
+                                          <thead class="bg-primary">
+                                             <tr>
+                                                <th width="5%"> 
+                                                <div class="dropdown" >
+                                                      <input type="button" value="+" class="dropbtn btn btn-success btn-sm">
+                                                   <div class="dropdown-content" style="left:0;">
+                                                      <span id="add_condition" condition_type="main_condition">เพิ่มเงื่อนไข</span>
+                                                      <span id="add_sub_condition" condition_type="sub_condition">เพิ่มเงื่อนไขย่อย</span>
+                                                   </div>
+                                                </div>
+                                                </th>
+                                                <th width="5%">ประเภท</th>
+                                                <th width="15%">หัวตาราง</th>
+                                                <th width="10%">เงื่อนไข</th>
+                                                <th width="15%">ค่า/หัวตาราง</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody class="table-primary" id="append_condition">
+                                          </tbody>
+                                       </table> 
+                                       <!-- End table -->
+                                    </div>
+                                    <!-- End div -->
+                                    
+                                    <!-- div result_query -->
+                                    <div class="col-md-12 result_table"><br>
+                                       
+                                    </div>
+                                    <!-- End div -->
+                                 </div>
+
                               </form>
+                              <!-- End form -->
+
+
                            </div>
                         </div>
                      </div>
+                     <!-- End div -->
+
+                     
                   </div>
                </div>
             </div>
@@ -177,6 +240,45 @@
       margin: 0;
       padding: 0;
    }
+   .dropbtn {
+      color: white;
+      border: none;
+      cursor: pointer;
+   }
 
+   .dropdown {
+      position: relative;
+      display: inline-block;
+   }
+
+   .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+   }
+
+   .dropdown-content span {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+   }
+
+   .dropdown-content span:hover {
+      cursor: pointer;
+      background-color: #f1f1f1;
+   }
+
+   .dropdown:hover .dropdown-content {
+      display: block;
+   }
+
+   .dropdown:hover .dropbtn {
+      background-color: #3e8e41;
+   }
  
 </style>
