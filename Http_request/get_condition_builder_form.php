@@ -48,20 +48,17 @@ function parse_condition_to_WHERE_IN($array_condition,$fields_json){
    $outer_loop = 0;
 
    foreach($array_condition as $key => $value) { // parse row condition to WHERE IN SQL
+
       if($outer_loop == $count_key-1){
          if(count($array_condition->{$key}) > 1){
             $text.= '('; 
             $array_key = array_keys($fields_json, $key);
             $field_header = $array_key[0]+1;
             if($key == "รายการ"){
+
                $count_value = count($value);
                $inner_loop = 0;
-               if(is_numeric($arr['value'])){
-                  $text.='h'.$field_header.'_1 IN(';
-               }
-               else{
-                  $text.='h'.$field_header.'_2 IN(';
-               }
+               $text.='h'.$field_header.'_1 IN(';
                foreach($value as $arr){
                   if($inner_loop == $count_value-1){ // last
                      if($arr['value_type'] == 'con_value'){
@@ -175,12 +172,8 @@ function parse_condition_to_WHERE_IN($array_condition,$fields_json){
             if($key == "รายการ"){
                $count_value = count($value);
                $inner_loop = 0;
-               if(is_numeric($arr['value'])){
-                  $text.='h'.$field_header.'_1 IN(';
-               }
-               else{
-                  $text.='h'.$field_header.'_2 IN(';
-               }
+               $text.='h'.$field_header.'_1 IN(';
+              
                foreach($value as $arr){
                   if($inner_loop == $count_value-1){ // last
                      if($arr['value_type'] == 'con_value'){
@@ -304,12 +297,7 @@ function parse_condition_to_WHERE_IN_sub($array_condition,$fields_json){
             if($key == "รายการ"){
                $count_value = count($value);
                $inner_loop = 0;
-               if(is_numeric($arr['value'])){
-                  $text.='h'.$field_header.'_1 IN(';
-               }
-               else{
-                  $text.='h'.$field_header.'_2 IN(';
-               }
+               $text.='h'.$field_header.'_1 IN(';
                foreach($value as $arr){
                   if($inner_loop == $count_value-1){ // last
                      if($arr['value_type'] == 'con_value'){
@@ -423,12 +411,7 @@ function parse_condition_to_WHERE_IN_sub($array_condition,$fields_json){
             if($key == "รายการ"){
                $count_value = count($value);
                $inner_loop = 0;
-               if(is_numeric($arr['value'])){
-                  $text.='h'.$field_header.'_1 IN(';
-               }
-               else{
-                  $text.='h'.$field_header.'_2 IN(';
-               }
+               $text.='h'.$field_header.'_1 IN(';
                foreach($value as $arr){
                   if($inner_loop == $count_value-1){ // last
                      if($arr['value_type'] == 'con_value'){
@@ -846,55 +829,213 @@ function generate_last_sql($fields_json){
 
 function generate_where_condition_WBS_fields($fields_json){
    $sql = '';
-   
+   $str = '';
+   $WHERE_IN = new stdClass();
+   $loop_non_same_fields_count = 1;
    $sub_row_data_count = json_decode($_POST['sub_row_data_count']);// รับข้อมูล JSON ข้อมูลจำนวนเงื่อนไขของเงื่อนไขย่อย
-   $loop_count_main_con = 0; // ตัวแปรลูปของเงื่อนไขหลัก
-   $loop_count_sub_con = 0; // ตัวแปรลูปของเงื่อนไขย่อย
-   $loop_count_all_con = 0; // ตัวแปรลูปของเงื่อนไขทั้งหมด main/sub
-   $loop_conjection_condition_count = 0 ; // ตัวแปรลูปของตัวเชื่อมเงื่อนไขย่อย
-   
-   $sql .= ' WHERE'; 
-   
-   $array_main_con = array(); // ประกาศตัวแปร array
-   $array_sub_con = array(); // ประกาศตัวแปร array
 
-   foreach($_POST['condition_type_row'] as $condition_type){// ลูปเงื่อนไขทั้งหมด 
-      if($condition_type == "main_con"){// ถ้าเป็นเงื่อนไขหลัก
-         $loop_array_main = array(// เก็บค่าเงื่อนไข ชนิด array
-            'oplist' =>$_POST['main_oplist'][$loop_count_main_con], 
-            'fieldlist' =>$_POST['main_fieldlist'][$loop_count_main_con],
-            'condition_opv' =>$_POST['main_condition_opv'][$loop_count_main_con],
-            'valuelist' => $_POST['main_condition_value_input'][$loop_count_main_con],
-            'value_type' => $_POST['main_condition_value_type'][$loop_count_main_con]
-         );
-         $loop_count_main_con++;
-         $loop_count_all_con++;
+   if(!empty($_POST['main_fieldlist'])){
 
-         $sql .= generate_main_sql_condition($loop_array_main,$fields_json);// ต่อข้อความด้วยเรียกใช้ฟังก์ชั่น
-      }
-      else if($condition_type == "main_row_sub_con"){
-         $loop_array_sub = array();
-         $loop_array_sub2 = array();
-         $loop_count_all_con++;
-         $number_of_sub_condition = $sub_row_data_count->{"sub_con".$loop_count_all_con};
-         $loop_array_sub['conjection_condition'] = $_POST['sub_con_optlist'][$loop_conjection_condition_count];
-         for( $i =1 ; $i <= $number_of_sub_condition ; $i++){
-            $sub_con = array(
-               'sub_op_list' =>$_POST['sub_oplist'][$loop_count_sub_con], 
-               'sub_field_list' =>$_POST['sub_fieldlist'][$loop_count_sub_con],
-               'sub_condition_opv' =>$_POST['sub_condition_opv'][$loop_count_sub_con],
-               'sub_value_list' => $_POST['sub_condition_value_input'][$loop_count_sub_con],
-               'sub_condition_value_type' => $_POST['sub_condition_value_type'][$loop_count_sub_con]
-            );
-            $loop_count_sub_con++;
-            array_push($loop_array_sub2,$sub_con);
-         }
-         $loop_conjection_condition_count++;
-         $loop_array_sub['sub_con'] = $loop_array_sub2;
-         $sql.= generate_sub_sql_condition($loop_array_sub,$fields_json);
+      $same_fields = count_same_fields_for_WHERE_IN($_POST['main_fieldlist'],$_POST['main_condition_opv']);
+      if(!empty($same_fields)){
+         $WHERE_IN = reconstruct_HTTP_post_same_fields($_POST['main_fieldlist'],$_POST['main_condition_opv'],$_POST['main_condition_value_type'],$_POST['main_condition_value_input'],$same_fields);
       }
    }
-   return $sql;
+  
+   $loop_count_main_con = 0; // ตัวแปรลูปของเงื่อนไขหลัก
+   $loop_count_sub_con = 0; // ตัวแปรลูปของเงื่อนไขย่อย
+   $loop_count_sub_con2 = 0;
+   $loop_count_all_con = 0; // ตัวแปรลูปของเงื่อนไขทั้งหมด main/sub
+   $loop_conjection_condition_count = 0 ; // ตัวแปรลูปของตัวเชื่อมเงื่อนไขย่อย
+  
+
+   $sql .= ' WHERE'; 
+ 
+   $array_main_con = array(); // ประกาศตัวแปร array
+   $array_sub_con = array(); // ประกาศตัวแปร array
+   $array_sub_con_same_fields = array();
+   $testvalue = '';
+   foreach($_POST['condition_type_row'] as $condition_type){// ลูปเงื่อนไขทั้งหมด       
+      if($condition_type == "main_con"){// ถ้าเป็นเงื่อนไขหลัก      
+         if(!empty($WHERE_IN->{$_POST['main_fieldlist'][$loop_count_main_con]}) && $_POST['main_condition_opv'][$loop_count_main_con] == "="){
+            $loop_count_main_con++;
+            $loop_count_all_con++;           
+         }
+         else{
+            $loop_array_main = array(// เก็บค่าเงื่อนไข ชนิด array
+               'oplist' =>$_POST['main_oplist'][$loop_count_main_con], 
+               'fieldlist' =>$_POST['main_fieldlist'][$loop_count_main_con],
+               'condition_opv' =>$_POST['main_condition_opv'][$loop_count_main_con],
+               'valuelist' => $_POST['main_condition_value_input'][$loop_count_main_con],
+               'value_type' => $_POST['main_condition_value_type'][$loop_count_main_con]
+            ); 
+            
+            $loop_count_main_con++;
+            $loop_count_all_con++;           
+            $sql .= generate_main_sql_condition($loop_array_main,$fields_json,$loop_non_same_fields_count);// ต่อข้อความด้วยเรียกใช้ฟังก์ชั่น  
+            $testvalue.= generate_main_sql_condition($loop_array_main,$fields_json,$loop_non_same_fields_count);// ต่อข้อความด้วยเรียกใช้ฟังก์ชั่น  
+            $loop_non_same_fields_count++;
+         }   
+      }
+      else if($condition_type == "main_row_sub_con"){// ถ้าเป็นเงื่อนไขย่อย    
+
+         if(empty($_POST['sub_con_optlist'][$loop_conjection_condition_count]) || $loop_non_same_fields_count == 1){
+            $sql.= ' (';
+            $str.= ' (';
+         }
+         else{
+            $sql.= ' '.$_POST['sub_con_optlist'][$loop_conjection_condition_count].' (';
+            $str.= ' '.$_POST['sub_con_optlist'][$loop_conjection_condition_count].' (';
+         }
+         
+         $loop_sub_non_same_fields_count = 1;
+         $loop_array_sub = array();
+         $loop_array_sub2 = array();    
+         //$loop_array_fields = array();    
+         $loop_count_all_con++;     
+         $number_of_sub_condition = $sub_row_data_count->{"sub_con".$loop_count_all_con};     
+         $loop_array_sub['conjection_condition'] = $_POST['sub_con_optlist'][$loop_conjection_condition_count];      
+         
+         // Row sub con 
+         $sub_fields_list = array();
+         $sub_opv = array();
+         $sub_value_type = array();
+         $sub_value = array();
+
+         $sub_WHERE_IN = new stdClass();
+         
+         for($i =1 ; $i <= $number_of_sub_condition ; $i++){
+            array_push($sub_fields_list,$_POST['sub_fieldlist'][$loop_count_sub_con2]);
+            array_push($sub_opv,$_POST['sub_condition_opv'][$loop_count_sub_con2]);
+            array_push($sub_value_type,$_POST['sub_condition_value_type'][$loop_count_sub_con2]);
+            array_push($sub_value,$_POST['sub_condition_value_input'][$loop_count_sub_con2]);
+            $loop_count_sub_con2++;
+         }
+
+         if(!empty($sub_fields_list)){
+
+            $sub_con_same_fields = count_same_fields_for_WHERE_IN($sub_fields_list,$sub_opv);
+            if(!empty($sub_con_same_fields)){
+               $sub_WHERE_IN = reconstruct_HTTP_post_same_fields($sub_fields_list,$sub_opv,$sub_value_type,$sub_value);
+            }
+         }
+
+         // loop sub condition
+         for($i =1 ; $i <= $number_of_sub_condition ; $i++){   
+            if(!empty($sub_WHERE_IN->{$_POST['sub_fieldlist'][$loop_count_sub_con]}) && $_POST['sub_condition_opv'][$loop_count_sub_con] == "="){
+               $loop_count_sub_con++;             
+            }
+            else{                 
+               $sub_con = array(
+                  'sub_op_list' =>$_POST['sub_oplist'][$loop_count_sub_con], 
+                  'sub_field_list' =>$_POST['sub_fieldlist'][$loop_count_sub_con],
+                  'sub_condition_opv' =>$_POST['sub_condition_opv'][$loop_count_sub_con],
+                  'sub_value_list' => $_POST['sub_condition_value_input'][$loop_count_sub_con],
+                  'sub_condition_value_type' => $_POST['sub_condition_value_type'][$loop_count_sub_con]
+               ); 
+               array_push($loop_array_sub2,$sub_con);
+                               
+               $loop_count_sub_con++;   
+               $loop_array_sub['sub_con'] = $loop_array_sub2;   
+               $sql.= generate_sub_sql_condition2($sub_con,$fields_json,$loop_sub_non_same_fields_count);
+               $str.= generate_sub_sql_condition2($sub_con,$fields_json,$loop_sub_non_same_fields_count);
+               $loop_sub_non_same_fields_count++;
+            }   
+         }
+
+         if(!empty((array) $sub_WHERE_IN) && $loop_sub_non_same_fields_count == 1){
+
+            $sql.= ' ';
+            //$WHERE_IN
+            $sql.= parse_condition_to_WHERE_IN_sub($sub_WHERE_IN,$fields_json);
+            $str.= ' '.parse_condition_to_WHERE_IN_sub($sub_WHERE_IN,$fields_json);
+         }
+         else if(!empty((array) $sub_WHERE_IN) && $loop_sub_non_same_fields_count != 1){
+            $sql.= ' AND ';
+            //$WHERE_IN
+            $sql.= parse_condition_to_WHERE_IN_sub($sub_WHERE_IN,$fields_json);
+            $testvalue.= ' AND '.parse_condition_to_WHERE_IN_sub($sub_WHERE_IN,$fields_json);
+         }
+   
+         $loop_conjection_condition_count++;  
+         $sql.= ')';
+         $str.= ')';
+         $loop_non_same_fields_count++;
+      }
+
+   }
+
+   if(!empty((array) $WHERE_IN) && $loop_non_same_fields_count == 1){
+
+      $sql.= ' ';
+      //$WHERE_IN
+      $sql.= parse_condition_to_WHERE_IN($WHERE_IN,$fields_json);
+      $testvalue.= ' '.parse_condition_to_WHERE_IN($WHERE_IN,$fields_json);
+   }
+   else if(!empty((array) $WHERE_IN) && $loop_non_same_fields_count != 1){
+      $sql.= ' AND ';
+      //$WHERE_IN
+      $sql.= parse_condition_to_WHERE_IN($WHERE_IN,$fields_json);
+      $testvalue.= ' AND '.parse_condition_to_WHERE_IN($WHERE_IN,$fields_json);
+   }
+   
+
+
+
+
+
+   // $sub_row_data_count = json_decode($_POST['sub_row_data_count']);// รับข้อมูล JSON ข้อมูลจำนวนเงื่อนไขของเงื่อนไขย่อย
+   // $loop_count_main_con = 0; // ตัวแปรลูปของเงื่อนไขหลัก
+   // $loop_count_sub_con = 0; // ตัวแปรลูปของเงื่อนไขย่อย
+   // $loop_count_all_con = 0; // ตัวแปรลูปของเงื่อนไขทั้งหมด main/sub
+   // $loop_conjection_condition_count = 0 ; // ตัวแปรลูปของตัวเชื่อมเงื่อนไขย่อย
+   
+   // $str = '';
+   // $WHERE_IN = new stdClass();
+   // $loop_non_same_fields_count = 1;
+
+   // $sql .= ' WHERE'; 
+   
+   // $array_main_con = array(); // ประกาศตัวแปร array
+   // $array_sub_con = array(); // ประกาศตัวแปร array
+
+   // foreach($_POST['condition_type_row'] as $condition_type){// ลูปเงื่อนไขทั้งหมด 
+   //    if($condition_type == "main_con"){// ถ้าเป็นเงื่อนไขหลัก
+   //       $loop_array_main = array(// เก็บค่าเงื่อนไข ชนิด array
+   //          'oplist' =>$_POST['main_oplist'][$loop_count_main_con], 
+   //          'fieldlist' =>$_POST['main_fieldlist'][$loop_count_main_con],
+   //          'condition_opv' =>$_POST['main_condition_opv'][$loop_count_main_con],
+   //          'valuelist' => $_POST['main_condition_value_input'][$loop_count_main_con],
+   //          'value_type' => $_POST['main_condition_value_type'][$loop_count_main_con]
+   //       );
+   //       $loop_count_main_con++;
+   //       $loop_count_all_con++;
+
+   //       $sql .= generate_main_sql_condition($loop_array_main,$fields_json);// ต่อข้อความด้วยเรียกใช้ฟังก์ชั่น
+   //    }
+   //    else if($condition_type == "main_row_sub_con"){
+   //       $loop_array_sub = array();
+   //       $loop_array_sub2 = array();
+   //       $loop_count_all_con++;
+   //       $number_of_sub_condition = $sub_row_data_count->{"sub_con".$loop_count_all_con};
+   //       $loop_array_sub['conjection_condition'] = $_POST['sub_con_optlist'][$loop_conjection_condition_count];
+   //       for( $i =1 ; $i <= $number_of_sub_condition ; $i++){
+   //          $sub_con = array(
+   //             'sub_op_list' =>$_POST['sub_oplist'][$loop_count_sub_con], 
+   //             'sub_field_list' =>$_POST['sub_fieldlist'][$loop_count_sub_con],
+   //             'sub_condition_opv' =>$_POST['sub_condition_opv'][$loop_count_sub_con],
+   //             'sub_value_list' => $_POST['sub_condition_value_input'][$loop_count_sub_con],
+   //             'sub_condition_value_type' => $_POST['sub_condition_value_type'][$loop_count_sub_con]
+   //          );
+   //          $loop_count_sub_con++;
+   //          array_push($loop_array_sub2,$sub_con);
+   //       }
+   //       $loop_conjection_condition_count++;
+   //       $loop_array_sub['sub_con'] = $loop_array_sub2;
+   //       $sql.= generate_sub_sql_condition($loop_array_sub,$fields_json);
+   //    }
+   // }
+    return $sql;
 }
    session_start();
 
@@ -909,6 +1050,7 @@ function generate_where_condition_WBS_fields($fields_json){
    $str = '';
    $WHERE_IN = new stdClass();
    $loop_non_same_fields_count = 1;
+
    if(in_array("WBS",$fields_json)){ // ตรวจถ้ามีฟีลด์ชื่อว่า WBS 
       $sql .= 'SELECT '.generate_fields_WBS($fields_json) . ' FROM '.'`'.$table.'`';
       if(!empty($_POST['condition_type_row'])){ // have condition
@@ -1009,7 +1151,6 @@ function generate_where_condition_WBS_fields($fields_json){
             if(!empty($same_fields)){
                $WHERE_IN = reconstruct_HTTP_post_same_fields($_POST['main_fieldlist'],$_POST['main_condition_opv'],$_POST['main_condition_value_type'],$_POST['main_condition_value_input'],$same_fields);
             }
-            $same_fields_WHERE_IN = array();
          }
         
          $loop_count_main_con = 0; // ตัวแปรลูปของเงื่อนไขหลัก
@@ -1105,7 +1246,6 @@ function generate_where_condition_WBS_fields($fields_json){
                      ); 
                      array_push($loop_array_sub2,$sub_con);
                                      
-                     $loop_non_same_fields_count++;
                      $loop_count_sub_con++;   
                      $loop_array_sub['sub_con'] = $loop_array_sub2;   
                      $sql.= generate_sub_sql_condition2($sub_con,$fields_json,$loop_sub_non_same_fields_count);
@@ -1142,7 +1282,9 @@ function generate_where_condition_WBS_fields($fields_json){
                $loop_conjection_condition_count++;  
                $sql.= ')';
                $str.= ')';
+               $loop_non_same_fields_count++;
             }
+
          }
 
          if(!empty((array) $WHERE_IN) && $loop_non_same_fields_count == 1){
@@ -1221,6 +1363,6 @@ function generate_where_condition_WBS_fields($fields_json){
    }
    $response['sql'] = $sql;
    $response['HTTP_post'] = $_POST;
-    $response['test_result'] = $WHERE_IN;
+    $response['test_result'] = $loop_non_same_fields_count;
    echo json_encode($response);
 ?>

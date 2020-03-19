@@ -50,7 +50,7 @@
                <div class="inner_work_space">
                   <div class="row text-center">
                         
-                     <dir class="col-md-12 "><h2>เพิ่มข้อมูลการแจ้งเตือน</h2>
+                     <div class="col-md-12 "><h2>เพิ่มข้อมูลการแจ้งเตือน</h2>
                         <!-- <br>
                         <p class="text-danger">ERROR!!! เวลากำหนดเงื่อนไข เช่น WHERE (h3 = "con1") AND (h3 = "con2") 
                         จะไม่สามรถใช้ SQL ได้ (Query ไม่ได้) 
@@ -59,7 +59,7 @@
                         ถ้า Operater เป็นเครื่องหมาย "=" ให้ Push Array จากนั้นแปลงเป็น WHERE IN ตัวอย่างที่อยากได้ 
                         SELECT table_name_id , h1 , h2 , h3 , h4 , h5 , h6 , h7 FROM `award` WHERE ( h1 = 80 ) OR ((h1 IN (80,100)) OR (h1 IN (80,100)))</p> -->
                      
-                     </dir>
+                     </div>
 
                      <!-- Div form -->
                      <div class="col-md-12">
@@ -134,8 +134,13 @@
                                  <input type="hidden" id="table_nameeeeeeeee" name="table_nameeeeeeeee">
                                  <input type="hidden" id="fields_count" name="fields_count">
                                  <input type="hidden" id="sql_hidden" name="sql_hidden">
-                                 
                                  <div class="row">
+                                    <div class="col-md-12 text-center"> 
+                                       <input style="display:none;" type="button" value="ยืนยันการส่งข้อมูลไลน์" class="btn btn-success btn-sm" name="btn_submit_alert" id="btn_submit_alert">
+                                       <input style="display:none  ;" type="button" value="ย้อนกลับ" class="btn btn-warning btn-sm" name="btn_back" id="btn_back">
+                                    </div>
+                                 </div>
+                                 <div class="row condition_form_div">
                                     
                                     <!-- div btn -->
                                     <div class="col-md-12 text-center"> 
@@ -174,10 +179,26 @@
                                     <!-- End div -->
                                     
                                     <!-- div result_query -->
-                                    <div class="col-md-12 result_table"><br>
-                                       
-                                    </div>
+                                    <div class="col-md-12 result_table"></div>
                                     <!-- End div -->
+
+                                    <!-- div result_query -->
+                                    <div class="col-md-12"><br><input id="send_to_webdatarocks" class="btn btn-success btn-sm" type="button" value="ส่งข้อมูลไลน์"></div>
+                                    <!-- End div -->
+                                    
+            
+                                
+                                 </div>
+                                 <div class="row div_result_webdatarocks">
+
+                                    <!-- div result_webdatarocks -->
+                                    <div class="col-md-12"><br><div id="webdatarocks"></div></div>
+                                    <!-- End div --> 
+
+                                    <link href="/Alert_bot/lib/Webdatarocks/webdatarocks.min.css"  rel="stylesheet"/>
+                                    <script src="/Alert_bot/lib/Webdatarocks/webdatarocks.toolbar.min.js" ></script>
+                                    <script src="/Alert_bot/lib/Webdatarocks/webdatarocks.js" ></script>
+
                                  </div>
 
                               </form>
