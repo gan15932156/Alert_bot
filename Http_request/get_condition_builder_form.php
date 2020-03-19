@@ -1049,7 +1049,7 @@ function generate_where_condition_WBS_fields($fields_json){
             }
             else if($condition_type == "main_row_sub_con"){// ถ้าเป็นเงื่อนไขย่อย    
  
-               if(empty($_POST['sub_con_optlist'][$loop_conjection_condition_count]) || $loop_non_same_fields_count+1 == 1){
+               if(empty($_POST['sub_con_optlist'][$loop_conjection_condition_count]) || $loop_non_same_fields_count == 1){
                   $sql.= ' (';
                   $str.= ' (';
                }
@@ -1093,21 +1093,9 @@ function generate_where_condition_WBS_fields($fields_json){
                // loop sub condition
                for($i =1 ; $i <= $number_of_sub_condition ; $i++){   
                   if(!empty($sub_WHERE_IN->{$_POST['sub_fieldlist'][$loop_count_sub_con]}) && $_POST['sub_condition_opv'][$loop_count_sub_con] == "="){
-                  //if(in_array($_POST['sub_fieldlist'][$loop_count_sub_con],$sub_con_same_fields) && $_POST['sub_condition_opv'][$loop_count_sub_con] == "="){
-                  
-                     // $array_sub_con_same_fields_to_func = array(
-                     //    'sub_field_name' =>$_POST['main_fieldlist'][$loop_count_main_con],
-                     //    'sub_value_type' => $_POST['main_condition_value_type'][$loop_count_main_con],
-                     //    'sub_valuelist' => $_POST['main_condition_value_input'][$loop_count_main_con]
-                     // );
-   
-                     // array_push($sub_con_same_fields_WHERE_IN,$array_sub_con_same_fields_to_func);
-                      
-                     $loop_count_sub_con++;   
-                     
+                     $loop_count_sub_con++;             
                   }
-                  else{
-                     
+                  else{                 
                      $sub_con = array(
                         'sub_op_list' =>$_POST['sub_oplist'][$loop_count_sub_con], 
                         'sub_field_list' =>$_POST['sub_fieldlist'][$loop_count_sub_con],
@@ -1116,8 +1104,7 @@ function generate_where_condition_WBS_fields($fields_json){
                         'sub_condition_value_type' => $_POST['sub_condition_value_type'][$loop_count_sub_con]
                      ); 
                      array_push($loop_array_sub2,$sub_con);
-                    
-                     
+                                     
                      $loop_non_same_fields_count++;
                      $loop_count_sub_con++;   
                      $loop_array_sub['sub_con'] = $loop_array_sub2;   
@@ -1134,13 +1121,12 @@ function generate_where_condition_WBS_fields($fields_json){
                   $sql.= parse_condition_to_WHERE_IN_sub($sub_WHERE_IN,$fields_json);
                   $str.= ' '.parse_condition_to_WHERE_IN_sub($sub_WHERE_IN,$fields_json);
                }
-               else if(!empty((array) $WHERE_IN) && $loop_sub_non_same_fields_count != 1){
+               else if(!empty((array) $sub_WHERE_IN) && $loop_sub_non_same_fields_count != 1){
                   $sql.= ' AND ';
                   //$WHERE_IN
-                  $sql.= parse_condition_to_WHERE_IN($WHERE_IN,$fields_json);
-                  $testvalue.= ' AND '.parse_condition_to_WHERE_IN($WHERE_IN,$fields_json);
+                  $sql.= parse_condition_to_WHERE_IN_sub($sub_WHERE_IN,$fields_json);
+                  $testvalue.= ' AND '.parse_condition_to_WHERE_IN_sub($sub_WHERE_IN,$fields_json);
                }
-
 
                // for( $i =1 ; $i <= $number_of_sub_condition ; $i++){
                //    $sub_con = array(
@@ -1173,8 +1159,7 @@ function generate_where_condition_WBS_fields($fields_json){
             $testvalue.= ' AND '.parse_condition_to_WHERE_IN($WHERE_IN,$fields_json);
          }
          
-         
-           
+               
          //  Fetch data  //
          $result = mysqli_query($conn,$sql);
          $query_data = array(); 

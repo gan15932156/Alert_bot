@@ -19,28 +19,29 @@
 
 require_once("idm-service.php");
 $service = new IDMService();
-$userName = $_POST["idem"];
-$password =$_POST["password"];
-echo $userName.'<br>';
-echo $password.'<br>';
+// $userName = $_POST["idem"];
+// $password =$_POST["password"];
+
+$userName = "505972";
+$password = "Su@48221899"; //Su@48221899
+
 $authenKey = "3a243291-44d0-4171-8b17-347cfc1472ea";
 
 $results1 = $service->login($authenKey,$userName, $password);
 
 $arr= array('1'=>$results1["LoginResult"]["ResultObject"]["Result"]);
 
-
-echo $arr[1].'<br>';
+// echo $arr[1].'<br>';
 // print_r($results1);
 
 if($arr[1]=="true"){
-
-$_SESSION['userName'] = $userName;
-
-
-    ?>  
-<meta http-equiv="refresh" content= "0; url=index_admin.php">    
-    <?php
-    }
+    $results2 = $service->getEmployeeInfoByUsername("93567815-dfbb-4727-b4da-ce42c046bfca",$userName);
+    $_SESSION['userName'] = $userName;
+    $_SESSION['FirstName'] = $results1["GetEmployeeInfoByUsernameResult"]["ResultObject"]["FirstName"];
+    $_SESSION['LastName'] = $results1["GetEmployeeInfoByUsernameResult"]["ResultObject"]["LastName"];
+    $_SESSION['PositionDescShort'] = $results1["GetEmployeeInfoByUsernameResult"]["ResultObject"]["PositionDescShort"];
+    $_SESSION['LevelDesc'] = $results1["GetEmployeeInfoByUsernameResult"]["ResultObject"]["LevelDesc"];
+    $_SESSION['DepartmentShort'] = $results1["GetEmployeeInfoByUsernameResult"]["ResultObject"]["DepartmentShort"];
+}
 
 ?>
