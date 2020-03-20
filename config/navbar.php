@@ -11,7 +11,13 @@
          </div><br>
          <div class="row profile_info">
             <div class="col-md-12">
-               <label><b>ชื่อ :'.$_SESSION['name'].'</b></label>
+               <label><b>ชื่อ : '.$_SESSION['FirstName'].'</b></label>
+            </div>
+            <div class="col-md-12">
+               <label>ตำแหน่ง : '.$_SESSION['PositionDescShort'].'</label>
+            </div>
+            <div class="col-md-12">
+            <label>แผนก : '.$_SESSION['DepartmentShort'].'</label>
             </div>
          </div><br>
          <div class="row menu text-left">
@@ -20,7 +26,7 @@
    if($_SESSION['leveltest'] == 1){  // admin
       $html.= '  
          <a href="index_admin.php">หน้าแรก</a><br>
-         <a href="">กำหนดสิทธิผู้ใช้</a><br>
+         <a href="set_user_page.php">กำหนดสิทธิผู้ใช้</a><br>
          <a href="add_task.php">เพิ่มข้อมูลงาน</a><br>
          <a href="addcolumn_task.php">เพิ่มคอลัมน์งาน</a><br>
          <a href="add_token_line.php">เพิ่มข้อมูลโทเคน</a><br>

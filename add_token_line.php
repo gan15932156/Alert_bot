@@ -27,7 +27,7 @@
             <div class="inner_work_space">
                <div class="row text-center">
                       
-                  <dir class="col-md-12 "><h2>เพิ่มโทเคนไลน์</h2></dir>
+                  <div class="col-md-12 "><h2>เพิ่มโทเคนไลน์</h2></div>
                   <div class="col-md-12">
                      <form method="POST" action="javascript:void(0);" id="add_token_line" onSubmit="add_token_line()">
                         <div class="form_add_token_line">

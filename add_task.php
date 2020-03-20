@@ -18,18 +18,18 @@
                <div class="inner_work_space">
                   <div class="row text-center">
                      
-                     <dir class="col-md-12 "><h2>เพิ่มหัวข้องาน</h2></dir>
+                     <div class="col-md-12 "><h2>เพิ่มหัวข้องาน</h2></div>
                      <div class="col-md-12">
                         <form method="POST" action="javascript:void(0);" id="add_task" onSubmit="addtask()">
-                        <input type="text" id="id_user"  name="id_user" value="<?php echo $_SESSION['id_user'];?>" hidden>
+                        <input type="hidden" id="id_user"  name="id_user" value="<?php echo $_SESSION['id_user'];?>" >
                            <div class="form_add_task">
                               <div class="row">
                                  <div class="col-md-2"><label>หัวข้องาน</label></div>
                                  <div class="col-md-2"><input type="text" name="task_name" required class="form-control"></div>
                                  <div class="col-md-2"><label>เพิ่มหัวข้องาน</label></div>
-                                 <div class="col-md-1"><input type="button" class="btn btn-success" id="btn_add_header_task" value="+"></div>
-                                 <div class="col-md-1"><input type="button" class="btn btn-danger" id="btn_clear" value="เคลียร์"></div>
-                                 <div class="col-md-1 text-center"><input type="submit" class="btn btn-success" value="ยืนยัน"></div>
+                                 <div class="col-md-1"><input type="button" class="btn btn-success btn-sm" id="btn_add_header_task" value="+"></div>
+                                 <div class="col-md-1"><input type="button" class="btn btn-danger btn-sm" id="btn_clear" value="เคลียร์"></div>
+                                 <div class="col-md-1 text-center"><input type="submit" class="btn btn-success btn-sm" value="ยืนยัน"></div>
                               </div><br>
                               <div class="row">
                                  

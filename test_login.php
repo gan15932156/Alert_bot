@@ -30,18 +30,20 @@ $authenKey = "3a243291-44d0-4171-8b17-347cfc1472ea";
 $results1 = $service->login($authenKey,$userName, $password);
 
 $arr= array('1'=>$results1["LoginResult"]["ResultObject"]["Result"]);
-
-// echo $arr[1].'<br>';
-// print_r($results1);
-
+ 
 if($arr[1]=="true"){
     $results2 = $service->getEmployeeInfoByUsername("93567815-dfbb-4727-b4da-ce42c046bfca",$userName);
     $_SESSION['userName'] = $userName;
-    $_SESSION['FirstName'] = $results1["GetEmployeeInfoByUsernameResult"]["ResultObject"]["FirstName"];
-    $_SESSION['LastName'] = $results1["GetEmployeeInfoByUsernameResult"]["ResultObject"]["LastName"];
-    $_SESSION['PositionDescShort'] = $results1["GetEmployeeInfoByUsernameResult"]["ResultObject"]["PositionDescShort"];
-    $_SESSION['LevelDesc'] = $results1["GetEmployeeInfoByUsernameResult"]["ResultObject"]["LevelDesc"];
-    $_SESSION['DepartmentShort'] = $results1["GetEmployeeInfoByUsernameResult"]["ResultObject"]["DepartmentShort"];
+    $_SESSION['FirstName'] = $results2["GetEmployeeInfoByUsernameResult"]["ResultObject"]["FirstName"];
+    $_SESSION['LastName'] = $results2["GetEmployeeInfoByUsernameResult"]["ResultObject"]["LastName"];
+    $_SESSION['PositionDescShort'] = $results2["GetEmployeeInfoByUsernameResult"]["ResultObject"]["PositionDescShort"];
+    $_SESSION['LevelDesc'] = $results2["GetEmployeeInfoByUsernameResult"]["ResultObject"]["LevelDesc"];
+    $_SESSION['DepartmentShort'] = $results2["GetEmployeeInfoByUsernameResult"]["ResultObject"]["DepartmentShort"];
 }
+else{
+    
+}
+
+echo $_SESSION['userName'].' '.$_SESSION['FirstName'].' '.$_SESSION['LastName'].' '.$_SESSION['PositionDescShort'];
 
 ?>

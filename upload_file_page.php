@@ -47,7 +47,7 @@
                <div class="inner_work_space">
                   <div class="row text-center">
                         
-                     <dir class="col-md-12 "><h2>อัพโหลดงาน</h2></dir>
+                     <div class="col-md-12 "><h2>อัพโหลดงาน</h2></div>
                      <div class="col-md-12">
                         <form id="upload_file_form">
                            <div class="form_upload_file">
