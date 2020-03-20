@@ -22,26 +22,34 @@
          </div><br>
          <div class="row menu text-left">
             <div class="col-md-12">';
-   
-   if($_SESSION['leveltest'] == 1){  // admin
+
+   if($_SESSION['username'] == "admin"){
       $html.= '  
-         <a href="index_admin.php">หน้าแรก</a><br>
-         <a href="set_user_page.php">กำหนดสิทธิผู้ใช้</a><br>
-         <a href="add_task.php">เพิ่มข้อมูลงาน</a><br>
-         <a href="addcolumn_task.php">เพิ่มคอลัมน์งาน</a><br>
-         <a href="add_token_line.php">เพิ่มข้อมูลโทเคน</a><br>
-         <a href="upload_file_page.php">อัพโหลดไฟล์</a><br>
-         <a href="">ข้อมูลการส่งไลน์</a>';
+      <a href="index_admin.php">หน้าแรก</a><br>
+      <a href="set_user_page.php">กำหนดสิทธิผู้ใช้</a>';
    }
    else{
-      $html.= ' 
-         <a href="index_user.php">หน้าแรก</a><br>
-         <a href="add_task.php"><i class="fas fa-user"></i></i>&nbsp;เพิ่มข้อมูลงาน</a><br>
-         <a href="add_token_line.php">เพิ่มข้อมูลโทเคน</a><br>
-         <a href="upload_file_page.php">อัพโหลดไฟล์</a><br>
-         <a href="addcolumn_task.php">เพิ่มคอลัมน์งาน</a><br>
-         <a href="useruser">ข้อมูลการส่งไลน์</a>';
+      if($_SESSION['leveltest'] == 1){  // admin
+         $html.= '  
+            <a href="index_admin.php">หน้าแรก</a><br>
+            <a href="set_user_page.php">กำหนดสิทธิผู้ใช้</a><br>
+            <a href="add_task.php">เพิ่มข้อมูลงาน</a><br>
+            <a href="addcolumn_task.php">เพิ่มคอลัมน์งาน</a><br>
+            <a href="add_token_line.php">เพิ่มข้อมูลโทเคน</a><br>
+            <a href="upload_file_page.php">อัพโหลดไฟล์</a><br>
+            <a href="">ข้อมูลการส่งไลน์</a>';
+      }
+      else{
+         $html.= ' 
+            <a href="index_user.php">หน้าแรก</a><br>
+            <a href="add_task.php"><i class="fas fa-user"></i></i>&nbsp;เพิ่มข้อมูลงาน</a><br>
+            <a href="add_token_line.php">เพิ่มข้อมูลโทเคน</a><br>
+            <a href="upload_file_page.php">อัพโหลดไฟล์</a><br>
+            <a href="addcolumn_task.php">เพิ่มคอลัมน์งาน</a><br>
+            <a href="useruser">ข้อมูลการส่งไลน์</a>';
+      }
    }
+   
 
    $html.= ' 
    </div>

@@ -36,7 +36,7 @@
                                         $result = mysqli_query($conn,$sql);
                                     ?>
 
-                                    <select name="task_id" id="task_id" class="form-control">
+                                    <select name="task_id" id="task_id" class="form-control form-control-sm">
                                        <option value="null">เลือกหัวข้องาน</option>
                                        <?php
                                           while($row = mysqli_fetch_row($result)){
@@ -46,9 +46,9 @@
                                     </select>
                                  </div>
                                  <div class="col-md-2"><label>เพิ่มหัวข้องาน</label></div>
-                                 <div class="col-md-1"><input type="button" class="btn btn-success" id="btn_add_header_task" value="+"></div>
-                                 <div class="col-md-1"><input type="button" class="btn btn-danger" id="btn_clear" value="เคลียร์"></div>
-                                 <div class="col-md-1 text-center"><input type="submit" class="btn btn-success" value="ยืนยัน"></div>
+                                 <div class="col-md-1"><input type="button" class="btn btn-success btn-sm" id="btn_add_header_task" value="+"></div>
+                                 <div class="col-md-1"><input type="button" class="btn btn-danger btn-sm" id="btn_clear" value="เคลียร์"></div>
+                                 <div class="col-md-1 text-center"><input type="submit" class="btn btn-success btn-sm" value="ยืนยัน"></div>
                               </div><br>
                               <div class="row">
                                 
@@ -124,8 +124,8 @@
       $("#btn_add_header_task").click(function(){
          let html = '';
          html += '<tr class="table-light">';
-         html += '<td><input class="form-control header" name="header[]" required></td>';
-         html += '<td><select class="form-control header_type" name="header_type[]"><option value="varchar(255)">ตัวอักษร</option><option value="int">ตัวเลข</option><option value="double">ทศนิยม</option><option value="date">วันที่</option></select></td>';
+         html += '<td><input class="form-control form-control-sm header" name="header[]" required></td>';
+         html += '<td><select class="form-control form-control-sm header_type" name="header_type[]"><option value="varchar(255)">ตัวอักษร</option><option value="int">ตัวเลข</option><option value="double">ทศนิยม</option><option value="date">วันที่</option></select></td>';
          html += '</tr>';
 
          $('#tbody_task').append(html);

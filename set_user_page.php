@@ -61,7 +61,7 @@
 
                      <div class="col-md-12">
                         <form onSubmit="insert_user()" action="javascript:void(0);" id="form_user_search">
-                           <input type="text" id="search_user_id" name="search_user_id">
+                           <input type="hidden" id="search_user_id" name="search_user_id">
                            <div class="row row_result_user_info">
                               <div class="col-md-12"><h5>ข้อมูลพนักงาน</h5></div>
                               <div class="col-md-12">
@@ -192,14 +192,27 @@
                url: "Http_request/get_insert_user_info.php",
                method: "POST",
                async: false,
-               dataType: "JSON",
                data: $("#form_user_search").serialize(),
                error: function(jqXHR, text, error) {
                   alert("error:" + error);
                }
             })
             .done(function(data) {
-               console.log(data)
+               if(data){
+                  Swal.fire({
+                     icon: 'success',
+                     title: 'เพิ่มข้อมูลสำเร็จ'
+                  })
+                  $("#search_result").empty();
+                  $("#user_code").val("");
+                  $("#search_user_id").val("");
+               }
+               else{
+                  Swal.fire({
+                     icon: 'error',
+                     title: 'ไม่สามารถเพิ่มข้อมูลได้'
+                  })
+               }
             });
          }
       }

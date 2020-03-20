@@ -76,7 +76,7 @@
                                     $result = mysqli_query($conn,$sql);
             
                                  ?>
-                                 <select name="task_id" name="task_id" id="task_id" class="form-control">
+                                 <select name="task_id" name="task_id" id="task_id" class="form-control form-control-sm">
                                     <option value="null">เลือกหัวข้องาน</option>
                                     <?php
                                        while($row = mysqli_fetch_array($result)){ 
@@ -87,7 +87,7 @@
                               </div>
                               <div class="col-md-2"><label>กลุ่มไลน์</label></div>
                               <div class="col-md-3">
-                                 <select class="form-control" name="token_line_id" id="token_line_id"></select>
+                                 <select class="form-control form-control-sm" name="token_line_id" id="token_line_id"></select>
                               </div>
                               <div class="col-md-1"> 
                                  <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
@@ -98,7 +98,7 @@
                            <div class="row text-left">
                               <div class="col-md-2"><label>ประเภทเวลาแจ้งแตือน</label></div>
                               <div class="col-md-3">
-                                 <select class="form-control" name="alert_time_type" id="alert_time_type">
+                                 <select class="form-control form-control-sm" name="alert_time_type" id="alert_time_type">
                                     <option value="null_time_type">เลือกประเภทแจ้งเตือน</option>
                                     <option value="period">รอบ</option>
                                     <option value="fix">ระบุวันที่และเวลา</option>

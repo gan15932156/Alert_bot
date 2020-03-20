@@ -96,7 +96,7 @@
       $row_count = count($data->{$key_obj[0]});
 
       // HTML code
-      $html.= '<table class="table table-sm table-bordered" id="tb_result"><thead>';
+      $html.= '<table class="table table-sm table-bordered" id="tb_result"><thead class="text-center bg-primary">';
 
       $html.='<tr>';
 
@@ -110,7 +110,7 @@
       // Populate data
       for($i = 0 ; $i <= $row_count-1 ; $i++){
 
-         $html.='<tr>';
+         $html.='<tr style="background-color:lightblue;">';
 
          for($j = 0 ; $j <= count($key_obj)-1 ; $j++){
             $html.='<td class="'.$key_obj[$j].'" id="dataexcelpop">'.$data->{$key_obj[$j]}[$i].'</td>';

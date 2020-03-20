@@ -59,7 +59,7 @@
                               </div>
                            </div><br>
                            <div class="row">
-                              <div class="col-md-12 text-center"><input type="submit" class="btn btn-success" value="ยืนยัน"></div>
+                              <div class="col-md-12 text-center"><input type="submit" class="btn btn-success btn-sm" value="ยืนยัน"></div>
                            </div>
                         </div>
                      </form>

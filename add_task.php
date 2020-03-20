@@ -25,7 +25,7 @@
                            <div class="form_add_task">
                               <div class="row">
                                  <div class="col-md-2"><label>หัวข้องาน</label></div>
-                                 <div class="col-md-2"><input type="text" name="task_name" required class="form-control"></div>
+                                 <div class="col-md-2"><input type="text" name="task_name" required class="form-control form-control-sm"></div>
                                  <div class="col-md-2"><label>เพิ่มหัวข้องาน</label></div>
                                  <div class="col-md-1"><input type="button" class="btn btn-success btn-sm" id="btn_add_header_task" value="+"></div>
                                  <div class="col-md-1"><input type="button" class="btn btn-danger btn-sm" id="btn_clear" value="เคลียร์"></div>
@@ -88,8 +88,8 @@
       $("#btn_add_header_task").click(function(){
          let html = '';
          html += '<tr class="table-light">';
-         html += '<td><input class="form-control header" name="header[]" required></td>';
-         html += '<td><select class="form-control header_type" name="header_type[]"><option value="varchar(255)">ตัวอักษร</option><option value="int">ตัวเลข</option><option value="double">ทศนิยม</option><option value="date">วันที่</option></select></td>';
+         html += '<td><input class="form-control form-control-sm header" name="header[]" required></td>';
+         html += '<td><select class="form-control form-control-sm header_type" name="header_type[]"><option value="varchar(255)">ตัวอักษร</option><option value="int">ตัวเลข</option><option value="double">ทศนิยม</option><option value="date">วันที่</option></select></td>';
          html += '</tr>';
 
          $('#tbody_task').append(html);

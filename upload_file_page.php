@@ -63,7 +63,7 @@
                                        $result = mysqli_query($conn,$sql);
             
                                     ?>
-                                    <select name="task_id" name="task_id" id="task_id" class="form-control">
+                                    <select name="task_id" name="task_id" id="task_id" class="form-control form-control-sm">
                                        <option value="null">เลือกหัวข้องาน</option>
                                        <?php
                                           while($row = mysqli_fetch_array($result)){ 
@@ -74,10 +74,10 @@
                                     </select>
                                  </div>
                                  <div class="col-md-2"><label>เลือกไฟล์งาน</label></div>
-                                 <div class="col-md-3"><input type="file" id="file_input" name="file_input" required class="form-control"></div>
-                                 <div class="col-md-2"> <input value="อัพโหลดไฟล์" type="button" name="btn_submit" class="btn btn-success" id="btn_submit"></div>
+                                 <div class="col-md-3"><input type="file" id="file_input" name="file_input" required class="form-control form-control-sm"></div>
+                                 <div class="col-md-2"> <input value="อัพโหลดไฟล์" type="button" name="btn_submit" class="btn btn-success btn-sm" id="btn_submit"></div>
                                  <div class="col-md-1"> 
-                                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+                                    <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModal">
                                        <i class="fa fa-info-circle"></i>
                                     </button>
                                  </div>
@@ -94,7 +94,7 @@
                                  <div class="col-md-5 text-right"><label><b>ผลลัพธ์</b></label></div>
                                  <div class="col-md-3 text-left"><input type="checkbox" id="checkall" />เลือกหัวข้อทั้งหมด</div>
                                  <div class="col-md-4 text-right">
-                                    <button type="button" id="btn_fullscreen" class="btn btn-secondary">
+                                    <button type="button" id="btn_fullscreen" class="btn btn-secondary btn-sm">
                                        <i class="fas fa-arrows-alt"></i>
                                     </button>
                                  </div>
@@ -158,7 +158,7 @@
    }
    .row_result_upload{
       background-color:#f8e0ff;
-      height: 73vh;
+      height: 100%;
       margin-left: 5px;
       margin-right: 5px;
       
