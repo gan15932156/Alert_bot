@@ -51,13 +51,8 @@
                   <div class="row text-center">
                         
                      <div class="col-md-12 "><h2>เพิ่มข้อมูลการแจ้งเตือน</h2>
-                        <!-- <br>
-                        <p class="text-danger">ERROR!!! เวลากำหนดเงื่อนไข เช่น WHERE (h3 = "con1") AND (h3 = "con2") 
-                        จะไม่สามรถใช้ SQL ได้ (Query ไม่ได้) 
-                        เนื่องจากไม่รู้ แต่ที่ใช้ได้คือ WHERE IN เช่น WHERE (h3 IN ("con1","con2")) 
-                        แทน แต่ทั้งผู้ใช้และเราจะรู้ได้ไง555+ น่าจะแก้ที่ Code แทน โดยตรวจสอบชื่อฟีลด์ที่ซ้ำกัน 
-                        ถ้า Operater เป็นเครื่องหมาย "=" ให้ Push Array จากนั้นแปลงเป็น WHERE IN ตัวอย่างที่อยากได้ 
-                        SELECT table_name_id , h1 , h2 , h3 , h4 , h5 , h6 , h7 FROM `award` WHERE ( h1 = 80 ) OR ((h1 IN (80,100)) OR (h1 IN (80,100)))</p> -->
+                        <br>
+                        <p class="text-danger">Bug!!! เวลา click btn wbs check all จะ check all ทุก row ตามค่า wbs ใน row ย่อยแต่เมื่อ uncheck row ย่อยแล้ว ปุ่ม checkall ของ wbs นั้นๆต้อง uncheck ด้วย เพราะไม่ได้อยุ่ในเงื่อนไข check all แล้ว</p>
                      
                      </div>
 
@@ -134,6 +129,7 @@
                                  <input type="hidden" id="table_nameeeeeeeee" name="table_nameeeeeeeee">
                                  <input type="hidden" id="fields_count" name="fields_count">
                                  <input type="hidden" id="sql_hidden" name="sql_hidden">
+                                 <input type="file" id="open_file" style="display:none;">
                                  <div class="row">
                                     <div class="col-md-12 text-center"> 
                                        <input style="display:none;" type="button" value="ยืนยันการส่งข้อมูลไลน์" class="btn btn-success btn-sm" name="btn_submit_alert" id="btn_submit_alert">
