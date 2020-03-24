@@ -30,11 +30,12 @@
          background: #fff url(lib/Picture/loading_page.gif) 50% 50% no-repeat;
       }
       .tb-result thead th { 
-             position: sticky; 
-             top: 0; 
-             background-color:#007BFF;
-             margin-top:2px;
-          }
+         position: sticky; 
+         top: 0; 
+         background-color:#007BFF;
+         margin-top:2px;
+         
+      }
    </style>
 </head>
 <body>
@@ -43,19 +44,15 @@
       <div class="loading_page"></div>
       <div class="container-fluid">
          <div class="row">
-
+        
             <?php include_once('config/navbar.php'); ?>
-
+        
             <div class="work_space">
                <div class="inner_work_space">
                   <div class="row text-center">
-                        
-                     <div class="col-md-12 "><h2>เพิ่มข้อมูลการแจ้งเตือน</h2>
-                        <br>
-                        <p class="text-danger">Bug!!! เวลา click btn wbs check all จะ check all ทุก row ตามค่า wbs ใน row ย่อยแต่เมื่อ uncheck row ย่อยแล้ว ปุ่ม checkall ของ wbs นั้นๆต้อง uncheck ด้วย เพราะไม่ได้อยุ่ในเงื่อนไข check all แล้ว</p>
-                     
-                     </div>
 
+                     <div class="col-md-12 "><h2>เพิ่มข้อมูลการแจ้งเตือน</h2></div>
+                      
                      <!-- Div form -->
                      <div class="col-md-12">
                         <div class="form_upload_file">
@@ -175,6 +172,7 @@
                                     <!-- End div -->
                                     
                                     <!-- div result_query -->
+                                    <button type="button" class="btn btn-secondary btn-sm" id="table_fullscreen"><i class="fas fa-arrows-alt"></i></button>
                                     <div class="col-md-12 result_table"></div>
                                     <!-- End div -->
 
