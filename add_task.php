@@ -11,13 +11,10 @@
 <body>
    <div class="container-fluid">
       <div class="row">
-
          <?php include_once('config/navbar.php'); ?>
-
          <div class="work_space">
                <div class="inner_work_space">
                   <div class="row text-center">
-                     
                      <div class="col-md-12 "><h2>เพิ่มหัวข้องาน</h2></div>
                      <div class="col-md-12">
                         <form method="POST" action="javascript:void(0);" id="add_task" onSubmit="addtask()">
@@ -69,8 +66,7 @@
       margin-left: 5px;
       margin-right: 5px;
       margin-top: 5px;
-      padding:5px;
-      
+      padding:5px;   
    }
    .table_result{
       background-color:#e0abff;
@@ -78,7 +74,6 @@
       margin-right: 5px;
       margin-top: 5px;
       padding:5px;
-      
    }
 </style>
 
@@ -91,16 +86,11 @@
          html += '<td><input class="form-control form-control-sm header" name="header[]" required></td>';
          html += '<td><select class="form-control form-control-sm header_type" name="header_type[]"><option value="varchar(255)">ตัวอักษร</option><option value="int">ตัวเลข</option><option value="double">ทศนิยม</option><option value="date">วันที่</option></select></td>';
          html += '</tr>';
-
          $('#tbody_task').append(html);
-
       });
-
       $("#btn_clear").click(function(){
          $("#tbody_task").empty();
       });   
-
-
    })
    function addtask(){
       $.ajax({
@@ -118,7 +108,6 @@
          }
       })
       .done(function(data) {
- 
          Swal.fire({
             title: 'สำเร็จ ต้องการเข้าสู่หน้าเพิ่มโทเคนไลน์(Line token) หรือไม่',
             icon: 'warning',

@@ -1,10 +1,10 @@
 <?php   
    session_start(); 
-
+   require_once("Http_request/insert_log.php");
    require_once('login_check.php'); 
    require_once('config/configDB.php');
-
    $conn = $DBconnect;
+   insert_log($conn,$_SESSION['id_user'],'เรียกดูประวัติการใช้งาน');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,9 +36,6 @@
          margin-top:2px;
          
       }
-      #table_fullscreen{
-
-      }
    </style>
 </head>
 <body>
@@ -66,11 +63,9 @@
                                  <th width="75%" scope="col">บันทึก</th>
                                  </tr>
                               </thead>
-                              <tbody class="table-bordered" style="font-size:16px;">
-                              </tbody>
+                              <tbody class="table-bordered" style="font-size:16px;"></tbody>
                            </table>
                                  <!-- SELECT * FROM `user_log` ORDER BY `datetime` DESC -->
-
                            </div>
                         </div>
                      </div>
@@ -129,12 +124,11 @@
             {
                data:'datetime',
                render: function (data,type,row){
-                   
                   let datetime =  row[2]
-                  var t_year =  parseInt(datetime.substring(0,4))+543;
-                  var t_month = new Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
-                  var t_day = datetime.substring(8,10);
-                  var th_dateeee = t_day+" "+t_month[parseInt(datetime.substring(5,7))]+" "+t_year;
+                  let t_year =  parseInt(datetime.substring(0,4))+543;
+                  let t_month = new Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+                  let t_day = datetime.substring(8,10);
+                  let th_dateeee = t_day+" "+t_month[parseInt(datetime.substring(5,7))]+" "+t_year;
                   let time = datetime.substring(10);
                   return th_dateeee+' '+time;
                }

@@ -41,9 +41,7 @@
                                  <?php
 
                                     $user_id = $_SESSION['id_user'];
-                                    
-                                    $sql = "SELECT * FROM `task_user` WHERE `user_id`=$user_id"; 
-                                    
+                                    $sql = "SELECT * FROM `task_user` WHERE `user_id`=$user_id";                               
                                     $result = mysqli_query($conn,$sql);
          
                                  ?>
@@ -98,7 +96,6 @@
       })
    })
    function add_token_line(){
-
       if($("#task_id").val() == "null"){
          Swal.fire({
             icon: 'warning',

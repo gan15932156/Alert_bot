@@ -6,11 +6,8 @@
    $conn = $DBconnect;
    $service = new IDMService();
    $response = array();
-
    $username = $_POST["user_id"];
-
    $user_info_result = $service->getEmployeeInfoByUsername("93567815-dfbb-4727-b4da-ce42c046bfca",$username);
-
    if($user_info_result["GetEmployeeInfoByUsernameResult"]["ResponseMsg"] == "Success"){
       $user_info = array(
          'username'=>$user_info_result["GetEmployeeInfoByUsernameResult"]["ResultObject"]["Username"],

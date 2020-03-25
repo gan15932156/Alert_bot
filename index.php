@@ -54,19 +54,18 @@
 
 
 <script>
- 
    function login(){
-         $.ajax({
-            url: "Http_request/get_login_data.php",
-            method: "POST",
-            async: false,
-            data: $("#form_login").serialize(),
-            error: function(jqXHR, text, error) {
-               alert("error:" + error);
-            }
-         })
-         .done(function(data) {
-            $(".result").html(data);
-         });
+      $.ajax({
+         url: "Http_request/get_login_data.php",
+         method: "POST",
+         async: false,
+         data: $("#form_login").serialize(),
+         error: function(jqXHR, text, error) {
+            alert("error:" + error);
+         }
+      })
+      .done(function(data) {
+         $(".result").html(data);
+      });
    }
 </script>

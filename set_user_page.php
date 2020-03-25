@@ -1,11 +1,7 @@
 <?php   
-
    session_start();
-
    require_once('config/configDB.php');
-
    $conn = $DBconnect;
-
    require_once('login_check.php'); 
 ?>
 <!DOCTYPE html>
@@ -14,10 +10,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>เพิ่มผู้ใช้</title>
-
    <?php require_once('config/include_lib.php'); ?>
- 
-
    <style>
       .loading_page{
          position: absolute;  
@@ -102,7 +95,6 @@
       margin-right: 5px;
       margin-top: 5px;
       padding:5px;
-      
    }
    .row_result_user_info{
       background-color:#f8e0ff;
@@ -144,10 +136,8 @@
                }
             })
             .done(function(data) {
- 
                $('.loading_page').hide();
                $('.root_div').removeAttr('style');
- 
                if(!data.error){
                   let html ='';
                   $("#search_user_id").val($("#user_code").val());
@@ -158,7 +148,6 @@
                   html+= '<td><input type="text" class="form-control"  name="pds" required readonly value="'+data.user_info['PositionDescShort']+'"></td>';
                   html+= '<td><input type="text" class="form-control"  name="levelpea" required readonly value="'+data.user_info['LevelDesc']+'"></td>';
                   html+='</tr>';
- 
                   $("#search_result").append(html);
                }
                else{
@@ -173,7 +162,6 @@
    })
 
    function insert_user(){
-
       if($("#user_code").val() == ""){
          Swal.fire({
             icon: 'warning',

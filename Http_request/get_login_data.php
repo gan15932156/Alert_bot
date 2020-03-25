@@ -1,11 +1,9 @@
 <?php
    function check_username_in_DB($username,$conn){
       $result = array();
-
       $sql = 'SELECT * FROM `userpea` WHERE `username` = "'.$username.'"';
       //echo $sql;
       $query = mysqli_query($conn,$sql);
-
       if($query){
          $rowcount = mysqli_num_rows($query);
          if($rowcount > 0){
@@ -26,24 +24,17 @@
    }
 
    session_start();
-
    require_once('../config/configDB.php');
    $conn = $DBconnect;
-
    require_once("../idm-service.php");
    require_once("insert_log.php");
    $service = new IDMService();
-
    $username = $_POST['username'];
    $password = $_POST['password'];
-
    $login_auth_key = '3a243291-44d0-4171-8b17-347cfc1472ea';
    $get_info_user_auth_key = '93567815-dfbb-4727-b4da-ce42c046bfca';
-
    $check_user_DB = check_username_in_DB($username,$conn);
-
    if($username == "admin" && $password == "0939870929"){
-
       $_SESSION['leveltest']= 1;
       $_SESSION['username'] = $username;
       $_SESSION['id_user'] = "admin";
@@ -51,15 +42,13 @@
       $_SESSION['LastName'] = "ดำริห์ศิลป์";
       $_SESSION['PositionDescShort'] = "ผู้ดูแลระบบ";
       $_SESSION['LevelDesc'] = "";
-      $_SESSION['DepartmentShort'] = "";
-      
+      $_SESSION['DepartmentShort'] = "";   
       echo '<meta http-equiv="refresh" content= "0; url=index_admin.php">';
    }
    else{
       if($check_user_DB['result']){ // check user in Database
          $result_login = $service->login($login_auth_key,$username, $password);
          $arr_result_login = array('1'=>$result_login["LoginResult"]["ResultObject"]["Result"]);
-   
          if($arr_result_login[1]=="true"){
             $result_get_user_info = $service->getEmployeeInfoByUsername($get_info_user_auth_key,$username);
             //print_r($result_get_user_info);
@@ -69,10 +58,8 @@
             $_SESSION['LastName'] = $result_get_user_info["GetEmployeeInfoByUsernameResult"]["ResultObject"]["LastName"];
             $_SESSION['PositionDescShort'] = $result_get_user_info["GetEmployeeInfoByUsernameResult"]["ResultObject"]["PositionDescShort"];
             $_SESSION['LevelDesc'] = $result_get_user_info["GetEmployeeInfoByUsernameResult"]["ResultObject"]["LevelDesc"];
-            $_SESSION['DepartmentShort'] = $result_get_user_info["GetEmployeeInfoByUsernameResult"]["ResultObject"]["DepartmentShortName"];
-            
+            $_SESSION['DepartmentShort'] = $result_get_user_info["GetEmployeeInfoByUsernameResult"]["ResultObject"]["DepartmentShortName"];      
             insert_log($conn,$_SESSION['id_user'],'เข้าสู่ระบบ');
-
             if($check_user_DB['level'] == 1){
                $_SESSION['leveltest']= 1;
                echo '<meta http-equiv="refresh" content= "0; url=index_admin.php">';

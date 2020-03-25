@@ -125,10 +125,10 @@
                               <!-- Form condition builder -->
                               <form id="condition_builder_form">
 
-                                 <input type="hidden" name="sub_row_data_count" id="sub_row_data_count" >
-                                 <input type="hidden" id="table_nameeeeeeeee" name="table_nameeeeeeeee">
-                                 <input type="hidden" id="fields_count" name="fields_count">
-                                 <input type="hidden" id="sql_hidden" name="sql_hidden">
+                                 <input type="text" name="sub_row_data_count" id="sub_row_data_count" >
+                                 <input type="text" id="table_nameeeeeeeee" name="table_nameeeeeeeee">
+                                 <input type="text" id="fields_count" name="fields_count">
+                                 <input type="text" id="webdatarocks_setting" name="webdatarocks_setting">
                                  <input type="file" id="open_file" style="display:none;">
                                  <div class="row">
                                     <div class="col-md-12 text-center"> 
@@ -240,7 +240,6 @@
 <style>
    .modal-dialog {max-height:100vh;max-width:150vh;}  
    .modal-body{height:100%;width:100%;align:center;}    
-
    .form_upload_file{
       background-color:#e0abff;
       margin-left: 5px;
@@ -256,7 +255,6 @@
       margin-right: 5px;  
       padding:5px;
    }
- 
    .result_file_upload{
       overflow: auto;
       width: 66vw;
@@ -274,12 +272,10 @@
       border: none;
       cursor: pointer;
    }
-
    .dropdown {
       position: relative;
       display: inline-block;
    }
-
    .dropdown-content {
       display: none;
       position: absolute;
@@ -289,25 +285,20 @@
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       z-index: 1;
    }
-
    .dropdown-content span {
       color: black;
       padding: 12px 16px;
       text-decoration: none;
       display: block;
    }
-
    .dropdown-content span:hover {
       cursor: pointer;
       background-color: #f1f1f1;
    }
-
    .dropdown:hover .dropdown-content {
       display: block;
    }
-
    .dropdown:hover .dropbtn {
       background-color: #3e8e41;
    }
- 
 </style>
