@@ -56,6 +56,8 @@
                                     ?>
                                    
                                  </select>
+
+                                 <input type="hidden" name="task_name" id="task_name">
                               </div>
                            </div><br>
                            <div class="row">
@@ -85,7 +87,16 @@
 </style>
 
 <script>
- 
+   $(document).ready(function(){
+      $("#task_id").change(function(){
+         if($("#task_id").val() != "null"){
+            $("#task_name").val($( "#task_id option:selected" ).text());
+         }  
+         else{
+            $("#task_name").val(null);
+         }
+      })
+   })
    function add_token_line(){
 
       if($("#task_id").val() == "null"){

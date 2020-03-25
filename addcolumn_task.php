@@ -45,6 +45,7 @@
                                        ?>
                                     </select>
                                  </div>
+                                 <input type="hidden" id="task_name" name="task_name">
                                  <div class="col-md-2"><label>เพิ่มหัวข้องาน</label></div>
                                  <div class="col-md-1"><input type="button" class="btn btn-success btn-sm" id="btn_add_header_task" value="+"></div>
                                  <div class="col-md-1"><input type="button" class="btn btn-danger btn-sm" id="btn_clear" value="เคลียร์"></div>
@@ -120,14 +121,12 @@
 
 <script>
    $(document).ready(function(){
-
       $("#btn_add_header_task").click(function(){
          let html = '';
          html += '<tr class="table-light">';
          html += '<td><input class="form-control form-control-sm header" name="header[]" required></td>';
          html += '<td><select class="form-control form-control-sm header_type" name="header_type[]"><option value="varchar(255)">ตัวอักษร</option><option value="int">ตัวเลข</option><option value="double">ทศนิยม</option><option value="date">วันที่</option></select></td>';
          html += '</tr>';
-
          $('#tbody_task').append(html);
 
       });
@@ -136,22 +135,21 @@
          $("#tbody_task").empty();
       });   
 
-      $("#task_id").change(function(){
-               
+      $("#task_id").change(function(){    
          // HTML code
          let html= '';
-         
          if ($(this).val() != "null") {
             fetch_fields($(this).val());
+            $("#task_name").val($( "#task_id option:selected" ).text());
          }
-         
+         else{
+            $("#task_name").val(null);
+         }
       });
    })
 
    function fetch_fields(task_idd){
-
       let html;
-
       $.ajax({
          url: "Http_request/show_template_task_add_column_page.php",
          method: "POST",
@@ -173,12 +171,10 @@
             }
          }
       });
-
       $("#tempate_table_body").html(html);
    }
 
-   function addtask(){
-       
+   function addtask(){  
       if($(".header").val() == undefined){
          Swal.fire({
             icon: 'warning',
@@ -208,9 +204,7 @@
                })
             }
             else{
-               
                fetch_fields($("#task_id").val());
-
                Swal.fire({
                   icon: 'success',
                   title: 'สำเร็จ'

@@ -31,7 +31,7 @@
    $conn = $DBconnect;
 
    require_once("../idm-service.php");
-
+   require_once("insert_log.php");
    $service = new IDMService();
 
    $username = $_POST['username'];
@@ -71,6 +71,8 @@
             $_SESSION['LevelDesc'] = $result_get_user_info["GetEmployeeInfoByUsernameResult"]["ResultObject"]["LevelDesc"];
             $_SESSION['DepartmentShort'] = $result_get_user_info["GetEmployeeInfoByUsernameResult"]["ResultObject"]["DepartmentShortName"];
             
+            insert_log($conn,$_SESSION['id_user'],'เข้าสู่ระบบ');
+
             if($check_user_DB['level'] == 1){
                $_SESSION['leveltest']= 1;
                echo '<meta http-equiv="refresh" content= "0; url=index_admin.php">';

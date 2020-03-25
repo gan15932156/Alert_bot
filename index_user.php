@@ -36,6 +36,9 @@
          margin-top:2px;
          
       }
+      #table_fullscreen{
+
+      }
    </style>
 </head>
 <body>
@@ -172,7 +175,9 @@
                                     <!-- End div -->
                                     
                                     <!-- div result_query -->
-                                    <button type="button" class="btn btn-secondary btn-sm" id="table_fullscreen"><i class="fas fa-arrows-alt"></i></button>
+                                    
+                                    <!-- <button type="button" class="btn btn-secondary btn-sm" id="table_fullscreen"><i class="fas fa-arrows-alt"></i></button> -->
+                                    
                                     <div class="col-md-12 result_table"></div>
                                     <!-- End div -->
 

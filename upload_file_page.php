@@ -73,6 +73,7 @@
                                     
                                     </select>
                                  </div>
+                                 <input type="hidden" id="id_user" name="id_user" value="<?php echo $_SESSION["id_user"]; ?>">
                                  <div class="col-md-2"><label>เลือกไฟล์งาน</label></div>
                                  <div class="col-md-3"><input type="file" id="file_input" name="file_input" required class="form-control form-control-sm"></div>
                                  <div class="col-md-2"> <input value="อัพโหลดไฟล์" type="button" name="btn_submit" class="btn btn-success btn-sm" id="btn_submit"></div>
@@ -98,7 +99,7 @@
                                        <i class="fas fa-arrows-alt"></i>
                                     </button>
                                  </div>
-                              </div>&nbsp;
+                              </div>
                               <div class="row">
                                  <div class="col-md-12"><div class="result_file_upload text-left"></div></div>
                               </div>                  
@@ -170,7 +171,7 @@
    .result_file_upload{
       overflow: auto;
       width: 66vw;
-      height: 64vh;
+      height: 72vh;
    }  
    .result_file_upload:fullscreen{
       overflow-x: scroll;
@@ -178,6 +179,11 @@
       background-color: #feebff;
       margin: 0;
       padding: 0;
+   }
+   .show_template{
+      overflow-y: scroll;
+      width: 14vw;
+      height: 72vh;
    }
 
  

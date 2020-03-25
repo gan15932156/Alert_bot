@@ -1040,7 +1040,7 @@ function generate_where_condition_WBS_fields($fields_json){
    session_start();
 
    require_once('../config/configDB.php');
-
+   require_once("insert_log.php");
    $conn = $DBconnect; // ตัวแปรเชื่อมต่อฐานข้อมูล
    $table = $_POST['table_nameeeeeeeee']; // ตัวแปรชื่อตาราง
    $response = array(); // ตัวแปร response ชนิด array
@@ -1050,6 +1050,8 @@ function generate_where_condition_WBS_fields($fields_json){
    $str = '';
    $WHERE_IN = new stdClass();
    $loop_non_same_fields_count = 1;
+
+   insert_log($conn,$_SESSION['id_user'],'เรียกข้อมูลงาน '.$table.' จากระบบ');
 
    if(in_array("WBS",$fields_json)){ // ตรวจถ้ามีฟีลด์ชื่อว่า WBS 
       $sql .= 'SELECT '.generate_fields_WBS($fields_json) . ' FROM '.'`'.$table.'`';

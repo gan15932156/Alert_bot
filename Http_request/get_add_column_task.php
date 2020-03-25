@@ -1,29 +1,15 @@
 <?php
 
    require_once('../config/configDB.php');
-
+   require_once("insert_log.php");
    $conn = $DBconnect;
-
    $task_id=$_POST['task_id'];
-
    $user_id = $_POST['id_user'];
-
-   $sql_select_task_name = "SELECT * FROM task_user WHERE  task_user_id= '$task_id'";
-
-   $result_task_name = mysqli_query($conn,$sql_select_task_name);
-
-   $task_name;
-
-   while($row = mysqli_fetch_row($result_task_name)){
-      $task_name = $row[2];
-   }
-
+   $task_name = $_POST['task_name'];
    $sql_select_count_template_task = "SELECT count(template_id) as count_task_fields FROM template_tb WHERE task_user_id='".$task_id."'";
-
    $result_task_fields_count = mysqli_query($conn,$sql_select_count_template_task);
-
    $count_fields;
-   
+   insert_log($conn,$user_id,'เพิ่มคอลัมน์หัวข้องาน งาน '.$task_name);
    while($row = mysqli_fetch_row($result_task_fields_count)){
       $count_fields = $row[0];
    }
