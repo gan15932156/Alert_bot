@@ -125,10 +125,12 @@
                               <!-- Form condition builder -->
                               <form id="condition_builder_form">
 
-                                 <input type="text" name="sub_row_data_count" id="sub_row_data_count" >
-                                 <input type="text" id="table_nameeeeeeeee" name="table_nameeeeeeeee">
-                                 <input type="text" id="fields_count" name="fields_count">
-                                 <input type="text" id="webdatarocks_setting" name="webdatarocks_setting">
+                                 <input type="hidden" name="sub_row_data_count" id="sub_row_data_count" >
+                                 <input type="hidden" id="table_nameeeeeeeee" name="table_nameeeeeeeee">
+                                 <input type="hidden" id="fields_count" name="fields_count">
+                                 <input type="hidden" id="webdatarocks_setting" name="webdatarocks_setting">
+                                 <input type="hidden" id="sql_select" name="sql_select">
+
                                  <input type="file" id="open_file" style="display:none;">
                                  <div class="row">
                                     <div class="col-md-12 text-center"> 
