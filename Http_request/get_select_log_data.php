@@ -21,7 +21,7 @@
 
    // get data where
    $sql = "SELECT  `log_id`, `id_user_pea`, `datetime`, `log_message`";
-   $sql.= " FROM `user_log` WHERE 1=1";
+   $sql.= " FROM `user_log` WHERE id_user_pea = ".$_SESSION['id_user'];
    if( !empty($requestData['search']['value']) ) {  
       $sql.= " AND ( log_id LIKE '".$requestData['search']['value']."%' ";    
       $sql.= " OR datetime LIKE '%".$requestData['search']['value']."%' ";
