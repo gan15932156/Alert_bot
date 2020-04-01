@@ -27,11 +27,9 @@
                                  <div class="col-md-1"><input type="button" class="btn btn-success btn-sm" id="btn_add_header_task" value="+"></div>
                                  <div class="col-md-1"><input type="button" class="btn btn-danger btn-sm" id="btn_clear" value="เคลียร์"></div>
                                  <div class="col-md-1 text-center"><input type="submit" class="btn btn-success btn-sm" value="ยืนยัน"></div>
-                              </div><br>
-                              <div class="row">
-                                 
                               </div>
-                           </div><br>
+                            
+                           </div>
                            <div class="table_result">
                               <div class="row">
                                  <div class="col-md-3"></div>

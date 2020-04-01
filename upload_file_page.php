@@ -75,14 +75,14 @@
                                  </div>
                                  <input type="hidden" id="id_user" name="id_user" value="<?php echo $_SESSION["id_user"]; ?>">
                                  <div class="col-md-2"><label>เลือกไฟล์งาน</label></div>
-                                 <div class="col-md-3"><input type="file" id="file_input" name="file_input" required class="form-control form-control-sm"></div>
+                                 <div class="col-md-3"><input type="file" id="file_input" accept=".xlsx, .XLSX, .xls, .XLS" name="file_input" required class="form-control form-control-sm"></div>
                                  <div class="col-md-2"> <input value="อัพโหลดไฟล์" type="button" name="btn_submit" class="btn btn-success btn-sm" id="btn_submit"></div>
                                  <div class="col-md-1"> 
                                     <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModal">
                                        <i class="fa fa-info-circle"></i>
                                     </button>
                                  </div>
-                              </div><br>
+                              </div>
                            </div>
                         </form>
                      </div>

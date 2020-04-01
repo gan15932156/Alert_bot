@@ -5,6 +5,18 @@
    require_once('config/configDB.php');
 
    $conn = $DBconnect;
+
+   date_default_timezone_set('Asia/Bangkok');
+   function DateThai($strDate)
+   { 
+     $strYear = date("Y",strtotime($strDate))+543;
+     $thaiyear = "พ.ศ. ". $strYear;
+     $strMonth= date("n",strtotime($strDate));
+     $strDay= date("j",strtotime($strDate));
+     $strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+     $strMonthThai=$strMonthCut[$strMonth];
+     return "$strDay $strMonthThai $thaiyear";
+    } 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,17 +71,14 @@
                      <!-- Div form -->
                      <div class="col-md-12">
                         <div class="form_upload_file">
+
                            <div class="row text-left">  
                               <div class="col-md-2"><label>หัวข้องาน</label></div>
                               <div class="col-md-3">
                                  <?php
-
-                                    $user_id = $_SESSION['id_user'];
-                                    
-                                    $sql = "SELECT * FROM `task_user` WHERE `user_id`=$user_id"; 
-                                    
-                                    $result = mysqli_query($conn,$sql);
-            
+                                    $user_id = $_SESSION['id_user'];                
+                                    $sql = "SELECT * FROM `task_user` WHERE `user_id`=$user_id";                                    
+                                    $result = mysqli_query($conn,$sql);         
                                  ?>
                                  <select name="task_id" name="task_id" id="task_id" class="form-control form-control-sm">
                                     <option value="null">เลือกหัวข้องาน</option>
@@ -89,7 +98,8 @@
                                     <i class="fa fa-info-circle"></i>
                                  </button>
                               </div>
-                           </div><br>
+                           </div>
+
                            <div class="row text-left">
                               <div class="col-md-2"><label>ประเภทเวลาแจ้งแตือน</label></div>
                               <div class="col-md-3">
@@ -100,18 +110,21 @@
                                  </select>
                               </div>
                               <div class="col-md-7 alert_time_type_input"></div>
-                           </div><br>
-                           <!-- <div class="row text-left">
-                              <div class="col-md-2"><label>ประเภทเวลาแจ้งแตือน</label></div>
+                           </div>
+
+                           <div class="row text-left mt-1">
+                              <div class="col-md-2"><label>ประเภทข้อมูล</label></div>
                               <div class="col-md-3">
-                                 <select class="form-control" name="alert_time_type" id="alert_time_type">
+                                 <select class="form-control form-control-sm" name="alert_data_type" id="alert_data_type">
                                     <option value="null">เลือกประเภทแจ้งเตือน</option>
-                                    <option value="period">รอบ</option>
-                                    <option value="fix">ระบุวันที่และเวลา</option>
+                                    <option value="0">จากฐานข้อมูล</option>
+                                    <option value="1">กำหนดเอง</option>
                                  </select>
                               </div>
-                              <div class="col-md-7 alert_time_type_input"></div>
-                           </div> -->
+                              <div class="col-md-7 alert_data_type_input"></div>
+                           </div>
+
+                           
                         </div>
                      </div>
                      <!-- End div -->
@@ -119,7 +132,38 @@
                      <!-- Div กรองข้อมูล -->
                      <div class="col-md-12">
                         <div class="row condition_builder_div">
-                           <div class="col-md-12"><h5>กรองข้อมูล</h5></div>
+                           <div class="col-md-12"> 
+                              <div class="row">
+                                 <div class="col-md-2">
+                                 <h3 class="float-left"><span class="badge badge-success"><b>กรองข้อมูล</b></span></h3>
+                                 </div>
+                                 <div class="col-md-6 form-inline">
+                                    <label class="col-md-5">รูปแบบงานที่บันทึกไว้</label>
+                                    <?php
+                                       $select_save_sql = 'SELECT * FROM `user_save_setting` WHERE user_id = '.$user_id.' ORDER BY `user_save_setting`.`date_time` DESC';
+                                       $result = mysqli_query($conn,$select_save_sql);
+
+                                       
+                                    ?>
+                                    <select class="form-control form-control-sm col-md-7" id="save_select_box">
+                                       <option value="null">เลือกรูปแบบ</option>
+                                       <?php
+                                          while($row = mysqli_fetch_array($result)){ 
+
+                                             $datetime2 = new DateTime($row['date_time']); // create obj datetime
+                                             $date = $datetime2->format('Y-m-d'); // split date and time;
+                                             $time = $datetime2->format('H:i:s'); // split date and time; 
+
+                                             echo '<option value="'.$row['path'].'">'.$time." ".DateThai($date)." ".$row['task_name'].'</option>'; 
+                                          }  
+                                       ?>   
+                                    </select>
+                                 </div>
+                                 <div class="col-md-4"></div>
+                              </div>
+                              
+                              
+                           </div>
                            <div class="col-md-12">
                               
                               <!-- Form condition builder -->
@@ -131,7 +175,7 @@
                                  <input type="hidden" id="webdatarocks_setting" name="webdatarocks_setting">
                                  <input type="hidden" id="sql_select" name="sql_select">
 
-                                 <input type="file" id="open_file" style="display:none;">
+                                 <input type="file" id="open_file" accept=" .json" style="display:none;">
                                  <div class="row">
                                     <div class="col-md-12 text-center"> 
                                        <input style="display:none;" type="button" value="ยืนยันการส่งข้อมูลไลน์" class="btn btn-success btn-sm" name="btn_submit_alert" id="btn_submit_alert">
@@ -149,7 +193,7 @@
                                     <!-- End div -->
 
                                     <!-- div condition builder -->
-                                    <div class="col-md-12"><br>   
+                                    <div class="col-md-12 mt-1">
                                        <!-- ตาราง กำหนดเงื่อนไข -->
                                        <table class="table table-sm table-bordered text-center condition_table">
                                           <thead class="bg-primary">
@@ -184,7 +228,7 @@
                                     <!-- End div -->
 
                                     <!-- div result_query -->
-                                    <div class="col-md-12"><br><input id="send_to_webdatarocks" class="btn btn-success btn-sm" type="button" value="ส่งข้อมูลไลน์"></div>
+                                    <div class="col-md-12 mt-1"><input id="send_to_webdatarocks" class="btn btn-success btn-sm" type="button" value="ส่งข้อมูลไลน์"></div>
                                     <!-- End div -->
                                     
             
@@ -193,7 +237,7 @@
                                  <div class="row div_result_webdatarocks">
 
                                     <!-- div result_webdatarocks -->
-                                    <div class="col-md-12"><br><div id="webdatarocks"></div></div>
+                                    <div class="col-md-12 mt-1"><div id="webdatarocks"></div></div>
                                     <!-- End div --> 
 
                                     <link href="/Alert_bot/lib/Webdatarocks/webdatarocks.min.css"  rel="stylesheet"/>
