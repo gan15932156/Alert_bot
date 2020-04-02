@@ -1,22 +1,18 @@
 <?php   
    session_start(); 
-
    require_once('login_check.php'); 
    require_once('config/configDB.php');
-
    $conn = $DBconnect;
-
    date_default_timezone_set('Asia/Bangkok');
-   function DateThai($strDate)
-   { 
-     $strYear = date("Y",strtotime($strDate))+543;
-     $thaiyear = "พ.ศ. ". $strYear;
-     $strMonth= date("n",strtotime($strDate));
-     $strDay= date("j",strtotime($strDate));
-     $strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
-     $strMonthThai=$strMonthCut[$strMonth];
-     return "$strDay $strMonthThai $thaiyear";
-    } 
+   function DateThai($strDate){ 
+      $strYear = date("Y",strtotime($strDate))+543;
+      $thaiyear = "พ.ศ. ". $strYear;
+      $strMonth = date("n",strtotime($strDate));
+      $strDay = date("j",strtotime($strDate));
+      $strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+      $strMonthThai = $strMonthCut[$strMonth];
+      return "$strDay $strMonthThai $thaiyear";
+   } 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +22,7 @@
    <title>หน้าหลัก</title>
 
    <?php require_once('config/include_lib.php'); ?>
-   <script src="lib/project_js/condition_builder.js"></script>
+   <script type="text/javascript" src="lib/project_js/condition_builder.js"></script>
    <style>
       .loading_page{
          position: absolute;  
@@ -54,7 +50,7 @@
    </style>
 </head>
 <body>
-
+      
    <div class="root_div">
       <div class="loading_page"></div>
       <div class="container-fluid">
@@ -71,59 +67,59 @@
                      <!-- Div form -->
                      <div class="col-md-12">
                         <div class="form_upload_file">
-
-                           <div class="row text-left">  
-                              <div class="col-md-2"><label>หัวข้องาน</label></div>
-                              <div class="col-md-3">
-                                 <?php
-                                    $user_id = $_SESSION['id_user'];                
-                                    $sql = "SELECT * FROM `task_user` WHERE `user_id`=$user_id";                                    
-                                    $result = mysqli_query($conn,$sql);         
-                                 ?>
-                                 <select name="task_id" name="task_id" id="task_id" class="form-control form-control-sm">
-                                    <option value="null">เลือกหัวข้องาน</option>
+                           <form id="form_alert_input" >
+                              <div class="row text-left">  
+                                 <div class="col-md-2"><label>หัวข้องาน</label></div>
+                                 <div class="col-md-3">
                                     <?php
-                                       while($row = mysqli_fetch_array($result)){ 
-                                          echo '<option value="'.$row['task_user_id'].'">'.$row['task_name'].'</option>'; 
-                                       }  
-                                    ?>   
-                                 </select>
+                                       $user_id = $_SESSION['id_user'];                
+                                       $sql = "SELECT * FROM `task_user` WHERE `user_id`=$user_id";                                    
+                                       $result = mysqli_query($conn,$sql);         
+                                    ?>
+                                    <select name="task_id" name="task_id" id="task_id" class="form-control form-control-sm">
+                                       <option value="null">เลือกหัวข้องาน</option>
+                                       <?php
+                                          while($row = mysqli_fetch_array($result)){ 
+                                             echo '<option value="'.$row['task_user_id'].'">'.$row['task_name'].'</option>'; 
+                                          }  
+                                       ?>   
+                                    </select>
+                                 </div>
+                                 <div class="col-md-2"><label>กลุ่มไลน์</label></div>
+                                 <div class="col-md-3">
+                                    <select class="form-control form-control-sm" name="token_line_id" id="token_line_id"></select>
+                                 </div>
+                                 <div class="col-md-1"> 
+                                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+                                       <i class="fa fa-info-circle"></i>
+                                    </button>
+                                 </div>
                               </div>
-                              <div class="col-md-2"><label>กลุ่มไลน์</label></div>
-                              <div class="col-md-3">
-                                 <select class="form-control form-control-sm" name="token_line_id" id="token_line_id"></select>
-                              </div>
-                              <div class="col-md-1"> 
-                                 <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="fa fa-info-circle"></i>
-                                 </button>
-                              </div>
-                           </div>
 
-                           <div class="row text-left">
-                              <div class="col-md-2"><label>ประเภทเวลาแจ้งแตือน</label></div>
-                              <div class="col-md-3">
-                                 <select class="form-control form-control-sm" name="alert_time_type" id="alert_time_type">
-                                    <option value="null_time_type">เลือกประเภทแจ้งเตือน</option>
-                                    <option value="period">รอบ</option>
-                                    <option value="fix">ระบุวันที่และเวลา</option>
-                                 </select>
+                              <div class="row text-left">
+                                 <div class="col-md-2"><label>ประเภทเวลาแจ้งแตือน</label></div>
+                                 <div class="col-md-3">
+                                    <select class="form-control form-control-sm" name="alert_time_type" id="alert_time_type">
+                                       <option value="null_time_type">เลือกประเภทแจ้งเตือน</option>
+                                       <option value="period">รอบ</option>
+                                       <option value="fix">ระบุวันที่และเวลา</option>
+                                    </select>
+                                 </div>
+                                 <div class="col-md-7 alert_time_type_input"></div>
                               </div>
-                              <div class="col-md-7 alert_time_type_input"></div>
-                           </div>
 
-                           <div class="row text-left mt-1">
-                              <div class="col-md-2"><label>ประเภทข้อมูล</label></div>
-                              <div class="col-md-3">
-                                 <select class="form-control form-control-sm" name="alert_data_type" id="alert_data_type">
-                                    <option value="null">เลือกประเภทแจ้งเตือน</option>
-                                    <option value="0">จากฐานข้อมูล</option>
-                                    <option value="1">กำหนดเอง</option>
-                                 </select>
+                              <div class="row text-left mt-1">
+                                 <div class="col-md-2"><label>ประเภทข้อมูล</label></div>
+                                 <div class="col-md-3">
+                                    <select class="form-control form-control-sm" name="alert_data_type" id="alert_data_type">
+                                       <option value="null">เลือกประเภทข้อมูล</option>
+                                       <option value="0">จากฐานข้อมูล</option>
+                                       <option value="1">กำหนดเอง</option>
+                                    </select>
+                                 </div>
+                                 <div class="col-md-7 alert_data_type_input"></div>
                               </div>
-                              <div class="col-md-7 alert_data_type_input"></div>
-                           </div>
-
+                           </form>
                            
                         </div>
                      </div>
@@ -142,18 +138,14 @@
                                     <?php
                                        $select_save_sql = 'SELECT * FROM `user_save_setting` WHERE user_id = '.$user_id.' ORDER BY `user_save_setting`.`date_time` DESC';
                                        $result = mysqli_query($conn,$select_save_sql);
-
-                                       
                                     ?>
                                     <select class="form-control form-control-sm col-md-7" id="save_select_box">
                                        <option value="null">เลือกรูปแบบ</option>
                                        <?php
                                           while($row = mysqli_fetch_array($result)){ 
-
                                              $datetime2 = new DateTime($row['date_time']); // create obj datetime
                                              $date = $datetime2->format('Y-m-d'); // split date and time;
                                              $time = $datetime2->format('H:i:s'); // split date and time; 
-
                                              echo '<option value="'.$row['path'].'">'.$time." ".DateThai($date)." ".$row['task_name'].'</option>'; 
                                           }  
                                        ?>   
@@ -168,7 +160,7 @@
                               
                               <!-- Form condition builder -->
                               <form id="condition_builder_form">
-
+                                 <input type="hidden" id="id_user" value="<?php echo $_SESSION['id_user']; ?>">
                                  <input type="hidden" name="sub_row_data_count" id="sub_row_data_count" >
                                  <input type="hidden" id="table_nameeeeeeeee" name="table_nameeeeeeeee">
                                  <input type="hidden" id="fields_count" name="fields_count">
