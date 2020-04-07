@@ -1,6 +1,7 @@
 <?php
    session_start();
    require_once('../config/configDB.php');
+   require_once("insert_log.php");
    $conn = $DBconnect;
    date_default_timezone_set('Asia/Bangkok');
    $response = array();
@@ -21,6 +22,7 @@
          $sql = 'INSERT INTO `user_save_setting`(`user_id`, `task_name`, `path`, `date_time`) VALUES ("'.$user_id.'","'.$task_name.'","'.$file_name.'.json","'.$datetime.'")';
          $query = mysqli_query($conn,$sql);
          if($query){
+            insert_log($conn,$user_id,'บันทึกรูปแบบงาน '.$task_name.' ชื่อไฟล์ '.$file_name.'.json');
             $response['error'] = false;
             $response['message'] = "success";
          }

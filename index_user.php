@@ -68,10 +68,10 @@
                      <div class="col-md-12">
                         <div class="form_upload_file">
                            <form id="form_alert_input" >
-                              <input type="text" id="alert_input_user_id" name="alert_input_user_id" value="<?php echo $_SESSION['id_user'];?>">
-                              <input type="text" id="alert_input_file_name" name="alert_input_file_name">
-                              <input type="text" id="alert_input_count_record" name="alert_input_count_record">
-                              <input type="text" id="alert_input_task_name" name="alert_input_task_name">
+                              <input type="hidden" id="alert_input_user_id" name="alert_input_user_id" value="<?php echo $_SESSION['id_user'];?>">
+                              <input type="hidden" id="alert_input_file_name" name="alert_input_file_name">
+                              <input type="hidden" id="alert_input_count_record" name="alert_input_count_record">
+                              <input type="hidden" id="alert_input_task_name" name="alert_input_task_name">
                               <div class="row text-left">  
                                  <div class="col-md-2"><label>หัวข้องาน</label></div>
                                  <div class="col-md-3">
