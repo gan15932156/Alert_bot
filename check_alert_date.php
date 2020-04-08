@@ -13,14 +13,15 @@
     echo $now_date_time->format('Y-m-d H:i:s')."<br><br>";
     while($row = mysqli_fetch_array($query)){
         if($row['alert_type'] == 0){ // เป็นรอบ
+            $select_date = $row['alert_date']." ".$row['alert_time'];
             $alert_update = 'SELECT * FROM `alert_update_datetime` WHERE alert_id = '.$row['alert_id'];
             $query2 = mysqli_query($conn,$alert_update);
             while($row2 = mysqli_fetch_array($query2)){
-                $select_date = $row2['datetime_alert'];
                 $date = DateTime::createFromFormat($format, $select_date);
                 if($date->format('Y-m-d H:i:s') <= $now_date_time->format('Y-m-d H:i:s')){
-                    $alert_date = get_alert_date($row2['datetime_alert'],$row2['time_type'],$row2['time_value']);
-                    $update_sql = 'UPDATE `alert_update_datetime` SET `datetime_alert`= "'.$alert_date.'" ,`update_at`= "'.$now_date_time->format('Y-m-d H:i:s').'" WHERE id = '.$row2['id'];
+                    $alert_date = get_alert_date($now_date_time->format('Y-m-d H:i:s'),$row2['time_type'],$row2['time_value']);
+                    $alert_date2 = new DateTime($alert_date);
+                    $update_sql = 'UPDATE `alert` SET `alert_date`= "'.$alert_date2->format('Y-m-d').'",`alert_time`= "'.$alert_date2->format('H:i:s').'",`insert_record_date`= "'.$now_date_time->format('Y-m-d H:i:s').'" WHERE alert_id = '.$row['alert_id'];
                     echo $update_sql."<br>";
                     mysqli_query($conn,$update_sql);
                 }

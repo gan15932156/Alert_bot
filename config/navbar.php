@@ -62,7 +62,7 @@
             <a id="link" href="add_token_line.php"><i id="link_icon" class="fas fa-key"></i>&nbsp;&nbsp;&nbsp;<span id="link_text">เพิ่มข้อมูลโทเคน</span></a><br>
             <a id="link" href="upload_file_page.php"><i id="link_icon" class="fas fa-upload"></i>&nbsp;&nbsp;&nbsp;<span id="link_text">อัพโหลดไฟล์</span></a><br>
             <a id="link" href="addcolumn_task.php"><i id="link_icon" class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;<span id="link_text">เพิ่มคอลัมน์งาน</span></a><br>
-            <a id="link" href="useruser"><i id="link_icon" class="fab fa-line"></i>&nbsp;&nbsp;&nbsp;<span id="link_text">ข้อมูลการส่งไลน์</span></a><br>
+            <a id="link" href="alert_display.php"><i id="link_icon" class="fab fa-line"></i>&nbsp;&nbsp;&nbsp;<span id="link_text">ข้อมูลการส่งไลน์</span></a><br>
             <a id="link" href="user_history.php"><i id="link_icon" class="fas fa-history"></i>&nbsp;&nbsp;&nbsp;<span id="link_text">ประวัติการใช้งาน</span></a>';
       }
    }

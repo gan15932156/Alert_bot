@@ -26,14 +26,18 @@
     if($alert_time_type == "period"){ // แจ้งเตือนเป็นรอบ
 
         $alert_time_type_time_type = $_POST['alert_time_type_time_type']; // หน่วยเวลา
+        $alert_date = get_alert_date(date('Y-m-d H:i'),$alert_time_type_time_type,$alert_time_type_value);
+        $datetime2 = new DateTime($alert_date); // create obj datetime
+        $date = $datetime2->format('Y-m-d'); // split date and time;
+        $time = $datetime2->format('H:i:s'); // split date and time; 
 
-        $sql_insert_alert = 'INSERT INTO `alert`(`user_id`, `token_line_id`, `task_id`, `alert_date`, `alert_time`, `alert_type`, `alert_data_type`, `file_name`,`alert_text`, `insert_record_date`) VALUES ('.$alert_input_user_id.','.$token_line_id.','.$task_id.',"0000-00-00","00:00:00",0,'.intval($alert_data_type).',"'.$alert_input_file_name.'","'.$alert_text.'","'.$datetime.'")';
+        $sql_insert_alert = 'INSERT INTO `alert`(`user_id`, `token_line_id`, `task_id`, `alert_date`, `alert_time`, `alert_type`, `alert_data_type`, `file_name`,`alert_text`, `insert_record_date`) VALUES ('.$alert_input_user_id.','.$token_line_id.','.$task_id.',"'.$date.'","'.$time.'",0,'.intval($alert_data_type).',"'.$alert_input_file_name.'","'.$alert_text.'","'.$datetime.'")';
         $response['sql'] = $sql_insert_alert;
         $query_insert_alert = mysqli_query($conn,$sql_insert_alert);
         if($query_insert_alert){
             $alert_id = mysqli_insert_id($conn); // get last query id (auto increment)
-            $alert_date = get_alert_date(date('Y-m-d H:i'),$alert_time_type_time_type,$alert_time_type_value);           
-            $sql_insert_update_alert = 'INSERT INTO `alert_update_datetime`(`alert_id`, `datetime_alert`, `time_type`, `time_value`, `update_at`) VALUES ('.$alert_id.',"'.$alert_date.'","'.$alert_time_type_time_type.'",'.intval($alert_time_type_value).',"'.$datetime.'")';
+                       
+            $sql_insert_update_alert = 'INSERT INTO `alert_update_datetime`(`alert_id`, `time_type`, `time_value`) VALUES ('.$alert_id.',"'.$alert_time_type_time_type.'",'.intval($alert_time_type_value).')';
             $query_insert_update_alert = mysqli_query($conn,$sql_insert_update_alert);
             if($query_insert_update_alert){
                 $response['error'] = false;
