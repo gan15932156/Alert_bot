@@ -1104,6 +1104,7 @@ function generate_where_condition_WBS_fields($fields_json){
          $query_data = new stdClass();
          $array_key = array_keys($fields_json,"WBS");  
          $field_header = $array_key[0]+1;
+         $response['outer_loop'] = $sql_get_WBS;
          if($result){
             $rowcount=mysqli_num_rows($result);
             if($rowcount > 0){
