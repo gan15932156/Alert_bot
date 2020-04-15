@@ -38,14 +38,13 @@
             <div class="work_space">
                <div class="inner_work_space">
                   <div class="row text-center">
-                        
-                     <div class="col-md-12 "><h2>เพิ่มผู้ใช้</h2></div>
+                     <div class="col-md-12 "><h1><span class="badge badge-primary"><b>เพิ่มผู้ใช้</b></span></h1></div>
                      <div class="col-md-12">
                         <div class="form_insert_user">
                            <div class="row">  
                               <div class="col-md-2"></div>
                               <div class="col-md-2"><label><b>กรอกรหัสพนักงาน</b></label></div>
-                              <div class="col-md-2"><input type="text" id="user_code" name="user_code" required class="form-control"></div>
+                              <div class="col-md-2"><input type="text" id="user_code" name="user_code" required class="form-control form-control-sm"></div>
                               <div class="col-md-2"><input value="ค้นหา" type="button" class="btn btn-success btn-sm" id="btn_search"></div>
                               <div class="col-md-2"></div>
                            </div>
@@ -56,10 +55,10 @@
                         <form onSubmit="insert_user()" action="javascript:void(0);" id="form_user_search">
                            <input type="hidden" id="search_user_id" name="search_user_id">
                            <div class="row row_result_user_info">
-                              <div class="col-md-12"><h5>ข้อมูลพนักงาน</h5></div>
+                              <div class="col-md-12"><br><h5><b>ข้อมูลพนักงาน</b></h5></div>
                               <div class="col-md-12">
                                  <table class="table table-sm table-bordered">
-                                    <thead class="text-center bg-primary">
+                                    <thead class="text-center bg-primary text-light">
                                        <tr>
                                           <th width="25%">ชื่อจริง</th>
                                           <th width="25%">นามสกุล</th>

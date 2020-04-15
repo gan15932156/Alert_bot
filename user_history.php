@@ -34,8 +34,7 @@
          <div class="work_space">
             <div class="inner_work_space">
                <div class="row text-center">
-                  <div class="col-md-12 "><h2>ประวัติการใช้งาน</h2></div>
-
+                  <div class="col-md-12 "><h1><span class="badge badge-primary"><b>ประวัติการใช้งาน</b></span></h1></div>
                   <!-- Div กรองข้อมูล -->
                   <div class="col-md-12">
                      <div class="row condition_builder_div">

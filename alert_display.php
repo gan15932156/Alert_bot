@@ -22,8 +22,7 @@
             <div class="work_space">
                 <div class="inner_work_space">
                     <div class="row text-center">
-                        <div class="col-md-12 "><h2>รายงานแจ้งเตือนไลน์</h2></div>
-   
+                        <div class="col-md-12 "><h1><span class="badge badge-primary"><b>รายงานแจ้งเตือนไลน์</b></span></h1></div>
                         <!-- Div กรองข้อมูล -->
                         <div class="col-md-12">
                             <div class="row condition_builder_div">

@@ -24,8 +24,10 @@
             <div class="col-md-12 text-left">
             <style>
             #link_icon{
-               font-size : 25px;
+               width:50px;
+               font-size : 30px;
                color: #5400a3;
+              
             }
             #link{
                color: black;
@@ -41,8 +43,10 @@
 
    if($_SESSION['username'] == "admin"){
       $html.= '  
-      <a id="link" href="index_admin.php"><i id="link_icon" class="fas fa-home"></i>&nbsp;<span id="link_text">หน้าแรก</span></a><br>
-      <a id="link" href="set_user_page.php"><i id="link_icon" class="fas fa-user"></i>&nbsp;<span id="link_text">กำหนดสิทธิผู้ใช้</span></a>';
+      <a id="link" href="index_admin.php"><i id="link_icon" class="fas fa-home"></i><span id="link_text"><b>หน้าแรก</b></span></a><br>
+      <a id="link" href="manage_user.php"><i id="link_icon" class="fas fa-user"></i><span id="link_text">จัดการข้อมูลผู้ใช้</span></a><br>
+      <a id="link" href="set_user_page.php"><i id="link_icon" class="fas fa-user-cog"></i><span id="link_text">กำหนดสิทธิผู้ใช้</span></a><br>
+      <a id="link" href="admin_user_log_display.php"><i id="link_icon" class="fas fa-history"></i><span id="link_text">ประวัติการใช้งานผู้ใช้</span></a>';
    }
    else{
       if($_SESSION['leveltest'] == 1){  // admin
@@ -57,14 +61,14 @@
       }
       else{
          $html.= ' 
-            <a id="link" href="index_user.php"><i id="link_icon" class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;<span id="link_text">หน้าแรก</span></a><br>
-            <a id="link" href="manage_task.php"><i id="link_icon" class="fas fa-tasks"></i>&nbsp;&nbsp;&nbsp;<span id="link_text">จัดการข้อมูลงาน</span></a><br>
-            <a id="link" href="add_task.php"><i id="link_icon" class="fas fa-file"></i>&nbsp;&nbsp;&nbsp;<span id="link_text">เพิ่มข้อมูลงาน</span></a><br>
-            <a id="link" href="add_token_line.php"><i id="link_icon" class="fas fa-key"></i>&nbsp;&nbsp;&nbsp;<span id="link_text">เพิ่มข้อมูลโทเคน</span></a><br>
-            <a id="link" href="upload_file_page.php"><i id="link_icon" class="fas fa-upload"></i>&nbsp;&nbsp;&nbsp;<span id="link_text">อัพโหลดไฟล์</span></a><br>
-            <a id="link" href="addcolumn_task.php"><i id="link_icon" class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;<span id="link_text">เพิ่มคอลัมน์งาน</span></a><br>
-            <a id="link" href="alert_display.php"><i id="link_icon" class="fab fa-line"></i>&nbsp;&nbsp;&nbsp;<span id="link_text">ข้อมูลการส่งไลน์</span></a><br>
-            <a id="link" href="user_history.php"><i id="link_icon" class="fas fa-history"></i>&nbsp;&nbsp;&nbsp;<span id="link_text">ประวัติการใช้งาน</span></a>';
+            <a id="link" href="index_user.php"><i id="link_icon" class="fas fa-home"></i><span id="link_text"><b>หน้าแรก</b></span></a><br>
+            <a id="link" href="manage_task.php"><i id="link_icon" class="fas fa-tasks"></i><span id="link_text">จัดการข้อมูลงาน</span></a><br>
+            <a id="link" href="add_task.php"><i id="link_icon" class="fas fa-file"></i><span id="link_text">เพิ่มข้อมูลงาน</span></a><br>
+            <a id="link" href="add_token_line.php"><i id="link_icon" class="fas fa-key"></i><span id="link_text">เพิ่มข้อมูลโทเคน</span></a><br>
+            <a id="link" href="upload_file_page.php"><i id="link_icon" class="fas fa-upload"></i><span id="link_text">อัพโหลดไฟล์</span></a><br>
+            <a id="link" href="addcolumn_task.php"><i id="link_icon" class="fas fa-plus"></i><span id="link_text">เพิ่มคอลัมน์งาน</span></a><br>
+            <a id="link" href="alert_display.php"><i id="link_icon" class="fab fa-line"></i><span id="link_text">ข้อมูลการส่งไลน์</span></a><br>
+            <a id="link" href="user_history.php"><i id="link_icon" class="fas fa-history"></i><span id="link_text">ประวัติการใช้งาน</span></a>';
       }
    }
    

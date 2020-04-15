@@ -62,8 +62,7 @@
                <div class="inner_work_space">
                   <div class="row text-center">
 
-                     <div class="col-md-12 "><h2>เพิ่มข้อมูลการแจ้งเตือน</h2></div>
-                      
+                     <div class="col-md-12 "><h1><span class="badge badge-primary"><b>เพิ่มข้อมูลการแจ้งเตือน</b></span></h1></div>
                      <!-- Div form -->
                      <div class="col-md-12">
                         <div class="form_upload_file">

@@ -15,7 +15,7 @@
          <div class="work_space">
                <div class="inner_work_space">
                   <div class="row text-center">
-                     <div class="col-md-12 "><h2>เพิ่มหัวข้องาน</h2></div>
+                     <div class="col-md-12 "><h1><span class="badge badge-primary"><b>เพิ่มหัวข้องาน</b></span></h1></div>
                      <div class="col-md-12">
                         <form method="POST" action="javascript:void(0);" id="add_task" onSubmit="addtask()">
                         <input type="hidden" id="id_user"  name="id_user" value="<?php echo $_SESSION['id_user'];?>" >
