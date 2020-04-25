@@ -43,10 +43,7 @@
 
    if($_SESSION['username'] == "admin"){
       $html.= '  
-      <a id="link" href="index_admin.php"><i id="link_icon" class="fas fa-home"></i><span id="link_text"><b>หน้าแรก</b></span></a><br>
-      <a id="link" href="manage_user.php"><i id="link_icon" class="fas fa-user"></i><span id="link_text">จัดการข้อมูลผู้ใช้</span></a><br>
-      <a id="link" href="set_user_page.php"><i id="link_icon" class="fas fa-user-cog"></i><span id="link_text">กำหนดสิทธิผู้ใช้</span></a><br>
-      <a id="link" href="admin_user_log_display.php"><i id="link_icon" class="fas fa-history"></i><span id="link_text">ประวัติการใช้งานผู้ใช้</span></a>';
+      <a id="link" href="index_admin.php"><i id="link_icon" class="fas fa-home"></i><span id="link_text"><b>หน้าแรก</b></span></a>';
    }
    else{
       if($_SESSION['leveltest'] == 1){  // admin

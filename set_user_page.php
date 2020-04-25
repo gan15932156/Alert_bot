@@ -152,7 +152,7 @@
                else{
                   Swal.fire({
                      icon: 'error',
-                     title: 'ไม่พบข้อมูลผู้ใช้'
+                     title: data.msg
                   })
                }
             });

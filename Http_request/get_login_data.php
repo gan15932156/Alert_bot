@@ -1,7 +1,7 @@
 <?php
    function check_username_in_DB($username,$conn){
       $result = array();
-      $sql = 'SELECT * FROM `userpea` WHERE `username` = "'.$username.'"';
+      $sql = 'SELECT * FROM `userpea` WHERE `username` = "'.$username.'" AND `status` = 1'; // เพิ่มตรวจสอบสถานะด้วย
       //echo $sql;
       $query = mysqli_query($conn,$sql);
       if($query){
@@ -45,7 +45,7 @@
       $_SESSION['DepartmentShort'] = "";   
       echo '<meta http-equiv="refresh" content= "0; url=index_admin.php">';
    }
-   else if($username == "6666" && $password == "1234"){
+   else if($username == "6666" && $password == "1234"){ // ทำไว้ทดสอบระบบ เมื่อใช้งานจริง ลบส่วน else if นี้ออก
       $_SESSION['leveltest']= 0;
       $_SESSION['username'] = $username;
       $_SESSION['id_user'] = "666";

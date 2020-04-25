@@ -1,17 +1,17 @@
 <?php   
     session_start(); 
     require_once('login_check.php'); 
-    require_once("Http_request/insert_log.php");
+    // require_once("Http_request/insert_log.php");
     require_once('config/configDB.php');
     $conn = $DBconnect;
-    insert_log($conn,$_SESSION['id_user'],'เรียกดูหน้าจัดการข้อมูลงาน');
+    // insert_log($conn,$_SESSION['id_user'],'เรียกดูหน้าจัดการข้อมูลผู้ใช้');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>หน้าจัดการข้อมูลงาน</title>
+    <title>หน้าจัดการข้อมูลผู้ใช้</title>
 
     <?php require_once('config/include_lib.php'); ?>
 </head>
@@ -23,7 +23,7 @@
                 <div class="inner_work_space">
                     <div class="row text-center">
                     
-                        <div class="col-md-12 "><h1><span class="badge badge-primary"><b>หน้าจัดการข้อมูลงาน</b></span></h1></div>
+                        <div class="col-md-12 "><h1><span class="badge badge-primary"><b>หน้าจัดการข้อมูลผู้ใช้</b></span></h1></div>
                         <!-- Div กรองข้อมูล -->
                         <div class="col-md-12">
                             <div class="row condition_builder_div">
@@ -48,23 +48,22 @@
         </div> 
     </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">ข้อมูลงาน</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="modal_div_body">
-        <div style="overflow:auto;height:100%;width:100%;" class="div_modal_table">
-      </div>
-      </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ข้อมูลงาน</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal_div_body">
+                    <div style="overflow:auto;height:100%;width:100%;" class="div_modal_table"></div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 </body>
 </html>
 
