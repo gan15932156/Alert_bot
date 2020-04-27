@@ -43,7 +43,7 @@
                               <h3><span>จำนวนผู้ใช้ : <span class="badge badge-info" id="user_count">#</span></span></h3>
                               <span style="position: absolute;top: -10px;left: -10px;font-size:20px;background-color:#5400a3;border: 1px solid #5400a3;" class="btn btn-success"><h3><i class="fas fa-history"></i></h3></span>   
                               <hr class="my-3">
-                              <a class="btn btn-success btn-lg my-2" href="#">ประวัติการใช้งานผู้ใช้</a>
+                              <button id="user_log_btn" class="btn btn-success btn-lg my-2">ประวัติการใช้งานผู้ใช้</button>
                            </div>
                      </div>
                   </div>
@@ -67,7 +67,7 @@
             </div>
             <div class="modal-body" id="modal_div_body">
                <div style="overflow:auto;height:100%;width:100%;" class="div_modal_table">
-                  <table class="table table-striped table-hover table-sm" id="user_info_table" style="width:100%;">
+                  <table class="table table-striped table-hover table-sm display" id="user_info_table" style="width:100%;">
                      <thead class="thead-light table-bordered text-center">
                         <tr>
                            <th width="20%" scope="col">ชื่อจริง</th>
@@ -81,6 +81,39 @@
                      <tbody class="table-bordered" style="font-size:16px;"></tbody>
                   </table>
                </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="modal fade" id="user_log_modal" tabindex="-1" role="dialog" aria-labelledby="user_log_modal_label" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="user_log_modal_label">ประวัติการใช้งานระบบ</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body" id="modal_div_body">
+               <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-2"><label>วันเวลา</label></div>
+                  <div class="col-md-3"><input id="log_date_time" type="date" class="form-control form-control-sm"></div>
+                  <div class="col-md-4"></div>
+                  <div class="col-md-12 mt-2">
+                     <table class="table table-striped table-hover table-sm display" id="user_log_table" style="width:100%;">
+                        <thead class="thead-light table-bordered text-center">
+                           <tr>
+                              <th width="15%" scope="col">วันเวลา</th>
+                              <th width="25%" scope="col">ชื่อ-นามสกุลพนักงาน</th>
+                              <th width="60%" scope="col">บันทึก</th>
+                           </tr>
+                        </thead>
+                        <tbody class="table-bordered" style="font-size:16px;"></tbody>
+                     </table>                     
+                  </div>
+               </div>  
             </div>
          </div>
       </div>
@@ -104,7 +137,7 @@
 </style>
 
 <script>
-   $(document).ready(function(){
+   $(document).ready(function(){ 
       $.ajax({
          url: "Http_request/get_count_user.php",
          method: "POST",
@@ -116,8 +149,8 @@
       .done(function(data) {
          $("#user_count").html(data);
       });
-      var user_info_table ;
-      user_info_table = $('#user_info_table').DataTable({
+      
+      $('#user_info_table').DataTable({
          columnDefs: [
             {targets: [0,1,2,3,4],className: 'dt-body-left'},
             { orderable: false, targets: '_all' }
@@ -173,11 +206,68 @@
             }
          ]
       });
+
+      $('#user_log_table').DataTable({
+         columnDefs: [
+            {targets: [0,1,2],className: 'dt-body-left'},
+            { orderable: false, targets: '_all' }
+         ],     
+         "searching": true,
+         "lengthChange": false,
+         pageLength: 11,
+         destroy: true,
+         serverSide: true,
+         processing: true,
+         "language": {
+            "search":"ค้นหา:",
+            "zeroRecords": "ไม่พบข้อมูล",
+            "info": "แสดงหน้า _PAGE_ จาก _PAGES_",
+            "infoEmpty": "ไม่พบข้อมูล",
+            "infoFiltered": "(กรองจาก _MAX_ รายการทั้งหมด)",
+            "paginate": {
+               "first":      "หน้าแรก",
+               "last":       "หน้าสุดท้าย",
+               "next":       "ถัดไป",
+               "previous":   "ก่อนหน้า"
+            }
+         },      
+         ajax: { url:"Http_request/get_select_log_data_admin.php"},
+         'columns':[
+            {
+               data:'datetime',
+               render: function (data,type,row){
+                  let datetime =  row[2]
+                  let t_year =  parseInt(datetime.substring(0,4))+543;
+                  let t_month = new Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+                  let t_day = datetime.substring(8,10);
+                  let th_dateeee = t_day+" "+t_month[parseInt(datetime.substring(5,7))]+" "+t_year;
+                  let time = datetime.substring(10);
+                  return th_dateeee+' '+time;
+               }
+            },
+            {
+               data:'username',
+               render: function (data,type,row){
+                  return row[1];
+               }
+            },
+            {
+               data:'log_message',
+               render: function (data,type,row){
+                  return row[3];
+               }
+            }
+         ]
+      });
+
       $("#user_info_table tbody").on('click','#record_status',function(){
          return confirm('ต้องการเปลี่ยนสถานะการใช้งานผู้ใช้หรือไม่');
       })
       $("#manage_user_btn").click(function(){
          $("#user_info_modal").modal();
+      })
+      $("#user_log_btn").click(function(){
+         $("#user_log_modal").modal();
       })
    })
 </script>
