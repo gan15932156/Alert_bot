@@ -12,7 +12,7 @@
          text-decoration: none;
          position: relative;
          width:20vw;
-         height:30vh;
+         height:34vh;
       }
    </style>
 </head>
@@ -67,7 +67,7 @@
             </div>
             <div class="modal-body" id="modal_div_body">
                <div style="overflow:auto;height:100%;width:100%;" class="div_modal_table">
-                  <table class="table table-striped table-hover table-sm display" id="user_info_table" style="width:100%;">
+                  <table class="table table-striped table-hover table-sm" style="width:100%;  table-layout: fixed;" id="user_info_table">
                      <thead class="thead-light table-bordered text-center">
                         <tr>
                            <th width="20%" scope="col">ชื่อจริง</th>
@@ -102,15 +102,15 @@
                   <div class="col-md-3"><input id="log_date_time" type="date" class="form-control form-control-sm"></div>
                   <div class="col-md-4"></div>
                   <div class="col-md-12 mt-2">
-                     <table class="table table-striped table-hover table-sm display" id="user_log_table" style="width:100%;">
+                     <table class="table table-striped table-hover table-sm" style="width:100%;table-layout: fixed;" id="user_log_table" >
                         <thead class="thead-light table-bordered text-center">
                            <tr>
-                              <th width="15%" scope="col">วันเวลา</th>
-                              <th width="25%" scope="col">ชื่อ-นามสกุลพนักงาน</th>
-                              <th width="60%" scope="col">บันทึก</th>
+                              <th scope="col">วันเวลา</th>
+                              <th scope="col">รหัสพนักงาน</th>
+                              <th scope="col">บันทึก</th>
                            </tr>
                         </thead>
-                        <tbody class="table-bordered" style="font-size:16px;"></tbody>
+                        <tbody id="log_tbody" class="table-bordered" style="font-size:16px;"></tbody>
                      </table>                     
                   </div>
                </div>  
@@ -134,6 +134,7 @@
       margin-right: 5px;  
       padding:5px;
     }
+
 </style>
 
 <script>
@@ -269,5 +270,72 @@
       $("#user_log_btn").click(function(){
          $("#user_log_modal").modal();
       })
+      $("#log_date_time").change(function(){
+         if($(this).val() != ""){
+            $("#log_tbody").empty();
+            load_table($(this).val())
+         }
+         else{
+            table.ajax.reload();
+         } 
+      })
    })
+   function load_table(datetime){
+      $('#user_log_table').DataTable({
+         columnDefs: [
+            {targets: [1],className: 'dt-body-left'},
+            { orderable: false, targets: '_all' }
+         ],     
+         "searching": true,
+         "lengthChange": false,
+         pageLength: 11,
+         destroy: true,
+         serverSide: true,
+         processing: true,
+         "language": {
+            "search":"ค้นหา:",
+            "zeroRecords": "ไม่พบข้อมูล",
+            "info": "แสดงหน้า _PAGE_ จาก _PAGES_",
+            "infoEmpty": "ไม่พบข้อมูล",
+            "infoFiltered": "(กรองจาก _MAX_ รายการทั้งหมด)",
+            "paginate": {
+               "first":      "หน้าแรก",
+               "last":       "หน้าสุดท้าย",
+               "next":       "ถัดไป",
+               "previous":   "ก่อนหน้า"
+            }
+         },      
+         ajax: { 
+            url:"Http_request/get_select_log_data_date_admin.php",
+            data : { datetime_post : datetime }
+         },
+            'columns':[
+            {
+               data:'datetime',
+               render: function (data,type,row){
+                  let datetime =  row[2]
+                  let t_year =  parseInt(datetime.substring(0,4))+543;
+                  let t_month = new Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+                  let t_day = datetime.substring(8,10);
+                  let th_dateeee = t_day+" "+t_month[parseInt(datetime.substring(5,7))]+" "+t_year;
+                  let time = datetime.substring(10);
+                  return th_dateeee+' '+time;
+               }
+            },
+            {
+               data:'username',
+               render: function (data,type,row){
+                  return row[1];
+               }
+            },
+            {
+               data:'log_message',
+               render: function (data,type,row){
+                  return row[3];
+               }
+            }
+         ]
+      });
+      console.log(datetime)
+   }
 </script>

@@ -5,19 +5,21 @@
    $conn = $DBconnect;
    $requestData= $_REQUEST; // get request
 
+   
    // get all data
-   $sql = "SELECT  `log_id`, `id_user_pea`, `datetime`, `log_message`";
-   $sql.=" FROM `user_log`";
+   $sql = "SELECT  `log_id`, `userpea`.`username`, `datetime`, `log_message`";
+   $sql.=" FROM `user_log` INNER JOIN userpea ON user_log.id_user_pea = userpea.id_pea";
    $query = mysqli_query($conn, $sql);
    $totalData = mysqli_num_rows($query);
    $totalFiltered = $totalData;
 
    // get data where
-   $sql = "SELECT  `log_id`, `id_user_pea`, `datetime`, `log_message`";
-   $sql.= " FROM `user_log` WHERE id_user_pea = ".$_SESSION['id_user']." AND SUBSTR(datetime,1,10) ="."'".$requestData['datetime_post']."'";
+   $sql = "SELECT  `log_id`, `userpea`.`username`, `datetime`, `log_message`";
+   $sql.= " FROM `user_log` INNER JOIN userpea ON user_log.id_user_pea = userpea.id_pea WHERE SUBSTR(datetime,1,10) ="."'".$requestData['datetime_post']."'";
    if( !empty($requestData['search']['value']) ) {  
       $sql.= " AND ( log_id LIKE '".$requestData['search']['value']."%' ";    
       $sql.= " OR datetime LIKE '%".$requestData['search']['value']."%' ";
+      $sql.= " OR username LIKE '%".$requestData['search']['value']."%' ";
       $sql.= " OR log_message LIKE '".$requestData['search']['value']."%' )";
    }
    $query = mysqli_query($conn, $sql);
@@ -32,7 +34,7 @@
    while( $row = mysqli_fetch_array($query)) {  // preparing an array
     $nestedData = array(); 
     $nestedData[] = $row["log_id"];
-    $nestedData[] = $row["id_user_pea"];
+    $nestedData[] = $row["username"];
     $nestedData[] = $row["datetime"];
     $nestedData[] = $row["log_message"];
     $data[] = $nestedData;
