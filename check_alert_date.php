@@ -3,14 +3,14 @@
     require_once('config/configDB.php');
     $conn = $DBconnect;
 
-    $select_sql = 'SELECT * FROM `alert` WHERE status = 1';
+    $select_sql = 'SELECT * FROM `alert` INNER JOIN `token_line` ON alert.token_line_id = token_line.id WHERE status = 1';
 
     $query = mysqli_query($conn,$select_sql);
 
     $format = 'Y-m-d H:i:s';
     $now = date('Y-m-d H:i:s');
     $now_date_time = new DateTime($now);
-    echo $now_date_time->format('Y-m-d H:i:s')."<br><br>";
+    // echo $now_date_time->format('Y-m-d H:i:s')."<br><br>";
     while($row = mysqli_fetch_array($query)){
         if($row['alert_type'] == 0){ // เป็นรอบ
             $select_date = $row['alert_date']." ".$row['alert_time'];
@@ -22,7 +22,9 @@
                     $alert_date = get_alert_date($now_date_time->format('Y-m-d H:i:s'),$row2['time_type'],$row2['time_value']);
                     $alert_date2 = new DateTime($alert_date);
                     $update_sql = 'UPDATE `alert` SET `alert_date`= "'.$alert_date2->format('Y-m-d').'",`alert_time`= "'.$alert_date2->format('H:i:s').'",`insert_record_date`= "'.$now_date_time->format('Y-m-d H:i:s').'" WHERE alert_id = '.$row['alert_id'];
-                    echo $update_sql."<br>";
+                    notify_message($row['alert_text'],$row['token']);
+                    notify_message("http://127.0.0.1/Alert_bot/user_export_file_alert/".$row['file_name'],$row['token']);    
+                    // echo $update_sql."<br>";
                     mysqli_query($conn,$update_sql);
                 }
             }
@@ -31,7 +33,9 @@
             $select_date = $row['alert_date']." ".$row['alert_time'];
             $date = DateTime::createFromFormat($format, $select_date);
             if($date->format('Y-m-d H:i:s') <= $now_date_time->format('Y-m-d H:i:s')){
-                echo $date->format('Y-m-d H:i:s')." alert!!!<br>";
+                notify_message($row['alert_text'],$row['token']);
+                notify_message("http://127.0.0.1/Alert_bot/user_export_file_alert/".$row['file_name'],$row['token']);    
+                // echo $date->format('Y-m-d H:i:s')." alert!!!<br>";
             }
         }
     }
@@ -59,8 +63,8 @@
     }
 
     function get_alert_date($now_date,$time_type,$time_value){
-        $strtime;
-        $new_date;
+        $strtime = "";
+        $new_date = "";
         if($time_type == "s"){
             $strtime = $time_value;
         }

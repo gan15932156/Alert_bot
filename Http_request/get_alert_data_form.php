@@ -1,5 +1,6 @@
 <?php
     require_once('../config/configDB.php');
+    require_once("insert_log.php");
     date_default_timezone_set('Asia/Bangkok');
     $conn = $DBconnect;
     $response = array();
@@ -16,6 +17,9 @@
     $alert_data_type = $_POST['alert_data_type'];  
     $datetime = date('Y-m-d H:i:s');
     $alert_text = '';
+
+    insert_log($conn,$alert_input_user_id,'บันทึกข้อมูลแจ้งเตือนไลน์ งาน '.$task_name);
+
     if($alert_data_type == "0"){ // 0 = จากฐานข้อมูล
         $alert_text = "แจ้งเตือนงาน: ".$task_name." จำนวนรายการ: ".$alert_input_count_record." รายการ"; 
     }
@@ -73,8 +77,8 @@
 
 
 function get_alert_date($now_date,$time_type,$time_value){
-    $strtime;
-    $new_date;
+    $strtime = "";
+    $new_date = "";
     if($time_type == "s"){
         $strtime = $time_value;
     }

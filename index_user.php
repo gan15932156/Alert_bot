@@ -44,9 +44,6 @@
          margin-top:2px;
          
       }
-      #table_fullscreen{
-
-      }
    </style>
 </head>
 <body>
