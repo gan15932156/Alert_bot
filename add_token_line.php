@@ -26,7 +26,7 @@
          <div class="work_space">
             <div class="inner_work_space">
                <div class="row text-center">
-                  <div class="col-md-12 "><h1><span class="badge badge-primary"><b>เพิ่มโทเคนไลน์</b></span></h1></div>
+                  <div class="col-md-12 "><h1><span class="badge badge-primary name_page"><b>เพิ่มโทเคนไลน์</b></span></h1></div>
                   <div class="col-md-12">
                      <form method="POST" action="javascript:void(0);" id="add_token_line" onSubmit="add_token_line()">
                         <div class="form_add_token_line">
@@ -58,7 +58,7 @@
                               </div>
                            </div><br>
                            <div class="row">
-                              <div class="col-md-12 text-center"><input type="submit" class="btn btn-success btn-sm" value="ยืนยัน"></div>
+                              <div class="col-md-12 text-center"><input type="submit" class="btn btn-success btn-sm normal_btn" value="ยืนยัน"></div>
                            </div>
                         </div>
                      </form>

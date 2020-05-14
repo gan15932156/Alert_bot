@@ -54,14 +54,14 @@
       $key_obj = array_keys($array_parse);// get Array keys     
       $row_count = count($data->{$key_obj[0]});// Count row
       // HTML code
-      $html.= '<table class="table table-sm table-bordered" id="tb_result"><thead class="text-center bg-primary">';
+      $html.= '<table class="table table-sm table-bordered" id="tb_result"><thead class="text-center tb_head">';
       $html.='<tr>';  
       foreach($key_obj as $header){ // Populate Header
          $html.='<th><input class="checkcol cb-element" type="checkbox" id="checkcol" name="checkcol[]" value="'.$header.'">   '.$header.'</th>';
       }
-      $html.='</tr></thead><tbody>';     
+      $html.='</tr></thead><tbody class="table-bordered tb_body">';     
       for($i = 0 ; $i <= $row_count-1 ; $i++){// Populate data
-         $html.='<tr style="background-color:lightblue;">';
+         $html.='<tr>';
          for($j = 0 ; $j <= count($key_obj)-1 ; $j++){
             $html.='<td class="'.$key_obj[$j].'" id="dataexcelpop">'.$data->{$key_obj[$j]}[$i].'</td>';
          }

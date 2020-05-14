@@ -17,7 +17,7 @@
          <div class="work_space">
                <div class="inner_work_space">
                   <div class="row text-center">
-                     <div class="col-md-12 "><h1><span class="badge badge-primary"><b>เพิ่มคอลัมน์หัวข้องาน</b></span></h1></div>
+                     <div class="col-md-12 "><h1><span class="badge badge-primary name_page"><b>เพิ่มคอลัมน์หัวข้องาน</b></span></h1></div>
                      <div class="col-md-12">
                         <form method="POST" action="javascript:void(0);" id="add_task" onSubmit="addtask()">
 
@@ -46,37 +46,37 @@
                                  </div>
                                  <input type="hidden" id="task_name" name="task_name">
                                  <div class="col-md-2"><label>เพิ่มหัวข้องาน</label></div>
-                                 <div class="col-md-1"><input type="button" class="btn btn-success btn-sm" id="btn_add_header_task" value="+"></div>
-                                 <div class="col-md-1"><input type="button" class="btn btn-danger btn-sm" id="btn_clear" value="เคลียร์"></div>
-                                 <div class="col-md-1 text-center"><input type="submit" class="btn btn-success btn-sm" value="ยืนยัน"></div>
+                                 <div class="col-md-1"><input type="button" class="btn btn-success btn-sm normal_btn" id="btn_add_header_task" value="+"></div>
+                                 <div class="col-md-1"><input type="button" class="btn btn-danger btn-sm normal_btn" id="btn_clear" value="เคลียร์"></div>
+                                 <div class="col-md-1 text-center"><input type="submit" class="btn btn-success btn-sm normal_btn" value="ยืนยัน"></div>
                               </div>
                            </div>
                            <div class="table_result">
                               <div class="row">
                                  <div class="col-md-1"></div>
                                  <div class="col-md-5 fields_div">
-                                    <table style="color:black;" class="table table-sm table-bordered">
-                                       <thead class="thead-light">
+                                    <table class="table table-sm table-bordered">
+                                       <thead class="text-center text-light tb_head">
                                           <tr>
                                              <th width="60%">หัวข้อ</th>
                                              <th width="40%">ชนิดข้อมูล</th>
                                           </tr>
                                        </thead>
-                                       <tbody id="tbody_task"></tbody>
+                                       <tbody class="tb_body" id="tbody_task"></tbody>
                                     </table>
                                  </div>
                                  <div class="col-md-5 result_template text-center">
 
                                     <label><b>รูปแบบตารางงาน</b></label>
 
-                                    <table class="table table-sm table-bordered ">
-                                       <thead class="thead-light">
+                                    <table class="table table-sm table-bordered">
+                                       <thead class="text-center text-light tb_head">
                                           <tr>
                                              <th width="60%">หัวข้อ</th>
                                              <th width="40%">ชนิดข้อมูล</th>
                                           </tr>
                                        </thead>
-                                       <tbody class="bg-light text-left" id="tempate_table_body"></tbody>
+                                       <tbody class="tb_body text-left" id="tempate_table_body"></tbody>
                                     </table>
                                  </div>
                                  <div class="col-md-1"></div>
@@ -119,7 +119,7 @@
    $(document).ready(function(){
       $("#btn_add_header_task").click(function(){
          let html = '';
-         html += '<tr class="table-light">';
+         html += '<tr>';
          html += '<td><input class="form-control form-control-sm header" name="header[]" required></td>';
          html += '<td><select class="form-control form-control-sm header_type" name="header_type[]"><option value="varchar(255)">ตัวอักษร</option><option value="int">ตัวเลข</option><option value="double">ทศนิยม</option><option value="date">วันที่</option></select></td>';
          html += '</tr>';

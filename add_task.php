@@ -15,7 +15,7 @@
          <div class="work_space">
                <div class="inner_work_space">
                   <div class="row text-center">
-                     <div class="col-md-12 "><h1><span class="badge badge-primary"><b>เพิ่มหัวข้องาน</b></span></h1></div>
+                     <div class="col-md-12 "><h1><span class="badge badge-primary name_page"><b>เพิ่มหัวข้องาน</b></span></h1></div>
                      <div class="col-md-12">
                         <form method="POST" action="javascript:void(0);" id="add_task" onSubmit="addtask()">
                         <input type="hidden" id="id_user"  name="id_user" value="<?php echo $_SESSION['id_user'];?>" >
@@ -24,9 +24,9 @@
                                  <div class="col-md-2"><label>หัวข้องาน</label></div>
                                  <div class="col-md-2"><input type="text" name="task_name" id="task_name" required class="form-control form-control-sm"></div>
                                  <div class="col-md-2"><label>เพิ่มหัวข้องาน</label></div>
-                                 <div class="col-md-1"><input type="button" class="btn btn-success btn-sm" id="btn_add_header_task" value="+"></div>
-                                 <div class="col-md-1"><input type="button" class="btn btn-danger btn-sm" id="btn_clear" value="เคลียร์"></div>
-                                 <div class="col-md-1 text-center"><input type="submit" class="btn btn-success btn-sm" value="ยืนยัน"></div>
+                                 <div class="col-md-1"><input type="button" class="btn btn-success btn-sm normal_btn" id="btn_add_header_task" value="+"></div>
+                                 <div class="col-md-1"><input type="button" class="btn btn-danger btn-sm normal_btn" id="btn_clear" value="เคลียร์"></div>
+                                 <div class="col-md-1 text-center"><input type="submit" class="btn btn-success btn-sm normal_btn" value="ยืนยัน"></div>
                               </div>
                             
                            </div>
@@ -34,14 +34,14 @@
                               <div class="row">
                                  <div class="col-md-3"></div>
                                  <div class="col-md-6">
-                                    <table class="table table-sm">
-                                       <thead class="thead-light">
+                                    <table class="table table-hover table-sm">
+                                       <thead class="table-bordered text-center text-light tb_head">
                                           <tr>
                                              <th width="60%">หัวข้อ</th>
                                              <th width="40%">ชนิดข้อมูล</th>
                                           </tr>
                                        </thead>
-                                       <tbody id="tbody_task"></tbody>
+                                       <tbody class="table-bordered tb_body" id="tbody_task"></tbody>
                                     </table>
 
                                  </div>
@@ -67,7 +67,7 @@
       padding:5px;   
    }
    .table_result{
-      background-color:#e0abff;
+      background-color:#f8e0ff;
       margin-left: 5px;
       margin-right: 5px;
       margin-top: 5px;
@@ -80,7 +80,7 @@
    $(document).ready(function(){
       $("#btn_add_header_task").click(function(){
          let html = '';
-         html += '<tr class="table-light">';
+         html += '<tr>';
          html += '<td><input class="form-control form-control-sm header" name="header[]" required></td>';
          html += '<td><select class="form-control form-control-sm header_type" name="header_type[]"><option value="varchar(255)">ตัวอักษร</option><option value="int">ตัวเลข</option><option value="double">ทศนิยม</option><option value="date">วันที่</option></select></td>';
          html += '</tr>';

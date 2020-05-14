@@ -34,7 +34,7 @@
          <div class="work_space">
             <div class="inner_work_space">
                <div class="row text-center">
-                  <div class="col-md-12 "><h1><span class="badge badge-primary"><b>ประวัติการใช้งาน</b></span></h1></div>
+                  <div class="col-md-12 "><h1><span class="badge badge-primary name_page"><b>ประวัติการใช้งาน</b></span></h1></div>
                   <!-- Div กรองข้อมูล -->
                   <div class="col-md-12">
                      <div class="row condition_builder_div">
@@ -47,14 +47,14 @@
                            </div>
                            <div class="row">
                               <div class="col-md-12">
-                                 <table class="table table-striped table-hover table-sm" id="data_table" style="width:100%;">
-                                    <thead class="thead-light table-bordered text-center">
+                                 <table class="table table-striped table-hover table-sm table-bordered" id="data_table" style="width:100%;">
+                                    <thead class="text-center text-light tb_head">
                                        <tr>
                                        <th width="15%" scope="col">วันเวลา</th>
                                        <th width="75%" scope="col">บันทึก</th>
                                        </tr>
                                     </thead>
-                                    <tbody class="table-bordered" style="font-size:16px;"></tbody>
+                                    <tbody class="tb_body" style="font-size:16px;"></tbody>
                                  </table>
                               </div>
                            </div>

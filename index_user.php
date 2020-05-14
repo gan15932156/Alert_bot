@@ -40,7 +40,7 @@
       .tb-result thead th { 
          position: sticky; 
          top: 0; 
-         background-color:#007BFF;
+         background-color:#a061f2;
          margin-top:2px;
          
       }
@@ -59,7 +59,7 @@
                <div class="inner_work_space">
                   <div class="row text-center">
 
-                     <div class="col-md-12 "><h1><span class="badge badge-primary"><b>เพิ่มข้อมูลการแจ้งเตือน</b></span></h1></div>
+                     <div class="col-md-12 "><h1><span class="badge badge-primary name_page"><b>เพิ่มข้อมูลการแจ้งเตือน</b></span></h1></div>
                      <!-- Div form -->
                      <div class="col-md-12">
                         <div class="form_upload_file">
@@ -90,7 +90,7 @@
                                     <select class="form-control form-control-sm" name="token_line_id" id="token_line_id"></select>
                                  </div>
                                  <div class="col-md-1"> 
-                                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+                                    <button type="button" class="btn btn-secondary normal_btn" data-toggle="modal" data-target="#exampleModal">
                                        <i class="fa fa-info-circle"></i>
                                     </button>
                                  </div>
@@ -131,7 +131,7 @@
                            <div class="col-md-12"> 
                               <div class="row">
                                  <div class="col-md-2">
-                                 <h3 class="float-left"><span class="badge badge-success"><b>กรองข้อมูล</b></span></h3>
+                                 <h3 class="float-left"><span class="badge badge-success name_page"><b>กรองข้อมูล</b></span></h3>
                                  </div>
                                  <div class="col-md-6 form-inline">
                                     <label class="col-md-5">รูปแบบงานที่บันทึกไว้</label>
@@ -170,17 +170,17 @@
                                  <input type="file" id="open_file" accept=" .json" style="display:none;">
                                  <div class="row">
                                     <div class="col-md-12 text-center"> 
-                                       <input style="display:none;" type="button" value="ยืนยันการส่งข้อมูลไลน์" class="btn btn-success btn-sm" name="btn_submit_alert" id="btn_submit_alert">
-                                       <input style="display:none  ;" type="button" value="ย้อนกลับ" class="btn btn-warning btn-sm" name="btn_back" id="btn_back">
+                                       <input style="display:none;" type="button" value="ยืนยันการส่งข้อมูลไลน์" class="btn btn-success btn-sm normal_btn" name="btn_submit_alert" id="btn_submit_alert">
+                                       <input style="display:none  ;" type="button" value="ย้อนกลับ" class="btn btn-success btn-sm normal_btn" name="btn_back" id="btn_back">
                                     </div>
                                  </div>
                                  <div class="row condition_form_div">
                                     
                                     <!-- div btn -->
                                     <div class="col-md-12 text-center"> 
-                                       <input type="button" value="ยืนยัน" class="btn btn-success btn-sm" id="send_query">
-                                       <input type="button" value="เคลียร์เงื่อนไข" class="btn btn-danger btn-sm" id="reset_condition">
-                                       <input type="button" value="เคลียร์ทั้งหมด" class="btn btn-danger btn-sm" id="reset_all">
+                                       <input type="button" value="ยืนยัน" class="btn btn-success btn-sm normal_btn" id="send_query">
+                                       <input type="button" value="เคลียร์เงื่อนไข" class="btn btn-danger btn-sm normal_btn" id="reset_condition">
+                                       <input type="button" value="เคลียร์ทั้งหมด" class="btn btn-danger btn-sm normal_btn" id="reset_all">
                                     </div>
                                     <!-- End div -->
 
@@ -188,16 +188,16 @@
                                     <div class="col-md-12 mt-1">
                                        <!-- ตาราง กำหนดเงื่อนไข -->
                                        <table class="table table-sm table-bordered text-center condition_table">
-                                          <thead class="bg-primary">
+                                          <thead class="text-center text-light conditionbuilder_tb_head">
                                              <tr>
                                                 <th width="5%"> 
-                                                <div class="dropdown" >
-                                                      <input type="button" value="+" class="dropbtn btn btn-success btn-sm">
-                                                   <div class="dropdown-content" style="left:0;">
-                                                      <span id="add_condition" condition_type="main_condition">เพิ่มเงื่อนไข</span>
-                                                      <span id="add_sub_condition" condition_type="sub_condition">เพิ่มเงื่อนไขย่อย</span>
+                                                   <div class="dropdown">
+                                                      <input style="background-color:#e0abff;" type="button" value="+" class="btn btn-success btn-sm dropbtn">
+                                                      <div class="dropdown-content" style="left:0;">
+                                                         <span id="add_condition" condition_type="main_condition">เพิ่มเงื่อนไข</span>
+                                                         <span id="add_sub_condition" condition_type="sub_condition">เพิ่มเงื่อนไขย่อย</span>
+                                                      </div>
                                                    </div>
-                                                </div>
                                                 </th>
                                                 <th width="5%">ประเภท</th>
                                                 <th width="15%">หัวตาราง</th>
@@ -205,7 +205,7 @@
                                                 <th width="15%">ค่า/หัวตาราง</th>
                                              </tr>
                                           </thead>
-                                          <tbody class="table-primary" id="append_condition">
+                                          <tbody class="tb_body" id="append_condition">
                                           </tbody>
                                        </table> 
                                        <!-- End table -->
@@ -220,7 +220,7 @@
                                     <!-- End div -->
 
                                     <!-- div result_query -->
-                                    <div class="col-md-12 mt-1"><input id="send_to_webdatarocks" class="btn btn-success btn-sm" type="button" value="ส่งข้อมูลไลน์"></div>
+                                    <div class="col-md-12 mt-1"><input id="send_to_webdatarocks" class="btn btn-success btn-sm normal_btn" type="button" value="ส่งข้อมูลไลน์"></div>
                                     <!-- End div -->
                                     
             
@@ -275,9 +275,7 @@
 </body>
 </html>
 
-<style>
-   .modal-dialog {max-height:100vh;max-width:150vh;}  
-   .modal-body{height:100%;width:100%;align:center;}    
+<style>  
    .form_upload_file{
       background-color:#e0abff;
       margin-left: 5px;
@@ -306,13 +304,16 @@
       padding: 0;
    }
    .dropbtn {
-      color: white;
+      color: black;
       border: none;
       cursor: pointer;
    }
    .dropdown {
       position: relative;
       display: inline-block;
+   }
+   .dropdown .dropbtn:hover{
+      background-color: #9347f5;
    }
    .dropdown-content {
       display: none;
@@ -336,7 +337,7 @@
    .dropdown:hover .dropdown-content {
       display: block;
    }
-   .dropdown:hover .dropbtn {
-      background-color: #3e8e41;
+   .conditionbuilder_tb_head{
+      background-color: #884dd1;
    }
 </style>

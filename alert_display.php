@@ -22,13 +22,13 @@
             <div class="work_space">
                 <div class="inner_work_space">
                     <div class="row text-center">
-                        <div class="col-md-12 "><h1><span class="badge badge-primary"><b>รายงานแจ้งเตือนไลน์</b></span></h1></div>
+                        <div class="col-md-12 "><h1><span class="badge badge-primary name_page"><b>รายงานแจ้งเตือนไลน์</b></span></h1></div>
                         <!-- Div กรองข้อมูล -->
                         <div class="col-md-12">
                             <div class="row condition_builder_div">
                                 <div class="col-md-12">
-                                    <table class="table table-striped table-hover table-sm" id="data_table" style="width:100%;">
-                                        <thead class="thead-light table-bordered text-center">
+                                    <table class="table table-striped table-hover table-sm table-bordered" id="data_table" style="width:100%;">
+                                        <thead class="text-center text-light tb_head">
                                             <tr>
                                                 <th width="15%" scope="col">ชื่องาน</th>
                                                 <th width="25%" scope="col">ชื่อกลุ่มกลุ่มไลน์/ชื่อไลน์</th>
@@ -37,7 +37,7 @@
                                                 <th width="20%" scope="col">สถานะรายการ</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="table-bordered" style="font-size:16px;"></tbody>
+                                        <tbody class="tb_body" style="font-size:16px;"></tbody>
                                     </table>
                                     <!-- SELECT * FROM `user_log` ORDER BY `datetime` DESC -->
                                 </div>
@@ -121,7 +121,7 @@
                 data:'file_ex',
                 render: function (data,type,row){
                      
-                    return '<button class="btn btn-primary btn-sm" file_name="'+row[4]+'" type="button" id="btn_show_ex"><i class="fas fa-file-alt"></i></button>';
+                    return '<button class="btn btn-primary btn-sm normal_btn" file_name="'+row[4]+'" type="button" id="btn_show_ex"><i class="fas fa-file-alt"></i></button>';
                 }
              },
              {

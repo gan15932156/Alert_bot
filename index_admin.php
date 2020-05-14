@@ -24,26 +24,26 @@
          <div class="work_space">
             <div class="inner_work_space">
                <div class="row text-center">
-                  <div class="col-md-12 "><h1><span class="badge badge-primary"><b>หน้าหลักผู้ดูแลระบบ</b></span></h1></div>
+                  <div class="col-md-12 "><h1><span class="badge badge-primary name_page"><b>หน้าหลักผู้ดูแลระบบ</b></span></h1></div>
 
                   <!-- Dashboard div -->
                   <div class="col-md-12">
                      <div class="row condition_builder_div">
                         <div align="center" class="col-md-6 "><br><br><br><br>
                            <div class="jumbotron manage_user">
-                              <h3><span>จำนวนผู้ใช้ : <span class="badge badge-info" id="user_count">#</span></span></h3>
+                              <h3><span>จำนวนผู้ใช้ : <span class="badge badge-info badge_btn" id="user_count">#</span></span></h3>
                               <span style="position: absolute;top: -10px;left: -10px;font-size:20px;background-color:#5400a3;border: 1px solid #5400a3;" class="btn btn-success"><h3><i class="fas fa-user"></i></h3></span>   
                               <hr class="my-3">
-                              <button id="manage_user_btn" class="btn btn-success btn-lg my-2">จัดการข้อมูลผู้ใช้</button>
-                              <a class="btn btn-success btn-lg" href="set_user_page.php">กำหนดสิทธิผู้ใช้</a>
+                              <button id="manage_user_btn" class="btn btn-success btn-lg my-2 normal_btn">จัดการข้อมูลผู้ใช้</button>
+                              <a class="btn btn-success btn-lg normal_btn" href="set_user_page.php">กำหนดสิทธิผู้ใช้</a>
                            </div>
                         </div>
                         <div align="center" class="col-md-6"><br><br><br><br>
                            <div class="jumbotron see_log">
-                              <h3><span>จำนวนผู้ใช้ : <span class="badge badge-info" id="user_count">#</span></span></h3>
+                              <h3><span>จำนวนผู้ใช้ : <span class="badge badge-info badge_btn" id="user_count">#</span></span></h3>
                               <span style="position: absolute;top: -10px;left: -10px;font-size:20px;background-color:#5400a3;border: 1px solid #5400a3;" class="btn btn-success"><h3><i class="fas fa-history"></i></h3></span>   
                               <hr class="my-3">
-                              <button id="user_log_btn" class="btn btn-success btn-lg my-2">ประวัติการใช้งานผู้ใช้</button>
+                              <button id="user_log_btn" class="btn btn-success btn-lg my-2 normal_btn">ประวัติการใช้งานผู้ใช้</button>
                            </div>
                      </div>
                   </div>
@@ -60,7 +60,7 @@
       <div class="modal-dialog" role="document">
          <div class="modal-content">
             <div class="modal-header">
-               <h5 class="modal-title" id="user_info_user_label">จัดการข้อมูลผู้ใช้</h5>
+               <h3 class="modal-title" id="user_info_user_label"><span class="badge badge-primary name_page"><b>จัดการข้อมูลผู้ใช้</b></span></h3>
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                </button>
@@ -68,7 +68,7 @@
             <div class="modal-body" id="modal_div_body">
                <div style="overflow:auto;height:100%;width:100%;" class="div_modal_table">
                   <table class="table table-striped table-hover table-sm" style="width:100%;  table-layout: fixed;" id="user_info_table">
-                     <thead class="thead-light table-bordered text-center">
+                     <thead class="table-bordered text-center text-light tb_head">
                         <tr>
                            <th width="20%" scope="col">ชื่อจริง</th>
                            <th width="25%" scope="col">นามสกุล</th>
@@ -78,7 +78,7 @@
                            <th width="10%" scope="col">สถานะ</th>
                         </tr>
                      </thead>
-                     <tbody class="table-bordered" style="font-size:16px;"></tbody>
+                     <tbody class="table-bordered tb_body" style="font-size:16px;"></tbody>
                   </table>
                </div>
             </div>
@@ -90,7 +90,7 @@
       <div class="modal-dialog" role="document">
          <div class="modal-content">
             <div class="modal-header">
-               <h5 class="modal-title" id="user_log_modal_label">ประวัติการใช้งานระบบ</h5>
+               <h3 class="modal-title" id="user_log_modal_label"><span class="badge badge-primary name_page"><b>ประวัติการใช้งานระบบ</b></span></h3>
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                </button>
@@ -102,15 +102,15 @@
                   <div class="col-md-3"><input id="log_date_time" type="date" class="form-control form-control-sm"></div>
                   <div class="col-md-4"></div>
                   <div class="col-md-12 mt-2">
-                     <table class="table table-striped table-hover table-sm" style="width:100%;table-layout: fixed;" id="user_log_table" >
-                        <thead class="thead-light table-bordered text-center">
+                     <table class="table table-striped table-hover table-sm " style="width:100%;table-layout: fixed;" id="user_log_table" >
+                        <thead class="table-bordered text-center text-light tb_head">
                            <tr>
                               <th scope="col">วันเวลา</th>
                               <th scope="col">รหัสพนักงาน</th>
                               <th scope="col">บันทึก</th>
                            </tr>
                         </thead>
-                        <tbody id="log_tbody" class="table-bordered" style="font-size:16px;"></tbody>
+                        <tbody id="log_tbody" class="table-bordered tb_body" style="font-size:16px;"></tbody>
                      </table>                     
                   </div>
                </div>  
@@ -124,16 +124,14 @@
 </body>
 </html>
 
-<style>
-   .modal-dialog {height:85vh;max-width:87vw;}  
-   .modal-body{height:85vh;width:100%;align:center;}    
+<style>   
    .condition_builder_div{
       background-color:#f8e0ff;
       height: 90vh;
       margin-left: 5px;
       margin-right: 5px;  
       padding:5px;
-    }
+   }
 
 </style>
 

@@ -23,19 +23,19 @@
                 <div class="inner_work_space">
                     <div class="row text-center">
                     
-                        <div class="col-md-12 "><h1><span class="badge badge-primary"><b>หน้าจัดการข้อมูลงาน</b></span></h1></div>
+                        <div class="col-md-12 "><h1><span class="badge badge-primary name_page"><b>หน้าจัดการข้อมูลงาน</b></span></h1></div>
                         <!-- Div กรองข้อมูล -->
                         <div class="col-md-12">
                             <div class="row condition_builder_div">
                                 <div class="col-md-12">
                                     <table class="table table-striped table-hover table-sm" id="data_table" style="width:100%;">
-                                        <thead class="thead-light table-bordered text-center">
+                                        <thead class="table-bordered text-center text-light tb_head">
                                             <tr>
                                                 <th width="10%" scope="col">รหัสงาน</th>
                                                 <th width="90%" scope="col">ชื่องาน</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="table-bordered" style="font-size:16px;"></tbody>
+                                        <tbody class="table-bordered tb_body" style="font-size:16px;"></tbody>
                                     </table>
                                     <!-- SELECT * FROM `user_log` ORDER BY `datetime` DESC -->
                                 </div>
@@ -53,7 +53,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">ข้อมูลงาน</h5>
+        <h3 class="modal-title"><span id="exampleModalLabel" class="badge badge-primary name_page"><b>ข้อมูลงาน</b></span></h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -69,8 +69,6 @@
 </html>
 
 <style>
-    .modal-dialog {height:85vh;max-width:80vw;}  
-    .modal-body{height:85vh;width:100%;align:center;}    
     .condition_builder_div{
         background-color:#f8e0ff;
         height: 90vh;
@@ -170,14 +168,14 @@
         let row = 1;// row count
         let html = '';
         // table thead
-        html += '<table class="table table-sm table-bordered tb-result"><thead class="text-center bg-primary"><tr><th width="10%">#</th><th width="18%">ลำดับที่</th><th width="45%">รายการ</th><th width="27%">WBS(จำนวนรายการ)</th></tr></thead>';
+        html += '<table class="table table-sm table-bordered tb-result"><thead class="text-center text-light tb_head"><tr><th width="10%">#</th><th width="18%">ลำดับที่</th><th width="45%">รายการ</th><th width="27%">WBS(จำนวนรายการ)</th></tr></thead>';
         html += '<tbody class="text-center wbs_table_body">'; // tbody
         Object.keys(data).forEach(function(k) {
             if (k == "") { //<input class="check_wbs_row" type="checkbox" name="check_wbs_row[]" value="' + k + '">
-                html += '<tr style="background-color:#76bce8;" class="header" data_wbs="null_value"><td><span class="btn btn-primary btn-sm">-</span></td><td></td><td></td><td>' + k + '('+ data[k].length+')</td></tr>';
+                html += '<tr style="background-color:#d2b0ff;" class="header" data_wbs="null_value"><td><span class="btn btn-primary btn-sm normal_btn">-</span></td><td></td><td></td><td>' + k + '('+ data[k].length+')</td></tr>';
                 let i = 1;
                 Object.keys(data[k]).forEach(function(sub_loop) {
-                    html += '<tr style="background-color:#c4e8ff;">';
+                    html += '<tr style="background-color:#e9d9ff;">';
                     html += '<td><b>' + i + '</b></td>';
                     html += '<td>' + data[k][sub_loop]["ลำดับที่"] + '</td>';
                     html += '<td class="text-left">' + data[k][sub_loop]["รายการ"] + '</td>';
@@ -187,10 +185,10 @@
                 });
             } 
             else {
-                html += '<tr style="background-color:#76bce8;" class="header" data_wbs="' + k + '"><td><span class="btn btn-primary btn-sm">-</span></td><td></td><td></td><td>' + k + '('+ data[k].length+')</td></tr>';
+                html += '<tr style="background-color:#d2b0ff;" class="header" data_wbs="' + k + '"><td><span class="btn btn-primary btn-sm normal_btn">-</span></td><td></td><td></td><td>' + k + '('+ data[k].length+')</td></tr>';
                 let i = 1;
                 Object.keys(data[k]).forEach(function(sub_loop) {
-                    html += '<tr style="background-color:#c4e8ff;">';
+                    html += '<tr style="background-color:#e9d9ff;">';
                     html += '<td><b>' + i + '</b></td>';
                     html += '<td>' + data[k][sub_loop]["ลำดับที่"] + '</td>';
                     html += '<td class="text-left">' + data[k][sub_loop]["รายการ"] + '</td>';
@@ -209,16 +207,16 @@
         let row = 1;// row count
         let html = '';
         // table thead
-        html += '<table class="table table-sm table-bordered tb-result"><thead class="text-center bg-primary"><tr><th>#</th>'; 
+        html += '<table class="table table-sm table-bordered tb-result"><thead class="text-center text-light tb_head"><tr><th>#</th>'; 
         Object.keys(data[0]).forEach(function(k){
             if(k != "primary_key"){
                 html += '<th>'+k+'</th>';
             }   
         })
         html += '</tr></thead>';
-        html += '<tbody>';  
+        html += '<tbody class="tb_body">';  
         Object.keys(data).forEach(function(k) {// loop query data
-            html += '<tr style="background-color:lightblue;">';
+            html += '<tr>';
             html += '<td class="text-center"><b>' + row + '</b></td>';  
             Object.keys(data[k]).forEach(function(sub_loop){
                 if(sub_loop != "primary_key"){

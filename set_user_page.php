@@ -38,14 +38,14 @@
             <div class="work_space">
                <div class="inner_work_space">
                   <div class="row text-center">
-                     <div class="col-md-12 "><h1><span class="badge badge-primary"><b>เพิ่มผู้ใช้</b></span></h1></div>
+                     <div class="col-md-12 "><h1><span class="badge badge-primary name_page"><b>เพิ่มผู้ใช้</b></span></h1></div>
                      <div class="col-md-12">
                         <div class="form_insert_user">
                            <div class="row">  
                               <div class="col-md-2"></div>
                               <div class="col-md-2"><label><b>กรอกรหัสพนักงาน</b></label></div>
                               <div class="col-md-2"><input type="text" id="user_code" name="user_code" required class="form-control form-control-sm"></div>
-                              <div class="col-md-2"><input value="ค้นหา" type="button" class="btn btn-success btn-sm" id="btn_search"></div>
+                              <div class="col-md-2"><input value="ค้นหา" type="button" class="btn btn-success btn-sm normal_btn" id="btn_search"></div>
                               <div class="col-md-2"></div>
                            </div>
                         </div>
@@ -58,20 +58,21 @@
                               <div class="col-md-12"><br><h5><b>ข้อมูลพนักงาน</b></h5></div>
                               <div class="col-md-12">
                                  <table class="table table-sm table-bordered">
-                                    <thead class="text-center bg-primary text-light">
+                                    <thead class="text-center text-light tb_head">
                                        <tr>
-                                          <th width="25%">ชื่อจริง</th>
-                                          <th width="25%">นามสกุล</th>
-                                          <th width="25%">แผนก</th>
-                                          <th width="15%">ตำแหน่ง</th>
+                                          <th width="15%">รูปประจำตัว</th>
+                                          <th width="22%">ชื่อจริง</th>
+                                          <th width="22%">นามสกุล</th>
+                                          <th width="20%">แผนก</th>
+                                          <th width="11%">ตำแหน่ง</th>
                                           <th width="10%">ระดับ</th>
                                        </tr>
                                     </thead>
-                                    <tbody class="text-left" id="search_result"></tbody>
+                                    <tbody class="text-left tb_body" id="search_result"></tbody>
                                  </table>
                               </div>
                               <div class="col-md-12">
-                                 <input type="submit" class="btn btn-success btn-sm" value="ยืนยัน">
+                                 <input type="submit" class="btn btn-success btn-sm normal_btn" value="ยืนยัน">
                               </div>
                            </div>
                         </form>
@@ -139,8 +140,10 @@
                $('.root_div').removeAttr('style');
                if(!data.error){
                   let html ='';
+                  // https://plms.pea.co.th/Personal/EmployeeImage?EmpCode=admin
                   $("#search_user_id").val($("#user_code").val());
                   html+='<tr style="background-color:lightblue;">';
+                  html+= '<td><img src="https://plms.pea.co.th/Personal/EmployeeImage?EmpCode='+$("#user_code").val()+'" style="width:100px;height:130px;" ></td>';
                   html+= '<td><input type="text" class="form-control"  name="first_name" required readonly value="'+data.user_info['FirstName']+'"></td>';
                   html+= '<td><input type="text" class="form-control"  name="last_name" required readonly value="'+data.user_info['LastName']+'"></td>';
                   html+= '<td><input type="text" class="form-control"  name="dps" required readonly value="'+data.user_info['DepartmentShort']+'"></td>';

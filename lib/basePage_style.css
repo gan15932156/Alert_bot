@@ -1,6 +1,4 @@
 .container-fluid, html{
-  margin : 0;
-  padding: 0;
   background-color: #feebff;
 }
 
@@ -8,7 +6,7 @@
   background-color: white;
   padding: 5px;
   height: 100vh;
-  width: 14%;
+  width: 14vw;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -27,11 +25,42 @@
    
 }
 .inner_work_space{
-  
    margin-top: 1%;
    margin-left: 1%;
    margin-bottom: 1%;
    height: 100%;
    width: 84vw;
- 
 }
+.name_page{
+   background-color:#9347f5;
+}
+.normal_btn{
+   background-color:#9347f5;
+   border: 1px solid #9347f5;
+}
+.normal_btn:hover{
+   background-color:#5400a3;
+   border: 1px solid #5400a3;
+}
+.badge_btn{
+   background-color:#bb87ff;
+   border: 1px solid #bb87ff;
+}
+.table_tag{
+   border: 2px solid #5400a3;
+}
+.tb_head{
+   background-color:#a061f2;
+}
+.tb_body{
+   background-color:#e0c9ff;
+}
+.modal-dialog {
+   height:85vh;
+   max-width:87vw;
+}
+.modal-body{
+   height:85vh;
+   width:100%;
+   align:center;
+} 
