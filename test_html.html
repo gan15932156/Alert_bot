@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>หน้าหลัก</title>
+
+   
+   <link rel="stylesheet" type="text/css" href="/Alert_bot/lib/fontawesome/css/all.css">
+   <link rel="stylesheet" type="text/css" href="/Alert_bot/lib/Bootstrap_4/css/bootstrap.css">
+   <link rel="stylesheet" type="text/css" href="/Alert_bot/lib/datatables/datatables.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/Alert_bot/lib/basePage_style.css">
+   <script type="text/javascript" src="/Alert_bot/lib/Jquery/jquery.js"></script>
+   <script type="text/javascript" src="/Alert_bot/lib/Bootstrap_4/js/bootstrap.js"></script>
+   <script type="text/javascript" src="/Alert_bot/lib/Sweetalert2_all/sweetalert2_all.js"></script>
+   <script type="text/javascript" src="/Alert_bot/lib/datatables/datatables.min.js"></script>   <script type="text/javascript" src="lib/project_js/condition_builder.js"></script>
+   <style>
+      .loading_page{
+         position: absolute;  
+         top: 0px;   
+         left: 0px;  
+         background: #ccc;   
+         width: 100%;   
+         height: 100%;   
+         opacity: .75;   
+         filter: alpha(opacity=75);   
+         -moz-opacity: .75;  
+         z-index: 999;  
+         background: #fff url(lib/Picture/loading_page.gif) 50% 50% no-repeat;
+      }
+      .tb-result thead th { 
+         position: sticky; 
+         top: 0; 
+         background-color:#a061f2;
+         margin-top:2px;
+         
+      }
+   </style>
+</head>
+<body>
+      
+   <div class="root_div">
+      <div class="loading_page"></div>
+      <div class="container-fluid">
+         <div class="row">
+        
+             
+      <div class="side_navbar text-center">
+         <br>
+         <div class="row profile_img">
+            <div class="col-md-12">
+               <img src="https://plms.pea.co.th/Personal/EmployeeImage?EmpCode=6666" style="width:100px;height:130px;" >
+            </div> 
+         </div><br>
+         <div class="row profile_info">
+            <div class="col-md-12">
+               <label><b>ชื่อ : พิทักษ์พล</b></label>
+            </div>
+            <div class="col-md-12">
+               <label>ตำแหน่ง : ผู้ใช้</label>
+            </div>
+            <div class="col-md-12">
+            <label>แผนก : </label>
+            </div>
+         </div><br>
+         <div class="row menu ">
+            <div class="col-md-12 text-left">
+            <style>
+            #link_icon{
+               width:50px;
+               font-size : 30px;
+               color: #5400a3;
+              
+            }
+            #link{
+               color: black;
+               text-decoration: none;
+            }
+            #link:hover {
+               color: #5400a3;
+               background-color: transparent;
+               
+            }
+         </style>
+             
+            <a id="link" href="index_user.php"><i id="link_icon" class="fas fa-home"></i><span id="link_text"><b>หน้าแรก</b></span></a><br>
+            <a id="link" href="manage_task.php"><i id="link_icon" class="fas fa-tasks"></i><span id="link_text">จัดการข้อมูลงาน</span></a><br>
+            <a id="link" href="add_task.php"><i id="link_icon" class="fas fa-file"></i><span id="link_text">เพิ่มข้อมูลงาน</span></a><br>
+            <a id="link" href="add_token_line.php"><i id="link_icon" class="fas fa-key"></i><span id="link_text">เพิ่มข้อมูลโทเคน</span></a><br>
+            <a id="link" href="upload_file_page.php"><i id="link_icon" class="fas fa-upload"></i><span id="link_text">อัพโหลดไฟล์</span></a><br>
+            <a id="link" href="addcolumn_task.php"><i id="link_icon" class="fas fa-plus"></i><span id="link_text">เพิ่มคอลัมน์งาน</span></a><br>
+            <a id="link" href="alert_display.php"><i id="link_icon" class="fab fa-line"></i><span id="link_text">ข้อมูลการส่งไลน์</span></a><br>
+            <a id="link" href="user_history.php"><i id="link_icon" class="fas fa-history"></i><span id="link_text">ประวัติการใช้งาน</span></a> 
+   </div>
+      </div>
+      <br><br><br>
+      <div class="row logout">
+         <div class="col-md-12">
+            <a class="btn btn-danger btn-sm" href="logout.php">ออกจากระบบ</a>
+         </div>
+      </div>
+   </div>        
+            <div class="work_space">
+               <div class="inner_work_space">
+                  <div class="row text-center">
+
+                     <div class="col-md-12 "><h1><span class="badge badge-primary name_page"><b>เพิ่มข้อมูลการแจ้งเตือน</b></span></h1></div>
+                     <!-- Div form -->
+                     <div class="col-md-12">
+                        <div class="form_upload_file">
+                           <form id="form_alert_input" >
+                              <input type="hidden" id="alert_input_user_id" name="alert_input_user_id" value="666">
+                              <input type="hidden" id="alert_input_file_name" name="alert_input_file_name">
+                              <input type="hidden" id="alert_input_count_record" name="alert_input_count_record">
+                              <input type="hidden" id="alert_input_task_name" name="alert_input_task_name">
+                              <div class="row text-left">  
+                                 <div class="col-md-2"><label>หัวข้องาน</label></div>
+                                 <div class="col-md-3">
+                                                                        <select name="task_id" name="task_id" id="task_id" class="form-control form-control-sm">
+                                       <option value="null">เลือกหัวข้องาน</option>
+                                       <option value="1">award</option>   
+                                    </select>
+                                 </div>
+                                 <div class="col-md-2"><label>กลุ่มไลน์</label></div>
+                                 <div class="col-md-3">
+                                    <select class="form-control form-control-sm" name="token_line_id" id="token_line_id"></select>
+                                 </div>
+                                 <div class="col-md-1"> 
+                                    <button type="button" class="btn btn-secondary normal_btn" data-toggle="modal" data-target="#exampleModal">
+                                       <i class="fa fa-info-circle"></i>
+                                    </button>
+                                 </div>
+                              </div>
+
+                              <div class="row text-left">
+                                 <div class="col-md-2"><label>ประเภทเวลาแจ้งแตือน</label></div>
+                                 <div class="col-md-3">
+                                    <select class="form-control form-control-sm" name="alert_time_type" id="alert_time_type">
+                                       <option value="null_time_type">เลือกประเภทแจ้งเตือน</option>
+                                       <option value="period">รอบ</option>
+                                       <option value="fix">ระบุวันที่และเวลา</option>
+                                    </select>
+                                 </div>
+                                 <div class="col-md-7 alert_time_type_input"></div>
+                              </div>
+
+                              <div class="row text-left mt-1">
+                                 <div class="col-md-2"><label>ประเภทข้อมูล</label></div>
+                                 <div class="col-md-3">
+                                    <select class="form-control form-control-sm" name="alert_data_type" id="alert_data_type">
+                                       <option value="null">เลือกประเภทข้อมูล</option>
+                                       <option value="0">จากฐานข้อมูล</option>
+                                       <option value="1">กำหนดเอง</option>
+                                    </select>
+                                 </div>
+                                 <div class="col-md-7 alert_data_type_input"></div>
+                              </div>
+                           </form>
+                           
+                        </div>
+                     </div>
+                     <!-- End div -->
+
+                     <!-- Div กรองข้อมูล -->
+                     <div class="col-md-12">
+                        <div class="row condition_builder_div">
+                           <div class="col-md-12"> 
+                              <div class="row">
+                                 <div class="col-md-2">
+                                 <h3 class="float-left"><span class="badge badge-success name_page"><b>กรองข้อมูล</b></span></h3>
+                                 </div>
+                                 <div class="col-md-6 form-inline">
+                                    <label class="col-md-5">รูปแบบงานที่บันทึกไว้</label>
+                                                                        <select class="form-control form-control-sm col-md-7" id="save_select_box">
+                                       <option value="null">เลือกรูปแบบ</option>
+                                       <option value="1589773759_award.json">10:49:19 18 พ.ค. พ.ศ. 2563 award</option>   
+                                    </select>
+                                 </div>
+                                 <div class="col-md-4"></div>
+                              </div>
+                              
+                              
+                           </div>
+                           <div class="col-md-12">
+                              
+                              <!-- Form condition builder -->
+                              <form id="condition_builder_form">
+                                 <input type="hidden" id="id_user" value="666">
+                                 <input type="hidden" name="sub_row_data_count" id="sub_row_data_count" >
+                                 <input type="hidden" id="table_nameeeeeeeee" name="table_nameeeeeeeee">
+                                 <input type="hidden" id="fields_count" name="fields_count">
+                                 <input type="hidden" id="webdatarocks_setting" name="webdatarocks_setting">
+                                 <input type="hidden" id="sql_select" name="sql_select">
+
+                                 <input type="file" id="open_file" accept=" .json" style="display:none;">
+                                 <div class="row">
+                                    <div class="col-md-12 text-center"> 
+                                       <input style="display:none;" type="button" value="ยืนยันการส่งข้อมูลไลน์" class="btn btn-success btn-sm normal_btn" name="btn_submit_alert" id="btn_submit_alert">
+                                       <input style="display:none  ;" type="button" value="ย้อนกลับ" class="btn btn-success btn-sm normal_btn" name="btn_back" id="btn_back">
+                                    </div>
+                                 </div>
+                                 <div class="row condition_form_div">
+                                    
+                                    <!-- div btn -->
+                                    <div class="col-md-12 text-center"> 
+                                       <input type="button" value="ยืนยัน" class="btn btn-success btn-sm normal_btn" id="send_query">
+                                       <input type="button" value="เคลียร์เงื่อนไข" class="btn btn-danger btn-sm normal_btn" id="reset_condition">
+                                       <input type="button" value="เคลียร์ทั้งหมด" class="btn btn-danger btn-sm normal_btn" id="reset_all">
+                                    </div>
+                                    <!-- End div -->
+
+                                    <!-- div condition builder -->
+                                    <div class="col-md-12 mt-1">
+                                       <!-- ตาราง กำหนดเงื่อนไข -->
+                                       <table class="table table-sm table-bordered text-center condition_table">
+                                          <thead class="text-center text-light conditionbuilder_tb_head">
+                                             <tr>
+                                                <th width="5%"> 
+                                                   <div class="dropdown">
+                                                      <input style="background-color:#e0abff;" type="button" value="+" class="btn btn-success btn-sm dropbtn">
+                                                      <div class="dropdown-content" style="left:0;">
+                                                         <span id="add_condition" condition_type="main_condition">เพิ่มเงื่อนไข</span>
+                                                         <span id="add_sub_condition" condition_type="sub_condition">เพิ่มเงื่อนไขย่อย</span>
+                                                      </div>
+                                                   </div>
+                                                </th>
+                                                <th width="5%">ประเภท</th>
+                                                <th width="15%">หัวตาราง</th>
+                                                <th width="10%">เงื่อนไข</th>
+                                                <th width="15%">ค่า/หัวตาราง</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody class="tb_body" id="append_condition">
+                                          </tbody>
+                                       </table> 
+                                       <!-- End table -->
+                                    </div>
+                                    <!-- End div -->
+                                    
+                                    <!-- div result_query -->
+                                    
+                                    <!-- <button type="button" class="btn btn-secondary btn-sm" id="table_fullscreen"><i class="fas fa-arrows-alt"></i></button> -->
+                                    
+                                    <div class="col-md-12 result_table"></div>
+                                    <!-- End div -->
+
+                                    <!-- div result_query -->
+                                    <div class="col-md-12 mt-1"><input id="send_to_webdatarocks" class="btn btn-success btn-sm normal_btn" type="button" value="ส่งข้อมูลไลน์"></div>
+                                    <!-- End div -->
+                                    
+            
+                                       
+                                 </div>
+                                 <div class="row div_result_webdatarocks">
+
+                                    <!-- div result_webdatarocks -->
+                                    <div class="col-md-12 mt-1"><div id="webdatarocks"></div></div>
+                                    <!-- End div --> 
+
+                                    <link href="/Alert_bot/lib/Webdatarocks/webdatarocks.min.css"  rel="stylesheet"/>
+                                    <script src="/Alert_bot/lib/Webdatarocks/webdatarocks.toolbar.min.js" ></script>
+                                    <script src="/Alert_bot/lib/Webdatarocks/webdatarocks.js" ></script>
+
+                                 </div>
+
+                              </form>
+                              <!-- End form -->
+
+
+                           </div>
+                        </div>
+                     </div>
+                     <!-- End div -->
+
+                     
+                  </div>
+               </div>
+            </div>
+         </div> 
+      </div>
+   </div>
+
+
+      <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ช่วยเหลือ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <p>ถ้าท่านต้องการเพิ่มคอลัมน์ในข้อมูล กดที่ปุ่ม << ย้อนกลับ เพื่อเลือกเมนู "เพิ่มข้อมูลคอลัมน์" ในการอัพโหลดไฟล์นั้น กรุณา เลือกไฟล์ให้ตรงตามงานที่ท่านได้ทำการเพิ่มไว้และเลือก คอลัมน์ให้ตรงตามงานที่ท่านได้เพิ่มไว้</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+<style>  
+   .form_upload_file{
+      background-color:#e0abff;
+      margin-left: 5px;
+      margin-right: 5px;
+      margin-top: 5px;
+      padding:5px;
+      
+   }
+   .condition_builder_div{
+      background-color:#f8e0ff;
+      height: 100%;
+      margin-left: 5px;
+      margin-right: 5px;  
+      padding:5px;
+   }
+   .result_file_upload{
+      overflow: auto;
+      width: 66vw;
+      height: 64vh;
+   }  
+   .result_file_upload:fullscreen{
+      overflow-x: scroll;
+      overflow-y: scroll;
+      background-color: #feebff;
+      margin: 0;
+      padding: 0;
+   }
+   .dropbtn {
+      color: black;
+      border: none;
+      cursor: pointer;
+   }
+   .dropdown {
+      position: relative;
+      display: inline-block;
+   }
+   .dropdown .dropbtn:hover{
+      background-color: #9347f5;
+   }
+   .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+   }
+   .dropdown-content span {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+   }
+   .dropdown-content span:hover {
+      cursor: pointer;
+      background-color: #f1f1f1;
+   }
+   .dropdown:hover .dropdown-content {
+      display: block;
+   }
+   .conditionbuilder_tb_head{
+      background-color: #884dd1;
+   }
+</style>
