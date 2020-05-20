@@ -60,6 +60,7 @@
          $html.= ' 
             <a id="link" href="index_user.php"><i id="link_icon" class="fas fa-home"></i><span id="link_text"><b>หน้าแรก</b></span></a><br>
             <a id="link" href="manage_task.php"><i id="link_icon" class="fas fa-tasks"></i><span id="link_text">จัดการข้อมูลงาน</span></a><br>
+            <a id="link" href="manage_token.php"><i id="link_icon" class="fas fa-tasks"></i><span id="link_text">จัดการข้อมูลโทเคน</span></a><br>
             <a id="link" href="add_task.php"><i id="link_icon" class="fas fa-file"></i><span id="link_text">เพิ่มข้อมูลงาน</span></a><br>
             <a id="link" href="add_token_line.php"><i id="link_icon" class="fas fa-key"></i><span id="link_text">เพิ่มข้อมูลโทเคน</span></a><br>
             <a id="link" href="upload_file_page.php"><i id="link_icon" class="fas fa-upload"></i><span id="link_text">อัพโหลดไฟล์</span></a><br>

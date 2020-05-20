@@ -22,8 +22,11 @@
       }
       return $result;
    }
-
-   session_start();
+ 
+   if(session_id() == "")
+   {
+      session_start();
+   }
    require_once('../config/configDB.php');
    $conn = $DBconnect;
    require_once("../idm-service.php");

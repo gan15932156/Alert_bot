@@ -76,13 +76,17 @@
         margin-right: 5px;  
         padding:5px;
     }
+    .toolbar {
+    float: left;
+}
 </style>
 <script>
     $(document).ready(function(){
         var table ;
         table = $('#data_table').DataTable({
+            "dom": '<"toolbar">frtip',
             columnDefs: [
-                {targets: [0,1],className: 'dt-body-left'},
+                {targets: [1],className: 'dt-body-left'},
                 { orderable: false, targets: '_all' }
             ],     
             "searching": true,
@@ -121,6 +125,9 @@
             
             ]
         });
+
+        $("div.toolbar").html(' <a href="add_task.php" class="btn btn-success normal_btn">เพิ่มงาน</a>');
+
         $("#data_table tbody").on('click','tr',function(){
             let task_id_post = $(this).find("td span[id='task_table_id']").text();
             let task_name_post = $(this).find("td span[id='task_table_name']").text();
